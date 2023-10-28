@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cadastrar Adotante</title>
+  </head>
+  <body>
+    <h1>Cadastrar Adotante</h1>
+    <form action="../Controller/controller_ado.php" method="POST">
+      <label for="nome_adotante">Nome do Adotante:</label>
+      <input type="text" name="nome_adotante" required /><br />
+
+      <label for="descricao_bloqueio">Descrição do Bloqueio:</label>
+      <input type="text" name="descricao_bloqueio" required /><br />
+
+      <label for="cpf">CPF:</label>
+      <input type="text" name="cpf" required /><br />
+
+      <label for="data_bloqueio">Data de Bloqueio:</label>
+      <input type="datetime-local" name="data_bloqueio" required /><br />
+
+      <label for="voluntario_que_registrou">Voluntário que Registrou:</label>
+      <input type="text" name="voluntario_que_registrou" required /><br />
+
+      <input type="submit" value="Cadastrar" name="acao" />
+    </form>
+    <br />
+    <form action="perfil_usuario.php">
+      <input type="submit" value="Voltar" /><br />
+    </form>
+  </body>
+</html>
