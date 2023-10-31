@@ -1,3 +1,5 @@
+<!-- equipes_cadastradas.php -->
+
 <!DOCTYPE html>
 <html>
 
@@ -11,11 +13,7 @@
         <tr>
             <th>Nome da Equipe</th>
             <th>Nome do Líder</th>
-            <th>Nome do 1º Voluntário</th>
-            <th>Nome do 2º Voluntário</th>
-            <th>Nome do 3º Voluntário</th>
-            <th>Nome do 4º Voluntário</th>
-            <th>Nome do 5º Voluntário</th>
+            <th>Voluntários</th>
         </tr>
 
         <?php
@@ -27,11 +25,20 @@
             echo "<tr>";
             echo "<td>{$equipe['nome_da_equipe']}</td>";
             echo "<td>{$equipe['nome_do_voluntario_lider']}</td>";
-            echo "<td>{$equipe['nome_do_voluntario_1']}</td>";
-            echo "<td>{$equipe['nome_do_voluntario_2']}</td>";
-            echo "<td>{$equipe['nome_do_voluntario_3']}</td>";
-            echo "<td>{$equipe['nome_do_voluntario_4']}</td>";
-            echo "<td>{$equipe['nome_do_voluntario_5']}</td>";
+            
+            echo "<td>";
+            echo "Nome do Líder: {$equipe['nome_do_voluntario_lider']}<br>";
+            
+            for ($i = 1; $i <= 5; $i++) {
+                $voluntarioNome = $equipe["nome_do_voluntario_" . $i];
+                if (!empty($voluntarioNome)) {
+                    echo "Nome do " . ($i + 1) . "&ordm; Voluntário: $voluntarioNome<br>";
+                }
+            }
+            echo "";
+            //echo "<td><a href='excluir_equipes.php?nome_da_equipe={$equipe['nome_da_equipe']}'>Excluir</a></td>";
+            echo "</td>";
+            
             echo "</tr>";
         }
         ?>

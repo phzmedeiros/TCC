@@ -6,11 +6,6 @@
 </head>
 
 <body>
-
-
-
-
-
     <h1>Adotantes Cadastrados</h1>
 
     <h3>Busca por CPF</h3>
@@ -49,6 +44,7 @@
             echo "<td>{$adotante['cpf']}</td>";
             echo "<td>{$adotante['data_bloqueio']}</td>";
             echo "<td>{$adotante['voluntario_que_registrou']}</td>";
+            echo "<td><a href='excluir_adotante.php?cpf={$adotante['cpf']}'>Excluir</a></td>";
             echo "</tr>";
         }
         ?>

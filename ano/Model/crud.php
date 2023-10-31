@@ -139,6 +139,24 @@ class crud
         }
     }
 
+    function selecionar_Um_Usuario_Por_Cpf($cpf)
+{
+    $conn = conectar();
+    $sql = "SELECT * FROM usuarios WHERE cpf = :cpf";
+
+    try {
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':cpf', $cpf, PDO::PARAM_STR); // Certifique-se de que o CPF seja tratado como uma string
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        echo "Erro: " . $e->getMessage();
+        return array();
+    }
+}
+
+
     function excluir_Usuario($cpf)
     {
         $conn = conectar();
@@ -256,69 +274,115 @@ class crud
         }
     }
 
-    function criar_Equipes(
-        $nome_da_equipe,
-        $nome_do_voluntario_lider,
-        $nome_do_voluntario_1,
-        $nome_do_voluntario_2,
-        $nome_do_voluntario_3,
-        $nome_do_voluntario_4,
-        $nome_do_voluntario_5
-    ) {
-        $conn = conectar();
 
-        $sql = "INSERT INTO equipes (
-            nome_da_equipe,
-            nome_do_voluntario_lider,
-            nome_do_voluntario_1,
-            nome_do_voluntario_2,
-            nome_do_voluntario_3,
-            nome_do_voluntario_4,
-            nome_do_voluntario_5
-        ) VALUES (
-            :nome_da_equipe,
-            :nome_do_voluntario_lider,
-            :nome_do_voluntario_1,
-            :nome_do_voluntario_2,
-            :nome_do_voluntario_3,
-            :nome_do_voluntario_4,
-            :nome_do_voluntario_5
-        )";
-
-        $stmt = $conn->prepare($sql);
-        $stmt->bindParam(':nome_da_equipe', $nome_da_equipe, PDO::PARAM_STR);
-        $stmt->bindParam(':nome_do_voluntario_lider', $nome_do_voluntario_lider, PDO::PARAM_STR);
-        $stmt->bindParam(':nome_do_voluntario_1', $nome_do_voluntario_1, PDO::PARAM_STR);
-        $stmt->bindParam(':nome_do_voluntario_2', $nome_do_voluntario_2, PDO::PARAM_STR);
-        $stmt->bindParam(':nome_do_voluntario_3', $nome_do_voluntario_3, PDO::PARAM_STR);
-        $stmt->bindParam(':nome_do_voluntario_4', $nome_do_voluntario_4, PDO::PARAM_STR);
-        $stmt->bindParam(':nome_do_voluntario_5', $nome_do_voluntario_5, PDO::PARAM_STR);
-
-        if ($stmt->execute()) {
-            echo "<script language='javascript' type='text/javascript'>
-                  alert('Equipe cadastrada com sucesso');
-                  window.location.href='../View/equipes_cadastradas.php';
-                  </script>";
-        } else {
-            echo "Erro ao cadastrar a equipe: " . $stmt->errorInfo()[2];
-        }
-    }
-
-    function selecionar_Todas_Equipes()
+    function excluir_Adotante($cpf)
     {
         $conn = conectar();
-        $sql = "SELECT * FROM equipes";
+
+        $sql = "DELETE FROM ado_block WHERE cpf = :cpf";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':cpf', $cpf, PDO::PARAM_INT);
 
         try {
-            $stmt = $conn->prepare($sql);
-            $stmt->execute();
-
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if ($stmt->execute()) {
+                echo "<script language='javascript' type='text/javascript'>
+                  alert('Adotante bloqueado excluído com sucesso');
+                  window.location.href='../View/adotantes_cadastrados.php';
+                  </script>";
+            } else {
+                echo "Erro ao excluir o usuário: " . $stmt->errorInfo()[2];
+            }
         } catch (PDOException $e) {
             echo "Erro: " . $e->getMessage();
-            return array();
         }
     }
 
+    function criar_Equipes($nome_da_equipe, $nome_do_voluntario_lider, $voluntarios)
+{
+    $conn = conectar();
+
+    // Primeiro, insira o líder da equipe na tabela de voluntários
+    $sqlLider = "INSERT INTO voluntarios (nome) VALUES (:nome_do_voluntario_lider)";
+    $stmtLider = $conn->prepare($sqlLider);
+    $stmtLider->bindParam(':nome_do_voluntario_lider', $nome_do_voluntario_lider, PDO::PARAM_STR);
+
+    // Em seguida, insira os voluntários na tabela de voluntários e obtenha seus IDs
+    $voluntario_ids = [];
+    foreach ($voluntarios as $voluntario) {
+        $sqlVoluntario = "INSERT INTO voluntarios (nome) VALUES (:nome_do_voluntario)";
+        $stmtVoluntario = $conn->prepare($sqlVoluntario);
+        $stmtVoluntario->bindParam(':nome_do_voluntario', $voluntario, PDO::PARAM_STR);
+        if ($stmtVoluntario->execute()) {
+            $voluntario_ids[] = $conn->lastInsertId();
+        } else {
+            echo "Erro ao cadastrar voluntário: " . $stmtVoluntario->errorInfo()[2];
+            return; // Se houver um erro, pare a execução
+        }
+    }
+
+    // Agora, insira a equipe na tabela de equipes, relacionando-a com os líder e voluntários
+    $sqlEquipe = "INSERT INTO equipes (nome_da_equipe, nome_do_voluntario_lider, nome_do_voluntario_1, nome_do_voluntario_2, nome_do_voluntario_3, nome_do_voluntario_4, nome_do_voluntario_5) VALUES (:nome_da_equipe, :nome_do_voluntario_lider, :nome_do_voluntario_1, :nome_do_voluntario_2, :nome_do_voluntario_3, :nome_do_voluntario_4, :nome_do_voluntario_5)";
+    
+    $stmtEquipe = $conn->prepare($sqlEquipe);
+    $stmtEquipe->bindParam(':nome_da_equipe', $nome_da_equipe, PDO::PARAM_STR);
+    $stmtEquipe->bindParam(':nome_do_voluntario_lider', $voluntario_ids[0], PDO::PARAM_INT); // Usar o ID do líder
+    for ($i = 0; $i < 5; $i++) {
+        if ($i < count($voluntario_ids)) {
+            $stmtEquipe->bindParam(":nome_do_voluntario_" . ($i + 1), $voluntario_ids[$i], PDO::PARAM_INT);
+        } else {
+            $stmtEquipe->bindValue(":nome_do_voluntario_" . ($i + 1), null, PDO::PARAM_NULL); // Se não houver voluntário, defina como NULL
+        }
+    }
+
+    if ($stmtEquipe->execute()) {
+        echo "<script language='javascript' type='text/javascript'>
+              alert('Equipe cadastrada com sucesso');
+              window.location.href='../View/equipes_cadastradas.php';
+              </script>";
+    } else {
+        echo "Erro ao cadastrar a equipe: " . $stmtEquipe->errorInfo()[2];
+    }
+}
+
+
+// function excluir_Equipe($nome_da_equipe)
+//     {
+//         $conn = conectar();
+
+//         $sql = "DELETE FROM equipes WHERE nome_da_equipe = :nome_da_equipe";
+
+//         $stmt = $conn->prepare($sql);
+//         $stmt->bindParam(':nome_da_equipe', $nome_da_equipe, PDO::PARAM_INT);
+
+//         try {
+//             if ($stmt->execute()) {
+//                 echo "<script language='javascript' type='text/javascript'>
+//                   alert('Equipe excluída com sucesso');
+//                   window.location.href='../View/equipes_cadastradas.php';
+//                   </script>";
+//             } else {
+//                 echo "Erro ao excluir o usuário: " . $stmt->errorInfo()[2];
+//             }
+//         } catch (PDOException $e) {
+//             echo "Erro: " . $e->getMessage();
+//         }
+//     }
+
+function selecionar_Todas_Equipes()
+{
+    $conn = conectar();
+    $sql = "SELECT e.nome_da_equipe, v1.nome AS nome_do_voluntario_lider, v2.nome AS nome_do_voluntario_1, v3.nome AS nome_do_voluntario_2, v4.nome AS nome_do_voluntario_3, v5.nome AS nome_do_voluntario_4, v6.nome AS nome_do_voluntario_5
+            FROM equipes e
+            LEFT JOIN voluntarios v1 ON e.nome_do_voluntario_lider = v1.id
+            LEFT JOIN voluntarios v2 ON e.nome_do_voluntario_1 = v2.id
+            LEFT JOIN voluntarios v3 ON e.nome_do_voluntario_2 = v3.id
+            LEFT JOIN voluntarios v4 ON e.nome_do_voluntario_3 = v4.id
+            LEFT JOIN voluntarios v5 ON e.nome_do_voluntario_4 = v5.id
+            LEFT JOIN voluntarios v6 ON e.nome_do_voluntario_5 = v6.id";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 }
 ?>
