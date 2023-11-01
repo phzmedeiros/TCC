@@ -1,38 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
 <style>
-*
-{
+  * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family:Arial, Helvetica, sans-serif;
-}
-:root
-{
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  :root {
     --blue: #287bff;
     --white: #fff;
     --grey: #f5f5f5;
     --black1: #222;
     --black2: #999;
-}
-body
-{
+  }
+  body {
     min-height: 100vh;
     overflow-x: hidden;
-}
-.container
-{
+  }
+  .container {
     position: relative;
     width: 100%;
-}
-.navigation
-{
+  }
+  .navigation {
     position: fixed;
     width: 300px;
     height: 100%;
@@ -40,38 +35,92 @@ body
     border-left: 10px solid var(--blue);
     transition: 0.5s;
     overflow: hidden;
-}
-.navigation ul
-{
+  }
+  .navigation ul {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-}
-.navigation ul li
-{
+  }
+  .navigation ul li {
     position: relative;
-    width: 200%;
+    width: 100%;
     list-style: none;
-}
-.navigation ul li:hover
-{
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+  }
+  .navigation ul li:hover ,
+  .navigation ul li.hovered {
     background: var(--white);
-}
-.navigation ul li:nth-child(1)
-{
+  }
+  .navigation ul li:nth-child(1) {
     margin-bottom: 40px;
     pointer-events: none;
-}
-.navigation ul li a
-{
+  }
+  .navigation ul li a {
     position: relative;
     display: block;
     width: 100%;
     display: flex;
     text-decoration: none;
-}
+    color: var(--white);
+  }
+  .navigation ul li:hover a,
+  .navigation ul li.hovered a {
+    color: var(--blue);
+  }
+  .navigation ul li a .icon {
+    position: relative;
+    display: block;
+    min-width: 60px;
+    height: 60px;
+    line-height: 75px;
+    text-align: center;
+  }
+  .navigation ul li a .icon ion-icon {
+    font-size: 1.75rem;
+  }
+  .navigation ul li a .title {
+    position: relative;
+    display: block;
+    padding: 0 10px;
+    height: 60px;
+    Line-height: 60px;
+    text-align: justify;
+    white-space: nowrap;
+  }
+  /* Adicionado */
+  .title {
+    text-align: center;
+  }
+  .navigation ul li:hover a::before,
+  .navigation ul li.hovered a::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: -50px;
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    border-radius: 50%;
+    box-shadow: 35px 35px 0 10px var(--white);
+    pointer-events: none;
+  }
+  .navigation ul li:hover a::after,
+  .navigation ul li.hovered a::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: -50px;
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    border-radius: 50%;
+    box-shadow: 35px -35px 0 10px var(--white);
+    pointer-events: none;
+  }
 
+  
 </style>
 <body>
     <div class="container">
@@ -79,48 +128,60 @@ body
             <ul>
                 <li>
                     <a href="#">
-                        <span class="icon"></span>
-                        <span class="title">nome</span>
+                        <span class="icon"><ion-icon name="contacts"></ion-icon></span>
+                        <span class="title">AAANO</span>
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <span class="icon"></span>
-                        <span class="title">nome</span>
+                        <span class="icon"><ion-icon name="contacts"></ion-icon></span>
+                        <span class="title">Voluntários</span>
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <span class="icon"></span>
-                        <span class="title">nome</span>
+                        <span class="icon"><ion-icon name="people"></ion-icon></span>
+                        <span class="title">Equipes</span>
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <span class="icon"></span>
-                        <span class="title">nome</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="icon"></span>
-                        <span class="title">nome</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="icon"></span>
-                        <span class="title">nome</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="icon"></span>
-                        <span class="title">nome</span>
+                        <span class="icon"><ion-icon name="close-circle"></ion-icon></span>
+                        <span class="title">Bloqueados</span>
                     </a>
                 </li>
             </ul>
         </div>
+        <!--main-->
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle">
+                    <ion-icon name="menu"></ion-icon>
+                </div>
+                <!--search-->
+                <div class="search">
+                    <label>
+                        <input type="text" placeholder="Pesquisa">
+                        <ion-icon name="search"></ion-icon>
+                    </label>
+                </div>
+                <!--userImg-->
+                <div class="user">
+                    <img src="heheha.jpg">
+                </div>
+            </div>
+        </div>
     </div>
+    <script>
+        let list = document.querySelectorAll('.navigation li')
+        function activeLink(){
+            list.forEach((item) =>
+            item.classList.remove('hovered'));
+            this.classList.add('hovered')
+        }
+        list.forEach((item) =>
+        item,addEventListener('mouseover',activatelink));
+    </script>
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 </body>
 </html>
