@@ -36,7 +36,8 @@ if (!isset($_SESSION["usuarioSenha"])) {
 				<a href="usuarios_cadastrados.php">Vizualizar usuarios</a><br><br><br>
 				<a href="frm_cadastro_equipes.html">Cadastrar Equipes</a><br><br>
 				<a href="equipes_cadastradas.php">Vizualizar Equipes</a><br><br><br>
-				<a href="frm_adesao.php">FORM ADESAO</a><br><br>
+				<a href="frm_adesao.html">FORM ADESAO</a><br><br>
+				<a href="frm_desligamento.html">FORM Desligamento</a><br><br>
 				<a href="termos_aceitos.php">Vizualizar quem aceitou o termo</a><br><br>
 			</fieldset>
 			<br>
