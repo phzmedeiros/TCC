@@ -51,6 +51,7 @@
   }
 
   .navigation ul {
+    padding-top: 80%;
     position: absolute;
     top: 0;
     left: 0;
@@ -68,11 +69,6 @@
   .navigation ul li:hover,
   .navigation ul li.hovered {
     background: var(--white);
-  }
-
-  .navigation ul li:nth-child(1) {
-    margin-bottom: 40px;
-    pointer-events: none;
   }
 
   .navigation ul li a {
@@ -178,6 +174,7 @@
     align-items: center;
     font-size: 2.5rem;
     cursor: pointer;
+    color: var(--blue);
   }
 
   .search {
@@ -206,6 +203,7 @@
     top: 0;
     left: 10px;
     font-size: 1.2em;
+    padding: 3px;
   }
 
   .user {
@@ -225,11 +223,50 @@
     height: 100%;
     object-fit: cover;
   }
+
+  .imglogo {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  padding-top: 10%;
+  padding-right: 10%;
+}
+
+.imglogo.hidden {
+  display: none;
+}
+
+.deslogar {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.deslogar a {
+    display: flex;
+    align-items: center;
+    color: var(--white); /* Set the color for the icon */
+    text-decoration: none;
+}
+
+.deslogar a .icon {
+    margin-right: 10px;
+}
 </style>
 
 <body>
   <div class="container">
     <div class="navigation">
+      <div class="imglogo centralize">
+        <img src="../../public/img/imglogo.png">
+      </div>
       <ul>
         <li>
           <a href="#">
@@ -238,7 +275,6 @@
           </a>
         </li>
         <li>
-          
           <a href="#">
             <span class="icon"><ion-icon name="contacts"></ion-icon></span>
             <span class="title">Voluntários</span>
@@ -257,6 +293,13 @@
           </a>
         </li>
       </ul>
+      <div class="deslogar">
+        <a href="#">
+          <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
+          <span class="title">Deslogar</span>
+        </a>
+      </div>
+      </div>
     </div>
     <!--main-->
     <div class="main">
@@ -283,10 +326,12 @@
     let toggle = document.querySelector('.toggle');
     let navigation = document.querySelector('.navigation');
     let main = document.querySelector('.main');
+    let logo = document.querySelector('.imglogo');
 
     toggle.onclick = function(){
       navigation.classList.toggle('active');
       main.classList.toggle('active');
+      logo.classList.toggle('hidden');
     }
 
     //add hovered class in selected list item
@@ -299,7 +344,7 @@
     list.forEach((item) =>
     item.addEventListener('mouseover',activatelink));
   </script>
-  <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+<script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 </body>
 
 </html>
