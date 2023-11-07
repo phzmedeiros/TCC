@@ -195,6 +195,7 @@
     height: 40px;
     border-radius: 40px;
     padding: 5px 20px;
+    padding-left: 35px;
     outline: none;
     border: 1px solid var(--black2);
   }
@@ -281,20 +282,20 @@
     let navigation = document.querySelector('.navigation');
     let main = document.querySelector('.main');
 
-    toggle.onclick = function () {
+    toggle.onclick = function(){
       navigation.classList.toggle('active');
       main.classList.toggle('active');
     }
 
     //add hovered class in selected list item
     let list = document.querySelectorAll('.navigation li');
-    function activeLink() {
+    function activeLink(){
       list.forEach((item) =>
-        item.classList.remove('hovered'));
+      item.classList.remove('hovered'));
       this.classList.add('hovered');
     }
     list.forEach((item) =>
-      item, addEventListener('mouseover', activatelink));
+    item.addEventListener('mouseover',activatelink));
   </script>
   <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 </body>
