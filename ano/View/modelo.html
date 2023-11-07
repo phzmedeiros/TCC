@@ -1,34 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
 <style>
-    /*Fonte utilizada*/
+  /*Fonte utilizada*/
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
   }
+
   :root {
-    --blue: #287bff;
+    --blue: #383B43;
     --white: #fff;
     --grey: #f5f5f5;
     --black1: #222;
     --black2: #999;
   }
+
   body {
     min-height: 100vh;
     overflow-x: hidden;
   }
+
   .container {
     position: relative;
     width: 100%;
   }
+
   .navigation {
     position: fixed;
     width: 300px;
@@ -38,16 +44,18 @@
     transition: 0.5s;
     overflow: hidden;
   }
-  .navigation.active
-  {
+
+  .navigation.active {
     width: 80px;
   }
+
   .navigation ul {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
   }
+
   .navigation ul li {
     position: relative;
     width: 100%;
@@ -55,14 +63,17 @@
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
   }
-  .navigation ul li:hover ,
+
+  .navigation ul li:hover,
   .navigation ul li.hovered {
     background: var(--white);
   }
+
   .navigation ul li:nth-child(1) {
     margin-bottom: 40px;
     pointer-events: none;
   }
+
   .navigation ul li a {
     position: relative;
     display: block;
@@ -71,10 +82,12 @@
     text-decoration: none;
     color: var(--white);
   }
+
   .navigation ul li:hover a,
   .navigation ul li.hovered a {
     color: var(--blue);
   }
+
   .navigation ul li a .icon {
     position: relative;
     display: block;
@@ -83,9 +96,11 @@
     line-height: 75px;
     text-align: center;
   }
+
   .navigation ul li a .icon ion-icon {
     font-size: 1.75rem;
   }
+
   .navigation ul li a .title {
     position: relative;
     display: block;
@@ -95,10 +110,12 @@
     text-align: justify;
     white-space: nowrap;
   }
+
   /* Adicionado */
   .title {
     text-align: center;
   }
+
   .navigation ul li:hover a::before,
   .navigation ul li.hovered a::before {
     content: '';
@@ -112,6 +129,7 @@
     box-shadow: 35px 35px 0 10px var(--white);
     pointer-events: none;
   }
+
   .navigation ul li:hover a::after,
   .navigation ul li.hovered a::after {
     content: '';
@@ -127,8 +145,7 @@
   }
 
   /* MAIN */
-  .main
-  {
+  .main {
     position: absolute;
     width: calc(100% - 300px);
     left: 300px;
@@ -136,13 +153,13 @@
     background: var(--white);
     transition: 0.5s;
   }
-  .main.active
-  {
+
+  .main.active {
     width: calc(100% - 80px);
     left: 80px;
   }
-  .topbar
-  {
+
+  .topbar {
     width: 100%;
     height: 60px;
     display: flex;
@@ -150,8 +167,8 @@
     align-items: center;
     padding: 0 10px;
   }
-  .toggle
-  {
+
+  .toggle {
     position: relative;
     width: 60px;
     height: 60px;
@@ -161,19 +178,19 @@
     font-size: 2.5rem;
     cursor: pointer;
   }
-  .search
-  {
+
+  .search {
     position: relative;
     width: 400px;
     margin: 0 10px;
   }
-  .search label
-  {
+
+  .search label {
     position: relative;
     width: 100%;
   }
-  .search label input
-  {
+
+  .search label input {
     width: 100%;
     height: 40px;
     border-radius: 40px;
@@ -181,15 +198,15 @@
     outline: none;
     border: 1px solid var(--black2);
   }
-  .search label ion-icon
-  {
+
+  .search label ion-icon {
     position: absolute;
     top: 0;
     left: 10px;
     font-size: 1.2em;
   }
-  .user
-  {
+
+  .user {
     position: relative;
     width: 40px;
     height: 40px;
@@ -197,8 +214,8 @@
     overflow: hidden;
     cursor: pointer;
   }
-  .user img
-  {
+
+  .user img {
     position: absolute;
     top: 0;
     left: 0;
@@ -207,77 +224,79 @@
     object-fit: cover;
   }
 </style>
+
 <body>
-    <div class="container">
-        <div class="navigation">
-            <ul>
-                <li>
-                    <a href="#">
-                        <span class="icon"><ion-icon name="contacts"></ion-icon></span>
-                        <span class="title">AAANO</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="icon"><ion-icon name="contacts"></ion-icon></span>
-                        <span class="title">Voluntários</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="icon"><ion-icon name="people"></ion-icon></span>
-                        <span class="title">Equipes</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="icon"><ion-icon name="close-circle"></ion-icon></span>
-                        <span class="title">Bloqueados</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <!--main-->
-        <div class="main">
-            <div class="topbar">
-                <div class="toggle">
-                    <ion-icon name="menu"></ion-icon>
-                </div>
-                <!--search-->
-                <div class="search">
-                    <label>
-                        <input type="text" placeholder="Pesquisa">
-                        <ion-icon name="search"></ion-icon>
-                    </label>
-                </div>
-                <!--userImg-->
-                <div class="user">
-                    <img src="heheha.jpg">
-                </div>
-            </div>
-        </div>
+  <div class="container">
+    <div class="navigation">
+      <ul>
+        <li>
+          <a href="#">
+            <span class="icon"><ion-icon name="contacts"></ion-icon></span>
+            <span class="title">AAANO</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="icon"><ion-icon name="contacts"></ion-icon></span>
+            <span class="title">Voluntários</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="icon"><ion-icon name="people"></ion-icon></span>
+            <span class="title">Equipes</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="icon"><ion-icon name="close-circle"></ion-icon></span>
+            <span class="title">Bloqueados</span>
+          </a>
+        </li>
+      </ul>
     </div>
-    <script>
-      //menu toggle
-       let toggle = document.querySelector('.toggle');
-       let navigation = document.querySelector('.navigation');
-       let main = document.querySelector('.main');
+    <!--main-->
+    <div class="main">
+      <div class="topbar">
+        <div class="toggle">
+          <ion-icon name="menu"></ion-icon>
+        </div>
+        <!--search-->
+        <div class="search">
+          <label>
+            <input type="text" placeholder="Pesquisa">
+            <ion-icon name="search"></ion-icon>
+          </label>
+        </div>
+        <!--userImg-->
+        <div class="user">
+          <img src="../../public/img/heheheha.png">
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    //menu toggle
+    let toggle = document.querySelector('.toggle');
+    let navigation = document.querySelector('.navigation');
+    let main = document.querySelector('.main');
 
-       toggle.onclick = function(){
-        navigation.classList.toggle('active');
-        main.classList.toggle('active');
-       }
+    toggle.onclick = function () {
+      navigation.classList.toggle('active');
+      main.classList.toggle('active');
+    }
 
-      //add hovered class in selected list item
-        let list = document.querySelectorAll('.navigation li');
-        function activeLink(){
-            list.forEach((item) =>
-            item.classList.remove('hovered'));
-            this.classList.add('hovered');
-        }
-        list.forEach((item) =>
-        item,addEventListener('mouseover',activatelink));
-    </script>
-    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+    //add hovered class in selected list item
+    let list = document.querySelectorAll('.navigation li');
+    function activeLink() {
+      list.forEach((item) =>
+        item.classList.remove('hovered'));
+      this.classList.add('hovered');
+    }
+    list.forEach((item) =>
+      item, addEventListener('mouseover', activatelink));
+  </script>
+  <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 </body>
+
 </html>
