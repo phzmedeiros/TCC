@@ -233,32 +233,12 @@
   top: 0;
   padding-top: 10%;
   padding-right: 10%;
-}
+  }
 
-.imglogo.hidden {
-  display: none;
-}
+  .imglogo.hidden {
+    display: none;
+  }
 
-.deslogar {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.deslogar a {
-    display: flex;
-    align-items: center;
-    color: var(--white); /* Set the color for the icon */
-    text-decoration: none;
-}
-
-.deslogar a .icon {
-    margin-right: 10px;
-}
 </style>
 
 <body>
@@ -293,13 +273,6 @@
           </a>
         </li>
       </ul>
-      <div class="deslogar">
-        <a href="#">
-          <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
-          <span class="title">Deslogar</span>
-        </a>
-      </div>
-      </div>
     </div>
     <!--main-->
     <div class="main">
@@ -321,30 +294,29 @@
       </div>
     </div>
   </div>
-  <script>
-    //menu toggle
-    let toggle = document.querySelector('.toggle');
-    let navigation = document.querySelector('.navigation');
-    let main = document.querySelector('.main');
-    let logo = document.querySelector('.imglogo');
-
-    toggle.onclick = function(){
-      navigation.classList.toggle('active');
-      main.classList.toggle('active');
-      logo.classList.toggle('hidden');
-    }
-
-    //add hovered class in selected list item
-    let list = document.querySelectorAll('.navigation li');
-    function activeLink(){
-      list.forEach((item) =>
-      item.classList.remove('hovered'));
-      this.classList.add('hovered');
-    }
-    list.forEach((item) =>
-    item.addEventListener('mouseover',activatelink));
-  </script>
 <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 </body>
+<script>
+  //menu toggle
+  let toggle = document.querySelector('.toggle');
+  let navigation = document.querySelector('.navigation');
+  let main = document.querySelector('.main');
+  let logo = document.querySelector('.imglogo');
 
+  toggle.onclick = function(){
+    navigation.classList.toggle('active');
+    main.classList.toggle('active');
+    logo.classList.toggle('hidden');
+  }
+
+  //add hovered class in selected list item
+  let list = document.querySelectorAll('.navigation li');
+  function activeLink(){
+    list.forEach((item) =>
+    item.classList.remove('hovered'));
+    this.classList.add('hovered');
+  }
+  list.forEach((item) =>
+  item.addEventListener('mouseover',activatelink));
+</script>
 </html>
