@@ -1,372 +1,360 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    /*Fonte utilizada*/
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap");
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<style>
-  /*Fonte utilizada*/
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
 
+    :root {
+      --blue: #383b43;
+      --white: #fff;
+      --grey: #f5f5f5;
+      --black1: #222;
+      --black2: #999;
+    }
 
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-  }
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
 
-  :root {
-    --blue: #383B43;
-    --white: #fff;
-    --grey: #f5f5f5;
-    --black1: #222;
-    --black2: #999;
-  }
+    .container {
+      position: relative;
+      width: 100%;
+    }
 
-  body {
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
+    .navigation {
+      position: fixed;
+      width: 300px;
+      height: 100%;
+      background: var(--blue);
+      border-left: 10px solid var(--blue);
+      transition: 0.5s;
+      overflow: hidden;
+    }
 
-  .container {
-    position: relative;
-    width: 100%;
-  }
+    .navigation.active {
+      width: 80px;
+    }
 
-  .navigation {
-    position: fixed;
-    width: 300px;
-    height: 100%;
-    background: var(--blue);
-    border-left: 10px solid var(--blue);
-    transition: 0.5s;
-    overflow: hidden;
-  }
+    .navigation ul {
+      padding-top: 80%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
 
-  .navigation.active {
-    width: 80px;
-  }
+    .navigation ul li {
+      position: relative;
+      width: 100%;
+      list-style: none;
+      border-top-left-radius: 30px;
+      border-bottom-left-radius: 30px;
+    }
 
-  .navigation ul {
-    padding-top: 80%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-  }
+    .navigation ul li:hover,
+    .navigation ul li.hovered {
+      background: var(--white);
+    }
 
-  .navigation ul li {
-    position: relative;
-    width: 100%;
-    list-style: none;
-    border-top-left-radius: 30px;
-    border-bottom-left-radius: 30px;
-  }
+    .navigation ul li a {
+      position: relative;
+      display: block;
+      width: 100%;
+      display: flex;
+      text-decoration: none;
+      color: var(--white);
+    }
 
-  .navigation ul li:hover,
-  .navigation ul li.hovered {
-    background: var(--white);
-  }
+    .navigation ul li:hover a,
+    .navigation ul li.hovered a {
+      color: var(--blue);
+    }
 
-  .navigation ul li a {
-    position: relative;
-    display: block;
-    width: 100%;
-    display: flex;
-    text-decoration: none;
-    color: var(--white);
-  }
+    .navigation ul li a .icon {
+      position: relative;
+      display: block;
+      min-width: 60px;
+      height: 60px;
+      line-height: 75px;
+      text-align: center;
+    }
 
-  .navigation ul li:hover a,
-  .navigation ul li.hovered a {
-    color: var(--blue);
-  }
+    .navigation ul li a .icon ion-icon {
+      font-size: 1.75rem;
+    }
 
-  .navigation ul li a .icon {
-    position: relative;
-    display: block;
-    min-width: 60px;
-    height: 60px;
-    line-height: 75px;
-    text-align: center;
-  }
+    .navigation ul li a .title {
+      position: relative;
+      display: block;
+      padding: 0 10px;
+      height: 60px;
+      line-height: 60px;
+      text-align: justify;
+      white-space: nowrap;
+    }
 
-  .navigation ul li a .icon ion-icon {
-    font-size: 1.75rem;
-  }
+    /* Adicionado */
+    .title {
+      text-align: center;
+    }
 
-  .navigation ul li a .title {
-    position: relative;
-    display: block;
-    padding: 0 10px;
-    height: 60px;
-    Line-height: 60px;
-    text-align: justify;
-    white-space: nowrap;
-  }
+    .navigation ul li:hover a::before,
+    .navigation ul li.hovered a::before {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: -50px;
+      width: 50px;
+      height: 50px;
+      background: transparent;
+      border-radius: 50%;
+      box-shadow: 35px 35px 0 10px var(--white);
+      pointer-events: none;
+    }
 
-  /* Adicionado */
-  .title {
-    text-align: center;
-  }
+    .navigation ul li:hover a::after,
+    .navigation ul li.hovered a::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: -50px;
+      width: 50px;
+      height: 50px;
+      background: transparent;
+      border-radius: 50%;
+      box-shadow: 35px -35px 0 10px var(--white);
+      pointer-events: none;
+    }
 
-  .navigation ul li:hover a::before,
-  .navigation ul li.hovered a::before {
-    content: '';
-    position: absolute;
-    right: 0;
-    top: -50px;
-    width: 50px;
-    height: 50px;
-    background: transparent;
-    border-radius: 50%;
-    box-shadow: 35px 35px 0 10px var(--white);
-    pointer-events: none;
-  }
+    /* MAIN */
+    .main {
+      position: absolute;
+      width: calc(100% - 300px);
+      left: 300px;
+      min-height: 100vh;
+      background: var(--white);
+      transition: 0.5s;
+    }
 
-  .navigation ul li:hover a::after,
-  .navigation ul li.hovered a::after {
-    content: '';
-    position: absolute;
-    right: 0;
-    bottom: -50px;
-    width: 50px;
-    height: 50px;
-    background: transparent;
-    border-radius: 50%;
-    box-shadow: 35px -35px 0 10px var(--white);
-    pointer-events: none;
-  }
+    .main.active {
+      width: calc(100% - 80px);
+      left: 80px;
+    }
 
-  /* MAIN */
-  .main {
-    position: absolute;
-    width: calc(100% - 300px);
-    left: 300px;
-    min-height: 100vh;
-    background: var(--white);
-    transition: 0.5s;
-  }
+    .topbar {
+      width: 100%;
+      height: 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 10px;
+    }
 
-  .main.active {
-    width: calc(100% - 80px);
-    left: 80px;
-  }
+    .toggle {
+      position: relative;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2.5rem;
+      cursor: pointer;
+      color: var(--blue);
+    }
 
-  .topbar {
-    width: 100%;
-    height: 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 10px;
-  }
+    .search {
+      position: relative;
+      width: 400px;
+      margin: 0 10px;
+    }
 
-  .toggle {
-    position: relative;
-    width: 60px;
-    height: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2.5rem;
-    cursor: pointer;
-    color: var(--blue);
-  }
+    .search label {
+      position: relative;
+      width: 100%;
+    }
 
-  .search {
-    position: relative;
-    width: 400px;
-    margin: 0 10px;
-  }
+    .search label input {
+      width: 100%;
+      height: 40px;
+      border-radius: 40px;
+      padding: 5px 20px;
+      padding-left: 35px;
+      outline: none;
+      border: 1px solid var(--black2);
+    }
 
-  .search label {
-    position: relative;
-    width: 100%;
-  }
+    .search label ion-icon {
+      position: absolute;
+      top: 0;
+      left: 10px;
+      font-size: 1.2em;
+      padding: 3px;
+    }
 
-  .search label input {
-    width: 100%;
-    height: 40px;
-    border-radius: 40px;
-    padding: 5px 20px;
-    padding-left: 35px;
-    outline: none;
-    border: 1px solid var(--black2);
-  }
+    .user {
+      position: relative;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      overflow: hidden;
+      cursor: pointer;
+    }
 
-  .search label ion-icon {
-    position: absolute;
-    top: 0;
-    left: 10px;
-    font-size: 1.2em;
-    padding: 3px;
-  }
+    .user img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
-  .user {
-    position: relative;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    overflow: hidden;
-    cursor: pointer;
-  }
+    .imglogo {
+      position: absolute;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      top: 0;
+      padding-top: 10%;
+      padding-right: 10%;
+    }
 
-  .user img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+    .imglogo.hidden {
+      display: none;
+    }
 
-  .imglogo {
-  position: absolute;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  top: 0;
-  padding-top: 10%;
-  padding-right: 10%;
-  }
+    @media (max-width: 991px) {
+      .navigation {
+        left: -300px;
+      }
+      .navigation.active {
+        width: 300px;
+        left: 0;
+      }
+      .main {
+        width: 100%;
+        left: 0;
+      }
+      .main.active {
+        left: 300px;
+      }
+    }
 
-  .imglogo.hidden {
-    display: none;
-  }
-  
-@media (max-width: 991px){
-  .navigation
-  {
-    left: -300px;
-  }
-  .navigation.active
-  {
-    width: 300px;
-    left: 0;
-  }
-  .main
-  {
-    width: 100%;
-    left: 0;
-  }
-  .main.active
-  {
-    left: 300px;
-  }
-}
+    @media (max-widdth: 480px) {
+      .user {
+        min-width: 40px;
+      }
+      .navigation {
+        width: 100%;
+        left: -100%;
+        z-index: 1000;
+      }
+      .navigation.active {
+        width: 100%;
+        left: 0;
+      }
+      .toggle {
+        z-index: 10001;
+      }
+      .main.active .toggle {
+        position: fixed;
+        right: 0;
+        left: initial;
+        color: var(--white);
+      }
+    }
+  </style>
 
-@media (max-widdth: 480px)
-{
-  .user
-  {
-    min-width: 40px;
-  }
-  .navigation
-  {
-    width: 100%;
-    left: -100%;
-    z-index: 1000;
-  }
-  .navigation.active
-  {
-    width: 100%;
-    left: 0;
-  }
-  .toggle
-  {
-    z-index: 10001;
-  }
-  .main.active .toggle
-  {
-    position: fixed;
-    right: 0;
-    left: initial;
-    color: var(--white);
-  }
-}
-</style>
-
-<body>
-  <div class="container">
-    <div class="navigation">
-      <div class="imglogo centralize">
-        <img src="../../public/img/imglogo.png">
+  <body>
+    <div class="container">
+      <div class="navigation">
+        <div class="imglogo centralize">
+          <img src="../../public/img/imglogo.png" />
+        </div>
+        <ul>
+          <li>
+            <a href="#">
+              <span class="icon"><ion-icon name="contacts"></ion-icon></span>
+              <span class="title">AAANO</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="icon"><ion-icon name="contacts"></ion-icon></span>
+              <span class="title">Voluntários</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="icon"><ion-icon name="people"></ion-icon></span>
+              <span class="title">Equipes</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="icon"
+                ><ion-icon name="close-circle"></ion-icon
+              ></span>
+              <span class="title">Bloqueados</span>
+            </a>
+          </li>
+        </ul>
       </div>
-      <ul>
-        <li>
-          <a href="#">
-            <span class="icon"><ion-icon name="contacts"></ion-icon></span>
-            <span class="title">AAANO</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <span class="icon"><ion-icon name="contacts"></ion-icon></span>
-            <span class="title">Voluntários</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <span class="icon"><ion-icon name="people"></ion-icon></span>
-            <span class="title">Equipes</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <span class="icon"><ion-icon name="close-circle"></ion-icon></span>
-            <span class="title">Bloqueados</span>
-          </a>
-        </li>
-      </ul>
-    </div>
-    <!--main-->
-    <div class="main">
-      <div class="topbar">
-        <div class="toggle">
-          <ion-icon name="menu"></ion-icon>
-        </div>
-        <!--search-->
-        <div class="search">
-          <label>
-            <input type="text" placeholder="Pesquisa">
-            <ion-icon name="search"></ion-icon>
-          </label>
-        </div>
-        <!--userImg-->
-        <div class="user">
-          <img src="../../public/img/heheheha.png">
+      <!--main-->
+      <div class="main">
+        <div class="topbar">
+          <div class="toggle">
+            <ion-icon name="menu"></ion-icon>
+          </div>
+          <!--search-->
+          <div class="search">
+            <label>
+              <input type="text" placeholder="Pesquisa" />
+              <ion-icon name="search"></ion-icon>
+            </label>
+          </div>
+          <!--userImg-->
+          <div class="user">
+            <img src="../../public/img/heheheha.png" />
+          </div>
         </div>
       </div>
     </div>
-  </div>
-<script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
-</body>
-<script>
-  //menu toggle
-  let toggle = document.querySelector('.toggle');
-  let navigation = document.querySelector('.navigation');
-  let main = document.querySelector('.main');
-  let logo = document.querySelector('.imglogo');
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+  </body>
+  <script>
+    //menu toggle
+    let toggle = document.querySelector(".toggle");
+    let navigation = document.querySelector(".navigation");
+    let main = document.querySelector(".main");
+    let logo = document.querySelector(".imglogo");
 
-  toggle.onclick = function(){
-    navigation.classList.toggle('active');
-    main.classList.toggle('active');
-    logo.classList.toggle('hidden');
-  }
+    toggle.onclick = function () {
+      navigation.classList.toggle("active");
+      main.classList.toggle("active");
+      logo.classList.toggle("hidden");
+    };
 
-  //add hovered class in selected list item
-  let list = document.querySelectorAll('.navigation li');
-  function activeLink(){
-    list.forEach((item) =>
-    item.classList.remove('hovered'));
-    this.classList.add('hovered');
-  }
-  list.forEach((item) =>
-  item.addEventListener('mouseover',activatelink));
-</script>
+    //add hovered class in selected list item
+    let list = document.querySelectorAll(".navigation li");
+    function activeLink() {
+      list.forEach((item) => item.classList.remove("hovered"));
+      this.classList.add("hovered");
+    }
+    list.forEach((item) => item.addEventListener("mouseover", activatelink));
+  </script>
 </html>
