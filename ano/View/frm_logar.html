@@ -1,186 +1,251 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Logar</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<style>
-/*Fonte utilizada*/
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
-body{
-  font-family: 'Poppins', sans-serif;
-  margin: 0;
-  padding: 0;
-}
+  <head>
+    <title>Logar</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <style>
+    /*Fonte utilizada*/
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap");
+    body {
+      font-family: "Poppins", sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
 
-/*Main*/
-.container {
-  display: flex;
-  height: 100vh;
-}
-  
-.split {
-  flex-basis: 50%;
-}
-  
-.left {
-  background-color: #ffffff;
-}
-  
-.right {
-  background-color: #242730;
-  opacity: 80%;
-  display: flex;
-}
+    /*Main*/
+    .container {
+      display: flex;
+      height: 100vh;
+      @media (max-width: 768px) {
+        flex-direction: column;
+      }
+    }
 
-/*Texto de boas vindas ao sistema e imagem*/
-.txt-img-boasvindas {
-  height: 100%;
-  display:grid;
-}
-  
-.txt-boasvindas h1 {
-  margin-top: 43;
-}
+    .split {
+      flex-basis: 100%;
+      @media (max-width: 768px) {
+        display: none;
+      }
+    }
 
-.txt-boasvindas {
-  margin-left: 52px;
-}
-  
-.img-boasvindas {
-  justify-content: center;
-  display: flex;
-  align-items: center;
-}
+    .left {
+      background-color: #ffffff;
+      @media (max-width: 768px) {
+        display: none;
+      }
+    }
 
-.img-boasvindas img {
-  width: 78%;
-  height: 78%;
-}
+    .right {
+      background-color: #242730;
+      opacity: 80%;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      @media (max-width: 768px) {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin-left: 0;
+        justify-content: center;
+        align-items: center;
+      }
+    }
 
-/*Forms do Login*/
-.form-container {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;  
-}
+    /*Texto de boas vindas ao sistema e imagem*/
+    .txt-img-boasvindas {
+      height: 100%;
+      display: grid;
+      @media (max-width: 768px) {
+        display: none;
+      }
+    }
 
-.space{
-  height: 5%;
-  width: 0;
-}
+    .txt-boasvindas h1 {
+      margin-top: 43;
+      @media (max-width: 768px) {
+        margin: 0 0 20px 0;
+        color: #ffffff;
+        opacity: 90%;
+        font-size: 3em;
+        margin-top: 10%;
+      }
+    }
 
-.form-container h1 {
-  margin: 0 0 20px 0;
-  color: #FFFFFF;
-  opacity: 90%;
-  font-size: 3em;
-  margin-top: 10%;
-}
-  
-.login-form {
-  display: flex;
-  flex-direction: column;
-  width: 85%;
-  height: 85%;
-}
-  
-.login-form label {
-  display: flex;
-  margin-bottom: 5px;
-  color: #FFFFFF;
-  opacity: 60%;
-}
+    .txt-boasvindas {
+      margin-left: 52px;
+      @media (max-width: 768px) {
+        margin: 0;
+      }
+    }
 
-/*Input do forms*/
-.login-form input[type="text"],
-.login-form input[type="password"] {
-  padding: 2rem;
-  border-radius: 24px;
-  background-color: rgba(255, 255, 255, 0.5);
-  border: none;
-  color: white;
-  font-family: 'Poppins', sans-serif;
-  font-size: 1rem;
-}
+    .img-boasvindas {
+      justify-content: center;
+      display: flex;
+      align-items: center;
+      @media (max-width: 768px) {
+        display: none;
+      }
+    }
 
-.login-form button {
-  width: 40%;
-  padding: 2rem;
-  border-radius: 25px;
-  background-color: #FBD18C;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  height: 25%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  font-family: 'Poppins', sans-serif;
-  font-size: 1rem;
-  transition: 1s;
-}
+    .img-boasvindas img {
+      width: 78%;
+      height: 78%;
+      @media (max-width: 768px) {
+        width: 200px;
+        height: 200px;
+        margin: 0 auto;
+      }
+    }
 
-.login-form button:hover{
-  transition: 1s;
-  background-color: #e4a53e;
-  transform: scale(1.1);
-}
+    /*Forms do Login*/
+    .form-container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
 
-.btn {
-  display: flex;
-  justify-content: end;
-  align-items: center;
-  width: 100%;
-}
-    
+    .space {
+      height: 5%;
+      width: 0;
+    }
 
-.txt-boasvindas{
-  align-content: center;
-  color: #242730;
-  opacity: 80%;
-  display: flex;
-  justify-content: start;
-  font-size: 1.3em;
-}
-</style>
-<body>
-  <div class="container">
+    .form-container h1 {
+      margin: 0 0 20px 0;
+      color: #ffffff;
+      opacity: 90%;
+      font-size: 3em;
+      margin-top: 10%;
+      align-self: center;
+    }
+
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      @media (max-width: 768px) {
+        width: 100%;
+        height: 100%;
+        padding: 1rem;
+        justify-content: center;
+      }
+    }
+
+    .login-form label {
+      display: flex;
+      margin-bottom: 5px;
+      color: #ffffff;
+      opacity: 60%;
+      margin-left: 2rem;
+    }
+
+    /*Input do forms*/
+    .login-form input[type="text"],
+    .login-form input[type="password"] {
+      padding: 2rem;
+      padding-left: 1rem;
+      margin-left: 2rem;
+      margin-right: 2rem;
+      border-radius: 24px;
+      background-color: rgba(255, 255, 255, 0.5);
+      border: none;
+      color: white;
+      font-family: "Poppins", sans-serif;
+      font-size: 1rem;
+    }
+
+    .login-form button {
+      width: 40%;
+      padding: 2rem;
+      border-radius: 25px;
+      background-color: #fbd18c;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      height: 25%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      font-family: "Poppins", sans-serif;
+      font-size: 1rem;
+      transition: 1s;
+      margin-right: 2rem;
+    }
+
+    .login-form button:hover {
+      transition: 1s;
+      background-color: #e4a53e;
+      transform: scale(1.1);
+    }
+
+    .btn {
+      display: flex;
+      justify-content: end;
+      align-items: center;
+      width: 100%;
+    }
+
+    .txt-boasvindas {
+      align-content: center;
+      color: #242730;
+      opacity: 80%;
+      display: flex;
+      justify-content: start;
+      font-size: 1.3em;
+    }
+
+    @media (max-width: 768px) {
+      .split-left {
+        display: none;
+      }
+    }
+  </style>
+  <body>
+    <div class="container">
       <div class="split left">
         <div class="txt-img-boasvindas">
           <div class="txt-boasvindas">
-            <h1>Bem-vindo à<br> 
-            plataforma<br>
-            de controle de<br>
-            equipes da AAANO!</h1>
-          </div> 
+            <h1>
+              Bem-vindo à<br />
+              plataforma<br />
+              de controle de<br />
+              equipes da AAANO!
+            </h1>
+          </div>
           <div class="img-boasvindas">
-            <img src="../../public/img/imgprincipal.png">
+            <img src="../../public/img/imgprincipal.png" />
           </div>
         </div>
       </div>
-        <div class="split right">
-          <div class="form-container">
+      <div class="split right">
+        <div class="form-container">
+          <div class="space"></div>
+          <form
+            class="login-form"
+            method="POST"
+            action="../Controller/controller_logar.php"
+          >
             <h1>Login</h1>
+            <label for="username">Nome de usuário:</label>
+            <input type="text" name="nome_do_voluntario" required />
             <div class="space"></div>
-            <form class="login-form" method="POST" action="../Controller/controller_logar.php">
-                <label for="username">Nome de usuário:</label>
-                <input type="text" name="nome_do_voluntario" required>
-                <div class="space"></div>
-                <br>
-                <label for="senha">Senha:</label>
-                <input type="password" id="password" name="senha" required>
-                <div class="space"></div>
-                <div class="btn">
-                    <button id="btn-login" type="submit" value="Logar" name="botao">Entrar</button>
-                </div>
-            </form>
-          </div>
+            <br />
+            <label for="senha">Senha:</label>
+            <input type="password" id="password" name="senha" required />
+            <div class="space"></div>
+            <div class="btn">
+              <button id="btn-login" type="submit" value="Logar" name="botao">
+                Entrar
+              </button>
+            </div>
+          </form>
         </div>
+      </div>
     </div>
-</body>
+  </body>
 </html>
