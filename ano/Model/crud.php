@@ -34,32 +34,34 @@ class crud
         }
     }
 
-    public function adesao($nome, $email)
-    {
-        $conn = conectar();
-        $message = '';
+    public function adesao($nome, $cpf, $email)
+{
+    $conn = conectar();
+    $message = '';
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $nome = $_POST['nome'];
-            $email = $_POST['email'];
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $nome = $_POST['nome'];
+        $cpf = $_POST['cpf'];
+        $email = $_POST['email'];
 
-            if (empty($nome) || empty($email)) {
-                $message = 'Por favor, preencha todos os campos.';
+        if (empty($nome) || empty($cpf) || empty($email)) {
+            $message = 'Por favor, preencha todos os campos.';
+        } else {
+            $sql = "INSERT INTO adesao (nome, cpf, email) VALUES (:nome, :cpf, :email)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':nome', $nome, PDO::PARAM_STR);
+            $stmt->bindParam(':cpf', $cpf, PDO::PARAM_STR);
+            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+
+            if ($stmt->execute()) {
+                $message = 'Termo aceito com sucesso';
+                echo "<script>alert('Termo aceito com sucesso'); window.location.href='../View/perfil_usuario.php';</script>";
             } else {
-                $sql = "INSERT INTO adesao (nome, email) VALUES (:nome, :email)";
-                $stmt = $conn->prepare($sql);
-                $stmt->bindParam(':nome', $nome, PDO::PARAM_STR);
-                $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-
-                if ($stmt->execute()) {
-                    $message = 'Termo aceito com sucesso';
-                    echo "<script>alert('Termo aceito com sucesso'); window.location.href='../View/perfil_usuario.php';</script>";
-                } else {
-                    echo "<script>alert('Erro! É preciso aceitar o termo de adesão');</script>";
-                }
+                echo "<script>alert('Erro! É preciso aceitar o termo de adesão');</script>";
             }
         }
     }
+}
 
     function selecionar_Todos_Termos_Aceitos()
     {
@@ -77,14 +79,14 @@ class crud
         }
     }
 
-    function selecionar_Um_Termo_Por_Email($email)
+    function selecionar_Um_Termo_Por_Cpf($cpf)
     {
         $conn = conectar();
-        $sql = "SELECT * FROM adesao WHERE email = :email";
+        $sql = "SELECT * FROM adesao WHERE cpf = :cpf";
 
         try {
             $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':email', $email);
+            $stmt->bindParam(':cpf', $cpf);
             $stmt->execute();
 
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -94,34 +96,34 @@ class crud
         }
     }
 
-    function excluir_Termo($email)
-{
-    $conn = conectar();
+    function excluir_Termo($cpf)
+    {
+        $conn = conectar();
 
-    // Primeiro, exclua da tabela 'adesao'
-    $sql1 = "DELETE FROM adesao WHERE email = :email";
-    $stmt1 = $conn->prepare($sql1);
-    $stmt1->bindParam(':email', $email, PDO::PARAM_INT);
+        // Primeiro, exclua da tabela 'adesao'
+        $sql1 = "DELETE FROM adesao WHERE cpf = :cpf LIMIT 1";
+        $stmt1 = $conn->prepare($sql1);
+        $stmt1->bindParam(':cpf', $cpf, PDO::PARAM_STR);
 
-    // Em seguida, exclua da tabela 'usuarios'
-    $sql2 = "DELETE FROM usuarios WHERE email = :email";
-    $stmt2 = $conn->prepare($sql2);
-    $stmt2->bindParam(':email', $email, PDO::PARAM_INT);
+        // Em seguida, exclua da tabela 'usuarios'
+        $sql2 = "DELETE FROM usuarios WHERE cpf = :cpf";
+        $stmt2 = $conn->prepare($sql2);
+        $stmt2->bindParam(':cpf', $cpf, PDO::PARAM_STR);
 
-    try {
-        if ($stmt1->execute() && $stmt2->execute()) {
-            echo "<script language='javascript' type='text/javascript'>
+        try {
+            if ($stmt1->execute() && $stmt2->execute()) {
+                echo "<script language='javascript' type='text/javascript'>
               alert('Termo de desligamento assinado com sucesso');
               window.location.href='../View/perfil_usuario.php';
               </script>";
-        } else {
-            echo "Erro ao excluir o usuário: " . $stmt1->errorInfo()[2];
-            echo "Erro ao excluir o usuário: " . $stmt2->errorInfo()[2];
+            } else {
+                echo "Erro ao excluir o usuário: " . $stmt1->errorInfo()[2];
+                echo "Erro ao excluir o usuário: " . $stmt2->errorInfo()[2];
+            }
+        } catch (PDOException $e) {
+            echo "Erro: " . $e->getMessage();
         }
-    } catch (PDOException $e) {
-        echo "Erro: " . $e->getMessage();
     }
-}
 
 
     //FUNÇÃO PARA CADASTRAR UM NOVO USUÁRIO NA TABELA DE USUÁRio
