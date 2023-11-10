@@ -1,50 +1,59 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cadastrar Usuário</title>
-
-    
-</head>
-<body>
+  </head>
+  <body>
     <h1>Cadastrar Usuário</h1>
     <form action="../Controller/controller_usuarios.php" method="POST">
-        <label for="nome_do_voluntario">Nome do Voluntário:</label>
-        <input type="text" name="nome_do_voluntario" required><br>
-        
-        <label for="email">Email:</label>
-        <input type="email" name="email" required><br>
-        
-        <label for="endereco">Endereço:</label>
-        <input type="text" name="endereco" required><br>
-        
-        <label for="profissao">Profissão:</label>
-        <input type="text" name="profissao" required><br>
-        
-        <label for="cell">Celular:</label>
-        <input type="text" name="cell"  placeholder="(00) 00000-0000" id="fone"><br>
-        
-        <label for="tell_emergencia">Telefone de Emergência:</label>
-        <input type="text" name="tell_emergencia"  placeholder="(00) 00000-0000" id="fone"><br>
-        
-        <label for="rg">RG:</label>
-        <input type="text" name="rg" required><br>
-        
-        <label for="cpf">CPF:</label>
-        <input type="text" name="cpf" placeholder="000.000.000-00" id="cpf">
+      <label for="nome_do_voluntario">Nome do Voluntário:</label>
+      <input type="text" name="nome_do_voluntario" required /><br />
 
-        <label for="equipe_pertencente">Equipe Pertencente:</label>
-        <input type="text" name="equipe_pertencente" required><br>
-        
-        <label for="obs">Observações:</label><br>
-        <textarea name="text" rows="4" cols="50"></textarea><br>
-        
-        <input type="submit" value="Cadastrar" name="acao">
-    </form><br>
+      <label for="email">Email:</label>
+      <input type="email" name="email" required /><br />
+
+      <label for="endereco">Endereço:</label>
+      <input type="text" name="endereco" required /><br />
+
+      <label for="profissao">Profissão:</label>
+      <input type="text" name="profissao" required /><br />
+
+      <label for="cell">Celular:</label>
+      <input
+        type="text"
+        name="cell"
+        placeholder="(00) 00000-0000"
+        id="fone"
+      /><br />
+
+      <label for="tell_emergencia">Telefone de Emergência:</label>
+      <input
+        type="text"
+        name="tell_emergencia"
+        placeholder="(00) 00000-0000"
+        id="fone"
+      /><br />
+
+      <label for="rg">RG:</label>
+      <input type="text" name="rg" required /><br />
+
+      <label for="cpf">CPF:</label>
+      <input type="text" name="cpf" placeholder="000.000.000-00" id="cpf" />
+
+      <label for="equipe_pertencente">Equipe Pertencente:</label>
+      <input type="text" name="equipe_pertencente" required /><br />
+
+      <label for="obs">Observações:</label><br />
+      <textarea name="text" rows="4" cols="50"></textarea><br />
+
+      <input type="submit" value="Cadastrar" name="acao" />
+    </form>
+    <br />
 
     <form action="perfil_usuario.php">
-        <input type="submit" value="Voltar"><br>
+      <input type="submit" value="Voltar" /><br />
     </form>
-</body>
+  </body>
 </html>
