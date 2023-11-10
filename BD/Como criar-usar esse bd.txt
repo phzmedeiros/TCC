@@ -1,9 +1,0 @@
-1- entre na pasta xapp de seu pc
-
-2- va para mysql
-
-3- entre na pasta "data"
-
-4- jogue a pasta "aaano" dentro do "data" 
-
-e pronto só abrir o xampp, ligar o mysql e o apache e boa
