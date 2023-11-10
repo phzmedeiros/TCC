@@ -35,33 +35,33 @@ class crud
     }
 
     public function adesao($nome, $cpf, $email)
-{
-    $conn = conectar();
-    $message = '';
+    {
+        $conn = conectar();
+        $message = '';
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $nome = $_POST['nome'];
-        $cpf = $_POST['cpf'];
-        $email = $_POST['email'];
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $nome = $_POST['nome'];
+            $cpf = $_POST['cpf'];
+            $email = $_POST['email'];
 
-        if (empty($nome) || empty($cpf) || empty($email)) {
-            $message = 'Por favor, preencha todos os campos.';
-        } else {
-            $sql = "INSERT INTO adesao (nome, cpf, email) VALUES (:nome, :cpf, :email)";
-            $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':nome', $nome, PDO::PARAM_STR);
-            $stmt->bindParam(':cpf', $cpf, PDO::PARAM_STR);
-            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-
-            if ($stmt->execute()) {
-                $message = 'Termo aceito com sucesso';
-                echo "<script>alert('Termo aceito com sucesso'); window.location.href='../View/perfil_usuario.php';</script>";
+            if (empty($nome) || empty($cpf) || empty($email)) {
+                $message = 'Por favor, preencha todos os campos.';
             } else {
-                echo "<script>alert('Erro! É preciso aceitar o termo de adesão');</script>";
+                $sql = "INSERT INTO adesao (nome, cpf, email) VALUES (:nome, :cpf, :email)";
+                $stmt = $conn->prepare($sql);
+                $stmt->bindParam(':nome', $nome, PDO::PARAM_STR);
+                $stmt->bindParam(':cpf', $cpf, PDO::PARAM_STR);
+                $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+
+                if ($stmt->execute()) {
+                    $message = 'Termo aceito com sucesso';
+                    echo "<script>alert('Termo aceito com sucesso'); window.location.href='../View/perfil_usuario.php';</script>";
+                } else {
+                    echo "<script>alert('Erro! É preciso aceitar o termo de adesão');</script>";
+                }
             }
         }
     }
-}
 
     function selecionar_Todos_Termos_Aceitos()
     {
@@ -215,40 +215,39 @@ class crud
 
 
     // function atualizar_Usuario($cpf, $nome, $email, $endereco, $profissao, $cell, $tell_emergencia, $rg, $equipe_pertencente, $obs)
-// {
-//     $conn = conectar();
+    // {
+    //     $conn = conectar();
 
     //     // Atualiza o registro do usuário no banco de dados
-//     $sql = "UPDATE usuarios SET nome_do_voluntario = :nome, email = :email, endereco = :endereco, profissao = :profissao, cell = :cell, tell_emergencia = :tell_emergencia, rg = :rg, equipe_pertencente = :equipe_pertencente, obs = :obs WHERE cpf = :cpf";
-//     $stmt = $conn->prepare($sql);
-//     $stmt->bindParam(':cpf', $cpf);
-//     $stmt->bindParam(':nome', $nome);
-//     $stmt->bindParam(':email', $email);
-//     $stmt->bindParam(':endereco', $endereco);
-//     $stmt->bindParam(':profissao', $profissao);
-//     $stmt->bindParam(':cell', $cell);
-//     $stmt->bindParam(':tell_emergencia', $tell_emergencia);
-//     $stmt->bindParam(':rg', $rg);
-//     $stmt->bindParam(':equipe_pertencente', $equipe_pertencente);
-//     $stmt->bindParam(':obs', $obs);
+    //     $sql = "UPDATE usuarios SET nome_do_voluntario = :nome, email = :email, endereco = :endereco, profissao = :profissao, cell = :cell, tell_emergencia = :tell_emergencia, rg = :rg, equipe_pertencente = :equipe_pertencente, obs = :obs WHERE cpf = :cpf";
+    //     $stmt = $conn->prepare($sql);
+    //     $stmt->bindParam(':cpf', $cpf);
+    //     $stmt->bindParam(':nome', $nome);
+    //     $stmt->bindParam(':email', $email);
+    //     $stmt->bindParam(':endereco', $endereco);
+    //     $stmt->bindParam(':profissao', $profissao);
+    //     $stmt->bindParam(':cell', $cell);
+    //     $stmt->bindParam(':tell_emergencia', $tell_emergencia);
+    //     $stmt->bindParam(':rg', $rg);
+    //     $stmt->bindParam(':equipe_pertencente', $equipe_pertencente);
+    //     $stmt->bindParam(':obs', $obs);
 
     //     try {
-//         if ($stmt->execute()) {
-//             // Redireciona de volta para a página de usuários cadastrados
-//             header("Location: usuarios_cadastrados.php");
-//             exit();
-//         } else {
-//             echo "Erro ao atualizar o usuário: " . $stmt->errorInfo()[2];
-//         }
-//     } catch (PDOException $e) {
-//         echo "Erro: " . $e->getMessage();
-//     }
-// }
+    //         if ($stmt->execute()) {
+    //             // Redireciona de volta para a página de usuários cadastrados
+    //             header("Location: usuarios_cadastrados.php");
+    //             exit();
+    //         } else {
+    //             echo "Erro ao atualizar o usuário: " . $stmt->errorInfo()[2];
+    //         }
+    //     } catch (PDOException $e) {
+    //         echo "Erro: " . $e->getMessage();
+    //     }
+    // }
 
 
 
     //funcoes adotante
-
     function cadastrar_Adotante($nome_adotante, $descricao_bloqueio, $cpf, $data_bloqueio, $voluntario_que_registrou)
     {
         $conn = conectar();
@@ -379,43 +378,42 @@ class crud
     }
 
 
-    // function excluir_Equipe($nome_da_equipe)
-    // {
-    //     $conn = conectar();
+    function excluir_Equipe($cod_equipe)
+    {
+        $conn = conectar();
 
-    //         $sql = "DELETE FROM equipes WHERE nome_da_equipe = :nome_da_equipe";
+        $sql = "DELETE FROM equipes WHERE id = :id";
 
-    //         $stmt = $conn->prepare($sql);
-    //     $stmt->bindParam(':nome_da_equipe', $nome_da_equipe, PDO::PARAM_INT);
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':id', $cod_equipe, PDO::PARAM_INT);
 
-    //         try {
-    //         if ($stmt->execute()) {
-    //             echo "<script language='javascript' type='text/javascript'>
-    //               alert('Equipe excluída com sucesso');
-    //               window.location.href='../View/equipes_cadastradas.php';
-    //               </script>";
-    //         } else {
-    //             echo "Erro ao excluir o usuário: " . $stmt->errorInfo()[2];
-    //         }
-    //     } catch (PDOException $e) {
-    //         echo "Erro: " . $e->getMessage();
-    //     }
-    // }
+        try {
+            if ($stmt->execute()) {
+                echo "<script language='javascript' type='text/javascript'>
+                  alert('Equipe excluída com sucesso');
+                  window.location.href='../View/equipes_cadastradas.php';
+                  </script>";
+            } else {
+                echo "Erro ao excluir o usuário: " . $stmt->errorInfo()[2];
+            }
+        } catch (PDOException $e) {
+            echo "Erro: " . $e->getMessage();
+        }
+    }
 
     function selecionar_Todas_Equipes()
     {
         $conn = conectar();
-        $sql = "SELECT e.nome_da_equipe, v1.nome AS nome_do_voluntario_lider, v2.nome AS nome_do_voluntario_1, v3.nome AS nome_do_voluntario_2, v4.nome AS nome_do_voluntario_3, v5.nome AS nome_do_voluntario_4, v6.nome AS nome_do_voluntario_5
-            FROM equipes e
-            LEFT JOIN voluntarios v1 ON e.nome_do_voluntario_lider = v1.id
-            LEFT JOIN voluntarios v2 ON e.nome_do_voluntario_1 = v2.id
-            LEFT JOIN voluntarios v3 ON e.nome_do_voluntario_2 = v3.id
-            LEFT JOIN voluntarios v4 ON e.nome_do_voluntario_3 = v4.id
-            LEFT JOIN voluntarios v5 ON e.nome_do_voluntario_4 = v5.id
-            LEFT JOIN voluntarios v6 ON e.nome_do_voluntario_5 = v6.id";
+        $sql = "SELECT e.id, e.nome_da_equipe, v1.nome AS nome_do_voluntario_lider, v2.nome AS nome_do_voluntario_1, v3.nome AS nome_do_voluntario_2, v4.nome AS nome_do_voluntario_3, v5.nome AS nome_do_voluntario_4, v6.nome AS nome_do_voluntario_5
+        FROM equipes e
+        LEFT JOIN voluntarios v1 ON e.nome_do_voluntario_lider = v1.id
+        LEFT JOIN voluntarios v2 ON e.nome_do_voluntario_1 = v2.id
+        LEFT JOIN voluntarios v3 ON e.nome_do_voluntario_2 = v3.id
+        LEFT JOIN voluntarios v4 ON e.nome_do_voluntario_3 = v4.id
+        LEFT JOIN voluntarios v5 ON e.nome_do_voluntario_4 = v5.id
+        LEFT JOIN voluntarios v6 ON e.nome_do_voluntario_5 = v6.id";
         $stmt = $conn->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
-?>
