@@ -8,14 +8,14 @@
   <style>
     /*Fonte utilizada*/
     @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap");
-
+    /* estilos globais e reset */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       font-family: "Poppins", sans-serif;
     }
-
+    /* definição das cores por variaveis */
     :root {
       --blue: #383b43;
       --white: #fff;
@@ -102,13 +102,8 @@
       padding: 0 10px;
       height: 60px;
       line-height: 60px;
-      text-align: justify;
-      white-space: nowrap;
-    }
-
-    /* Adicionado */
-    .title {
       text-align: center;
+      white-space: nowrap;
     }
 
     .navigation ul li:hover a::before,
@@ -204,24 +199,6 @@
       padding: 3px;
     }
 
-    .user {
-      position: relative;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      overflow: hidden;
-      cursor: pointer;
-    }
-
-    .user img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
     .imglogo {
       position: absolute;
       width: 100%;
@@ -255,9 +232,6 @@
     }
 
     @media (max-widdth: 480px) {
-      .user {
-        min-width: 40px;
-      }
       .navigation {
         width: 100%;
         left: -100%;
@@ -268,7 +242,7 @@
         left: 0;
       }
       .toggle {
-        z-index: 10001;
+        z-index: 1001;
       }
       .main.active .toggle {
         position: fixed;
@@ -281,29 +255,63 @@
 
   <body>
     <div class="container">
+      <!-- side-bar -->
       <div class="navigation">
+        <!-- logo aaano -->
         <div class="imglogo centralize">
           <img src="../../public/img/imglogo.png" />
         </div>
+        <!-- lista das páginas -->
         <ul>
+
           <li>
             <a href="#">
               <span class="icon"><ion-icon name="contacts"></ion-icon></span>
               <span class="title">AAANO</span>
             </a>
           </li>
+
           <li>
             <a href="#">
               <span class="icon"><ion-icon name="contacts"></ion-icon></span>
               <span class="title">Voluntários</span>
             </a>
           </li>
+
           <li>
             <a href="#">
               <span class="icon"><ion-icon name="people"></ion-icon></span>
               <span class="title">Equipes</span>
             </a>
           </li>
+
+          <li>
+            <a href="#">
+              <span class="icon"
+                ><ion-icon name="close-circle"></ion-icon
+              ></span>
+              <span class="title">Bloqueados</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="#">
+              <span class="icon"
+                ><ion-icon name="close-circle"></ion-icon
+              ></span>
+              <span class="title">Bloqueados</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="#">
+              <span class="icon"
+                ><ion-icon name="close-circle"></ion-icon
+              ></span>
+              <span class="title">Bloqueados</span>
+            </a>
+          </li>
+
           <li>
             <a href="#">
               <span class="icon"
@@ -314,26 +322,25 @@
           </li>
         </ul>
       </div>
-      <!--main-->
+      <!--main-principal-->
       <div class="main">
+        <!-- parte de cima - toggle e botões de mudanças e etc -->
         <div class="topbar">
+          <!-- botão toggle para reduzir e aumentar a side-bar -->
           <div class="toggle">
             <ion-icon name="menu"></ion-icon>
           </div>
-          <!--search-->
+          <!--pesquisa - futuramente provavel que seja removida-->
           <div class="search">
             <label>
               <input type="text" placeholder="Pesquisa" />
               <ion-icon name="search"></ion-icon>
             </label>
           </div>
-          <!--userImg-->
-          <div class="user">
-            <img src="../../public/img/heheheha.png" />
-          </div>
         </div>
       </div>
     </div>
+    <!-- "biblioteca" dos icones - ionicons.com -->
     <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
   </body>
   <script>
