@@ -11,6 +11,7 @@
     <h1>Equipes Cadastradas</h1>
     <table border="1">
         <tr>
+            <th>Codigo da equipe</th>
             <th>Nome da Equipe</th>
             <th>Nome do Líder</th>
             <th>Voluntários</th>
@@ -23,12 +24,13 @@
 
         foreach ($equipes as $equipe) {
             echo "<tr>";
+            echo "<td>{$equipe['id']}</td>";
             echo "<td>{$equipe['nome_da_equipe']}</td>";
             echo "<td>{$equipe['nome_do_voluntario_lider']}</td>";
-            
+
             echo "<td>";
             echo "Nome do Líder: {$equipe['nome_do_voluntario_lider']}<br>";
-            
+
             for ($i = 1; $i <= 5; $i++) {
                 $voluntarioNome = $equipe["nome_do_voluntario_" . $i];
                 if (!empty($voluntarioNome)) {
@@ -36,9 +38,9 @@
                 }
             }
             echo "";
-            //echo "<td><a href='excluir_equipes.php?nome_da_equipe={$equipe['nome_da_equipe']}'>Excluir</a></td>";
+            echo "<td><a href='excluir_equipes.php?id={$equipe['id']}'>Excluir</a></td>";
             echo "</td>";
-            
+
             echo "</tr>";
         }
         ?>
