@@ -214,36 +214,36 @@ class crud
     }
 
 
-    // function atualizar_Usuario($cpf, $nome, $email, $endereco, $profissao, $cell, $tell_emergencia, $rg, $equipe_pertencente, $obs)
-    // {
-    //     $conn = conectar();
+    function atualizar_Usuario($cpf, $nome, $email, $endereco, $profissao, $cell, $tell_emergencia, $rg, $equipe_pertencente, $obs)
+    {
+        $conn = conectar();
 
-    //     // Atualiza o registro do usuário no banco de dados
-    //     $sql = "UPDATE usuarios SET nome_do_voluntario = :nome, email = :email, endereco = :endereco, profissao = :profissao, cell = :cell, tell_emergencia = :tell_emergencia, rg = :rg, equipe_pertencente = :equipe_pertencente, obs = :obs WHERE cpf = :cpf";
-    //     $stmt = $conn->prepare($sql);
-    //     $stmt->bindParam(':cpf', $cpf);
-    //     $stmt->bindParam(':nome', $nome);
-    //     $stmt->bindParam(':email', $email);
-    //     $stmt->bindParam(':endereco', $endereco);
-    //     $stmt->bindParam(':profissao', $profissao);
-    //     $stmt->bindParam(':cell', $cell);
-    //     $stmt->bindParam(':tell_emergencia', $tell_emergencia);
-    //     $stmt->bindParam(':rg', $rg);
-    //     $stmt->bindParam(':equipe_pertencente', $equipe_pertencente);
-    //     $stmt->bindParam(':obs', $obs);
+        // Atualiza o registro do usuário no banco de dados
+        $sql = "UPDATE usuarios SET nome_do_voluntario = :nome, email = :email, endereco = :endereco, profissao = :profissao, cell = :cell, tell_emergencia = :tell_emergencia, rg = :rg, equipe_pertencente = :equipe_pertencente, obs = :obs WHERE cpf = :cpf";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':cpf', $cpf);
+        $stmt->bindParam(':nome', $nome);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':endereco', $endereco);
+        $stmt->bindParam(':profissao', $profissao);
+        $stmt->bindParam(':cell', $cell);
+        $stmt->bindParam(':tell_emergencia', $tell_emergencia);
+        $stmt->bindParam(':rg', $rg);
+        $stmt->bindParam(':equipe_pertencente', $equipe_pertencente);
+        $stmt->bindParam(':obs', $obs);
 
-    //     try {
-    //         if ($stmt->execute()) {
-    //             // Redireciona de volta para a página de usuários cadastrados
-    //             header("Location: usuarios_cadastrados.php");
-    //             exit();
-    //         } else {
-    //             echo "Erro ao atualizar o usuário: " . $stmt->errorInfo()[2];
-    //         }
-    //     } catch (PDOException $e) {
-    //         echo "Erro: " . $e->getMessage();
-    //     }
-    // }
+        try {
+            if ($stmt->execute()) {
+                // Redireciona de volta para a página de usuários cadastrados
+                header("Location: usuarios_cadastrados.php");
+                exit();
+            } else {
+                echo "Erro ao atualizar o usuário: " . $stmt->errorInfo()[2];
+            }
+        } catch (PDOException $e) {
+            echo "Erro: " . $e->getMessage();
+        }
+    }
 
 
 
