@@ -251,6 +251,61 @@
         color: var(--white);
       }
     }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    .main-content {
+      flex: 1;
+      overflow: visible;
+      padding: 20px; /* Ajuste o espaçamento conforme necessário */
+    }
+
+    /* design tabela */
+    .table {
+      background-color: var(--blue);
+      border-radius: 25px;
+      padding: 20px;
+      color: var(--blue);
+    }
+
+    /* Adicionando uma tabela de exemplo */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px; /* Adicione espaçamento conforme necessário */
+    }
+
+    table,
+    td {
+      background-color: var(--white);
+      border-radius: 25px;
+      padding: 20px;
+    }
+
+    .btn-novo-voluntario {
+      background-color: var(--blue);
+      color: #fff;
+      border-radius: 25px;
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+    }
+    .table h2 {
+      color: var(--white);
+      padding-left: 10px;
+    }
+    .btn-novo-voluntario:hover {
+      background-color: #2f3237;
+    }
   </style>
 
   <body>
@@ -265,14 +320,14 @@
         <ul>
           <li>
             <a href="#">
-              <span class="icon"><ion-icon name="contacts"></ion-icon></span>
-              <span class="title">AAANO</span>
+              <span class="icon"><ion-icon name="paw"></ion-icon></span>
+              <span class="title">Principal</span>
             </a>
           </li>
 
           <li>
             <a href="#">
-              <span class="icon"><ion-icon name="contacts"></ion-icon></span>
+              <span class="icon"><ion-icon name="contacts"></ion-icon></ion-icon></span>
               <span class="title">Voluntários</span>
             </a>
           </li>
@@ -296,27 +351,8 @@
           <li>
             <a href="#">
               <span class="icon"
-                ><ion-icon name="close-circle"></ion-icon
-              ></span>
-              <span class="title">Bloqueados</span>
-            </a>
-          </li>
-
-          <li>
-            <a href="#">
-              <span class="icon"
-                ><ion-icon name="close-circle"></ion-icon
-              ></span>
-              <span class="title">Bloqueados</span>
-            </a>
-          </li>
-
-          <li>
-            <a href="#">
-              <span class="icon"
-                ><ion-icon name="close-circle"></ion-icon
-              ></span>
-              <span class="title">Bloqueados</span>
+                ><ion-icon name="hand"></ion-icon></span>
+              <span class="title">Adesões</span>
             </a>
           </li>
         </ul>
@@ -335,6 +371,30 @@
               <input type="text" placeholder="Pesquisa" />
               <ion-icon name="search"></ion-icon>
             </label>
+          </div>
+          <a href="#" class="btn-novo-voluntario">
+            <ion-icon name="add-circle"></ion-icon>
+            Adicionar novo voluntário
+          </a>
+        </div>
+        <div class="main-content">
+          <div class="table">
+            <h2>Voluntários</h2>
+            <!-- Adicione suas tabelas ou outros conteúdos aqui -->
+            <table>
+              <tr>
+                <td>Tavio</td>
+              </tr>
+              <tr>
+                <td>Jau</td>
+              </tr>
+              <tr>
+                <td>Pedro</td>
+              </tr>
+              <tr>
+                <td>Los Pollos Hermanos</td>
+              </tr>
+            </table>
           </div>
         </div>
       </div>
