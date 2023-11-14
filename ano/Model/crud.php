@@ -34,35 +34,7 @@ class crud
         }
     }
 
-    public function adesao($nome, $cpf, $email)
-    {
-        $conn = conectar();
-        $message = '';
-
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $nome = $_POST['nome'];
-            $cpf = $_POST['cpf'];
-            $email = $_POST['email'];
-
-            if (empty($nome) || empty($cpf) || empty($email)) {
-                $message = 'Por favor, preencha todos os campos.';
-            } else {
-                $sql = "INSERT INTO adesao (nome, cpf, email) VALUES (:nome, :cpf, :email)";
-                $stmt = $conn->prepare($sql);
-                $stmt->bindParam(':nome', $nome, PDO::PARAM_STR);
-                $stmt->bindParam(':cpf', $cpf, PDO::PARAM_STR);
-                $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-
-                if ($stmt->execute()) {
-                    $message = 'Termo aceito com sucesso';
-                    echo "<script>alert('Termo aceito com sucesso'); window.location.href='../View/perfil_usuario.php';</script>";
-                } else {
-                    echo "<script>alert('Erro! É preciso aceitar o termo de adesão');</script>";
-                }
-            }
-        }
-    }
-
+    
     function selecionar_Todos_Termos_Aceitos()
     {
         $conn = conectar();
@@ -96,35 +68,7 @@ class crud
         }
     }
 
-    function excluir_Termo($cpf)
-    {
-        $conn = conectar();
-
-        // Primeiro, exclua da tabela 'adesao'
-        $sql1 = "DELETE FROM adesao WHERE cpf = :cpf LIMIT 1";
-        $stmt1 = $conn->prepare($sql1);
-        $stmt1->bindParam(':cpf', $cpf, PDO::PARAM_STR);
-
-        // Em seguida, exclua da tabela 'usuarios'
-        $sql2 = "DELETE FROM usuarios WHERE cpf = :cpf";
-        $stmt2 = $conn->prepare($sql2);
-        $stmt2->bindParam(':cpf', $cpf, PDO::PARAM_STR);
-
-        try {
-            if ($stmt1->execute() && $stmt2->execute()) {
-                echo "<script language='javascript' type='text/javascript'>
-              alert('Termo de desligamento assinado com sucesso');
-              window.location.href='../View/perfil_usuario.php';
-              </script>";
-            } else {
-                echo "Erro ao excluir o usuário: " . $stmt1->errorInfo()[2];
-                echo "Erro ao excluir o usuário: " . $stmt2->errorInfo()[2];
-            }
-        } catch (PDOException $e) {
-            echo "Erro: " . $e->getMessage();
-        }
-    }
-
+    
 
     //FUNÇÃO PARA CADASTRAR UM NOVO USUÁRIO NA TABELA DE USUÁRio
     function cadastrar_Usuario($nome_do_voluntario, $email, $endereco, $profissao, $cell, $tell_emergencia, $rg, $cpf, $equipe_pertencente, $obs)
@@ -214,36 +158,36 @@ class crud
     }
 
 
-    function atualizar_Usuario($cpf, $nome, $email, $endereco, $profissao, $cell, $tell_emergencia, $rg, $equipe_pertencente, $obs)
-    {
-        $conn = conectar();
+    // function atualizar_Usuario($cpf, $nome, $email, $endereco, $profissao, $cell, $tell_emergencia, $rg, $equipe_pertencente, $obs)
+    // {
+    //     $conn = conectar();
 
-        // Atualiza o registro do usuário no banco de dados
-        $sql = "UPDATE usuarios SET nome_do_voluntario = :nome, email = :email, endereco = :endereco, profissao = :profissao, cell = :cell, tell_emergencia = :tell_emergencia, rg = :rg, equipe_pertencente = :equipe_pertencente, obs = :obs WHERE cpf = :cpf";
-        $stmt = $conn->prepare($sql);
-        $stmt->bindParam(':cpf', $cpf);
-        $stmt->bindParam(':nome', $nome);
-        $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':endereco', $endereco);
-        $stmt->bindParam(':profissao', $profissao);
-        $stmt->bindParam(':cell', $cell);
-        $stmt->bindParam(':tell_emergencia', $tell_emergencia);
-        $stmt->bindParam(':rg', $rg);
-        $stmt->bindParam(':equipe_pertencente', $equipe_pertencente);
-        $stmt->bindParam(':obs', $obs);
+    //     // Atualiza o registro do usuário no banco de dados
+    //     $sql = "UPDATE usuarios SET nome_do_voluntario = :nome, email = :email, endereco = :endereco, profissao = :profissao, cell = :cell, tell_emergencia = :tell_emergencia, rg = :rg, equipe_pertencente = :equipe_pertencente, obs = :obs WHERE cpf = :cpf";
+    //     $stmt = $conn->prepare($sql);
+    //     $stmt->bindParam(':cpf', $cpf);
+    //     $stmt->bindParam(':nome', $nome);
+    //     $stmt->bindParam(':email', $email);
+    //     $stmt->bindParam(':endereco', $endereco);
+    //     $stmt->bindParam(':profissao', $profissao);
+    //     $stmt->bindParam(':cell', $cell);
+    //     $stmt->bindParam(':tell_emergencia', $tell_emergencia);
+    //     $stmt->bindParam(':rg', $rg);
+    //     $stmt->bindParam(':equipe_pertencente', $equipe_pertencente);
+    //     $stmt->bindParam(':obs', $obs);
 
-        try {
-            if ($stmt->execute()) {
-                // Redireciona de volta para a página de usuários cadastrados
-                header("Location: usuarios_cadastrados.php");
-                exit();
-            } else {
-                echo "Erro ao atualizar o usuário: " . $stmt->errorInfo()[2];
-            }
-        } catch (PDOException $e) {
-            echo "Erro: " . $e->getMessage();
-        }
-    }
+    //     try {
+    //         if ($stmt->execute()) {
+    //             // Redireciona de volta para a página de usuários cadastrados
+    //             header("Location: usuarios_cadastrados.php");
+    //             exit();
+    //         } else {
+    //             echo "Erro ao atualizar o usuário: " . $stmt->errorInfo()[2];
+    //         }
+    //     } catch (PDOException $e) {
+    //         echo "Erro: " . $e->getMessage();
+    //     }
+    // }
 
 
 
