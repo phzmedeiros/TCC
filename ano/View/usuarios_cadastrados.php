@@ -1,3 +1,17 @@
+<?php
+session_start();
+
+$_SESSION['usuarioSenha'];
+
+if (!isset($_SESSION["usuarioSenha"])) {
+
+	header("Location: frm_logar.html");
+
+	exit;
+} else {
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -308,7 +322,6 @@
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 20px; /* Adicione espaçamento conforme necessário */
       box-shadow: 0 7px 25px rgba(0, 0, 0, 0.192);
     }
     .table h2 {
@@ -349,38 +362,35 @@
             <span class="title">Voluntários</span>
           </a>
         </li>
-
+        <!-- equipes -->
         <li>
           <a href="equipes_cadastradas.php">
             <span class="icon"><ion-icon name="people"></ion-icon></span>
             <span class="title">Equipes</span>
           </a>
         </li>
-
-          <li>
-            <a href="adotantes_cadastrados.php">
-              <span class="icon"
-                ><ion-icon name="close-circle"></ion-icon
-              ></span>
-              <span class="title">Bloqueados</span>
-            </a>
-          </li>
-
-          <li>
-            <a href="termos_aceitos.php">
-              <span class="icon"
-                ><ion-icon name="hand"></ion-icon></span>
-              <span class="title">Adesões</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-      <!--main contendo a topbar e os cards-->
-      <div class="main">
-        <!-- parte de cima - toggle e botões de mudanças e etc -->
-        <div class="topbar">
-          <!-- botão toggle para reduzir e aumentar a side-bar -->
-          <div class="toggle">
+        <!-- adotantes bloqueados -->
+        <li>
+          <a href="adotantes_cadastrados.php">
+            <span class="icon"><ion-icon name="close-circle"></ion-icon></span>
+            <span class="title">Bloqueados</span>
+          </a>
+        </li>
+        <!-- tudo que engloba adesão e termos -->
+        <li>
+          <a href="termos_aceitos.php">
+            <span class="icon"><ion-icon name="hand"></ion-icon></span>
+            <span class="title">Adesões</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <!--main contendo a topbar e os cards-->
+    <div class="main">
+      <!-- parte de cima - toggle e botões de mudanças e etc -->
+      <div class="topbar">
+        <!-- botão toggle para reduzir e aumentar a side-bar -->
+        <div class="toggle">
             <ion-icon name="reorder"></ion-icon>
           </div>
           <!--pesquisa - futuramente provavel que seja removida-->
@@ -393,18 +403,18 @@
             </label>
           </div>
           <!-- botão de adc voluntario, pode ser alterado sendo excluido em paginas que não é necessario -->
-          <a href="#" class="btn-novo-voluntario">
+          <a href="frm_cadastro_usuarios.html" class="btn-novo-voluntario">
             <ion-icon name="add-circle"></ion-icon>
             Adicionar novo voluntário
           </a>
         </div>
         <div class="main-content">
-        
-        <div class="table">
-          <h2>Voluntários</h2>
-          <!-- Adicione suas tabelas ou outros conteúdos aqui -->
-          <table>
-            <tr>
+          <div class="table">
+            <br>
+            <h2>Voluntários</h2>
+            <!-- Adicione suas tabelas ou outros conteúdos aqui -->
+            <table>
+              <tr>
                 <th>Nome</th>
                 <th>Email</th>
                 <th>Endereço</th>
@@ -416,109 +426,158 @@
                 <th>Equipe que pertence</th>
                 <th>Observações</th>
                 <th>Opções</th>
-            </tr>
-            <?php
-            require_once '../Model/crud.php';
-            $crud = new crud();
-            $usuarios = $crud->selecionar_Todos_Usuarios();
+              </tr>
+              <?php
+                require_once '../Model/crud.php';
+                $crud = new crud();
+                $usuarios = $crud->selecionar_Todos_Usuarios();
 
-            foreach ($usuarios as $usuario) {
-                echo "<tr>";
-                echo "<td>{$usuario['nome_do_voluntario']}</td>";
-                echo "<td>{$usuario['email']}</td>";
-                echo "<td>{$usuario['endereco']}</td>";
-                echo "<td>{$usuario['profissao']}</td>";
-                echo "<td>{$usuario['cell']}</td>";
-                echo "<td>{$usuario['tell_emergencia']}</td>";
-                echo "<td>{$usuario['rg']}</td>";
-                echo "<td>{$usuario['cpf']}</td>";
-                echo "<td>{$usuario['equipe_pertencente']}</td>";
-                echo "<td>{$usuario['obs']}</td>";
-                echo "<td><a href='excluir_usuario.php?cpf={$usuario['cpf']}'>Excluir</a></td>";
-                echo "</tr>";
-            }
-            ?>
-          </table>
+                foreach ($usuarios as $usuario) {
+                    echo "<tr>";
+                    echo "<td>{$usuario['nome_do_voluntario']}</td>";
+                    echo "<td>{$usuario['email']}</td>";
+                    echo "<td>{$usuario['endereco']}</td>";
+                    echo "<td>{$usuario['profissao']}</td>";
+                    echo "<td>{$usuario['cell']}</td>";
+                    echo "<td>{$usuario['tell_emergencia']}</td>";
+                    echo "<td>{$usuario['rg']}</td>";
+                    echo "<td>{$usuario['cpf']}</td>";
+                    echo "<td>{$usuario['equipe_pertencente']}</td>";
+                    echo "<td>{$usuario['obs']}</td>";
+                    echo "<td><a href='excluir_usuario.php?cpf={$usuario['cpf']}'>Excluir</a></td>";
+                    echo "</tr>";
+                }
+              ?>
+            </table>
+            <br><br>
+            <h2>Busca por CPF</h2>
+            <br>
+            <!-- Tabela de resultados da busca por CPF -->
+            <table>
+              <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Endereço</th>
+                <th>Profissão</th>
+                <th>Celular</th>
+                <th>Telefone de Emergencia</th>
+                <th>RG</th>
+                <th>CPF</th>
+                <th>Equipe que pertence</th>
+                <th>Observações</th>
+                <th>Opções</th>
+              </tr>
+              <?php 
+                // Verifica se um CPF de pesquisa foi submetido
+                if (isset($_POST['searchCpf'])) {
+                  $searchCpf = $_POST['searchCpf'];
+                  $crud = new crud();
+                  $usuariosEncontrados = $crud->selecionar_Um_Usuario_Por_Cpf($searchCpf);
 
-    <!-- Tabela de resultados da busca por CPF -->
-    <table>
-        <tr>
-            <th>Nome</th>
-            <th>Email</th>
-            <th>Endereço</th>
-            <th>Profissão</th>
-            <th>Celular</th>
-            <th>Telefone de Emergencia</th>
-            <th>RG</th>
-            <th>CPF</th>
-            <th>Equipe que pertence</th>
-            <th>Observações</th>
-            <th>Opções</th>
-        </tr>
-       <?php 
-        // Verifica se um CPF de pesquisa foi submetido
-        if (isset($_POST['searchCpf'])) {
-            $searchCpf = $_POST['searchCpf'];
-            $crud = new crud();
-            $usuariosEncontrados = $crud->selecionar_Um_Usuario_Por_Cpf($searchCpf);
-
-            // Exibe os resultados da busca
-            foreach ($usuariosEncontrados as $usuario) {
-                echo "<tr>";
-                echo "<td>{$usuario['nome_do_voluntario']}</td>";
-                echo "<td>{$usuario['email']}</td>";
-                echo "<td>{$usuario['endereco']}</td>";
-                echo "<td>{$usuario['profissao']}</td>";
-                echo "<td>{$usuario['cell']}</td>";
-                echo "<td>{$usuario['tell_emergencia']}</td>";
-                echo "<td>{$usuario['rg']}</td>";
-                echo "<td>{$usuario['cpf']}</td>";
-                echo "<td>{$usuario['equipe_pertencente']}</td>";
-                echo "<td>{$usuario['obs']}</td>";
-                echo "<td><a href='excluir_usuario.php?cpf={$usuario['cpf']}'>Excluir</a></td>";
-                echo "</tr>";
-            }
-        }
-        ?>
-    </table>
-
-
+                  // Exibe os resultados da busca
+                  foreach ($usuariosEncontrados as $usuario) {
+                    echo "<tr>";
+                    echo "<td>{$usuario['nome_do_voluntario']}</td>";
+                    echo "<td>{$usuario['email']}</td>";
+                    echo "<td>{$usuario['endereco']}</td>";
+                    echo "<td>{$usuario['profissao']}</td>";
+                    echo "<td>{$usuario['cell']}</td>";
+                    echo "<td>{$usuario['tell_emergencia']}</td>";
+                    echo "<td>{$usuario['rg']}</td>";
+                    echo "<td>{$usuario['cpf']}</td>";
+                    echo "<td>{$usuario['equipe_pertencente']}</td>";
+                    echo "<td>{$usuario['obs']}</td>";
+                    echo "<td><a href='excluir_usuario.php?cpf={$usuario['cpf']}'>Excluir</a></td>";
+                    echo "</tr>";
+                  }
+                }
+              ?>
+            </table>
+          </div>
+        </div>
       </div>
-
-      </div>
-
-      </div>
+    </div>
   </div>
 <!-- framework dos icones - ionicons.com -->
 <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 </body>
 <script>
-    //menu toggle
-    let toggle = document.querySelector(".toggle");
-    let navigation = document.querySelector(".navigation");
-    let main = document.querySelector(".main");
-    let logo = document.querySelector(".imglogo");
-    //função do click no toggle
-    toggle.onclick = function() {
-      navigation.classList.toggle("active");
-      main.classList.toggle("active");
-      logo.classList.toggle("hidden");
-    };
+  //menu toggle
+  let toggle = document.querySelector(".toggle");
+  let navigation = document.querySelector(".navigation");
+  let main = document.querySelector(".main");
+  let logo = document.querySelector(".imglogo");
+  //função do click no toggle
+  toggle.onclick = function() {
+    navigation.classList.toggle("active");
+    main.classList.toggle("active");
+    logo.classList.toggle("hidden");
+  };
 
-    //marca como selecionado o item da sidebar
-    let list = document.querySelectorAll(".navigation li");
-    function activeLink() {
-      list.forEach((item) => item.classList.remove("hovered"));
-      this.classList.add("hovered");
-    }
-    list.forEach((item) => item.addEventListener("mouseover", activatelink));
+  //marca como selecionado o item da sidebar
+  let list = document.querySelectorAll(".navigation li");
+  function activeLink() {
+    list.forEach((item) => item.classList.remove("hovered"));
+    this.classList.add("hovered");
+  }
+  list.forEach((item) => item.addEventListener("mouseover", activatelink));
 </script>
 </html>
 
 <script>
-// <h1>Voluntários Cadastrados</h1>
+// // <h1>Voluntários Cadastrados</h1>
 
-//     <!-- Tabela de voluntários cadastrados -->
+// //     <!-- Tabela de voluntários cadastrados -->
+// //     <table border="1">
+// //         <tr>
+// //             <th>Nome</th>
+// //             <th>Email</th>
+// //             <th>Endereço</th>
+// //             <th>Profissão</th>
+// //             <th>Celular</th>
+// //             <th>Telefone de Emergencia</th>
+// //             <th>RG</th>
+// //             <th>CPF</th>
+// //             <th>Equipe que pertence</th>
+// //             <th>Observações</th>
+// //             <th>Opções</th>
+// //         </tr>
+// //        
+// //         require_once '../Model/crud.php';
+// //         $crud = new crud();
+// //         $usuarios = $crud->selecionar_Todos_Usuarios();
+
+// //         foreach ($usuarios as $usuario) {
+// //             echo "<tr>";
+// //             echo "<td>{$usuario['nome_do_voluntario']}</td>";
+// //             echo "<td>{$usuario['email']}</td>";
+// //             echo "<td>{$usuario['endereco']}</td>";
+// //             echo "<td>{$usuario['profissao']}</td>";
+// //             echo "<td>{$usuario['cell']}</td>";
+// //             echo "<td>{$usuario['tell_emergencia']}</td>";
+// //             echo "<td>{$usuario['rg']}</td>";
+// //             echo "<td>{$usuario['cpf']}</td>";
+// //             echo "<td>{$usuario['equipe_pertencente']}</td>";
+// //             echo "<td>{$usuario['obs']}</td>";
+// //             echo "<td><a href='excluir_usuario.php?cpf={$usuario['cpf']}'>Excluir</a></td>";
+// //             echo "</tr>";
+// //         }
+// //         ?>
+// //     </table>
+
+// //     <br><br><br>
+
+//     <!-- Formulário de busca por CPF -->
+//     <h3>Busca por CPF</h3>
+//     <form action="usuarios_cadastrados.php" method="post">
+//         <label for="searchCpf">Pesquisar por CPF:</label>
+//         <input type="text" name="searchCpf" id="searchCpf" placeholder="Digite o CPF">
+//         <input type="submit" value="Pesquisar">
+//     </form>
+
+//     <br><br><br>
+
+//     <!-- Tabela de resultados da busca por CPF -->
 //     <table border="1">
 //         <tr>
 //             <th>Nome</th>
@@ -533,87 +592,38 @@
 //             <th>Observações</th>
 //             <th>Opções</th>
 //         </tr>
-//        
-//         require_once '../Model/crud.php';
-//         $crud = new crud();
-//         $usuarios = $crud->selecionar_Todos_Usuarios();
+        
+//         // Verifica se um CPF de pesquisa foi submetido
+//         if (isset($_POST['searchCpf'])) {
+//             $searchCpf = $_POST['searchCpf'];
+//             $crud = new crud();
+//             $usuariosEncontrados = $crud->selecionar_Um_Usuario_Por_Cpf($searchCpf);
 
-//         foreach ($usuarios as $usuario) {
-//             echo "<tr>";
-//             echo "<td>{$usuario['nome_do_voluntario']}</td>";
-//             echo "<td>{$usuario['email']}</td>";
-//             echo "<td>{$usuario['endereco']}</td>";
-//             echo "<td>{$usuario['profissao']}</td>";
-//             echo "<td>{$usuario['cell']}</td>";
-//             echo "<td>{$usuario['tell_emergencia']}</td>";
-//             echo "<td>{$usuario['rg']}</td>";
-//             echo "<td>{$usuario['cpf']}</td>";
-//             echo "<td>{$usuario['equipe_pertencente']}</td>";
-//             echo "<td>{$usuario['obs']}</td>";
-//             echo "<td><a href='excluir_usuario.php?cpf={$usuario['cpf']}'>Excluir</a></td>";
-//             echo "</tr>";
+//             // Exibe os resultados da busca
+//             foreach ($usuariosEncontrados as $usuario) {
+//                 echo "<tr>";
+//                 echo "<td>{$usuario['nome_do_voluntario']}</td>";
+//                 echo "<td>{$usuario['email']}</td>";
+//                 echo "<td>{$usuario['endereco']}</td>";
+//                 echo "<td>{$usuario['profissao']}</td>";
+//                 echo "<td>{$usuario['cell']}</td>";
+//                 echo "<td>{$usuario['tell_emergencia']}</td>";
+//                 echo "<td>{$usuario['rg']}</td>";
+//                 echo "<td>{$usuario['cpf']}</td>";
+//                 echo "<td>{$usuario['equipe_pertencente']}</td>";
+//                 echo "<td>{$usuario['obs']}</td>";
+//                 echo "<td><a href='excluir_usuario.php?cpf={$usuario['cpf']}'>Excluir</a></td>";
+//                 echo "</tr>";
+//             }
 //         }
 //         ?>
 //     </table>
 
-//     <br><br><br>
+// //     <br><br><br>
 
-    <!-- Formulário de busca por CPF -->
-    <h3>Busca por CPF</h3>
-    <form action="usuarios_cadastrados.php" method="post">
-        <label for="searchCpf">Pesquisar por CPF:</label>
-        <input type="text" name="searchCpf" id="searchCpf" placeholder="Digite o CPF">
-        <input type="submit" value="Pesquisar">
-    </form>
-
-    <br><br><br>
-
-    <!-- Tabela de resultados da busca por CPF -->
-    <table border="1">
-        <tr>
-            <th>Nome</th>
-            <th>Email</th>
-            <th>Endereço</th>
-            <th>Profissão</th>
-            <th>Celular</th>
-            <th>Telefone de Emergencia</th>
-            <th>RG</th>
-            <th>CPF</th>
-            <th>Equipe que pertence</th>
-            <th>Observações</th>
-            <th>Opções</th>
-        </tr>
-        
-        // Verifica se um CPF de pesquisa foi submetido
-        if (isset($_POST['searchCpf'])) {
-            $searchCpf = $_POST['searchCpf'];
-            $crud = new crud();
-            $usuariosEncontrados = $crud->selecionar_Um_Usuario_Por_Cpf($searchCpf);
-
-            // Exibe os resultados da busca
-            foreach ($usuariosEncontrados as $usuario) {
-                echo "<tr>";
-                echo "<td>{$usuario['nome_do_voluntario']}</td>";
-                echo "<td>{$usuario['email']}</td>";
-                echo "<td>{$usuario['endereco']}</td>";
-                echo "<td>{$usuario['profissao']}</td>";
-                echo "<td>{$usuario['cell']}</td>";
-                echo "<td>{$usuario['tell_emergencia']}</td>";
-                echo "<td>{$usuario['rg']}</td>";
-                echo "<td>{$usuario['cpf']}</td>";
-                echo "<td>{$usuario['equipe_pertencente']}</td>";
-                echo "<td>{$usuario['obs']}</td>";
-                echo "<td><a href='excluir_usuario.php?cpf={$usuario['cpf']}'>Excluir</a></td>";
-                echo "</tr>";
-            }
-        }
-        ?>
-    </table>
-
-//     <br><br><br>
-
-//     <!-- Botão de voltar -->
-//     <form action="perfil_usuario.php">
-//         <input type="submit" value="Voltar"><br>
-//     </form>
+// //     <!-- Botão de voltar -->
+// //     <form action="perfil_usuario.php">
+// //         <input type="submit" value="Voltar"><br>
+// //     </form>
 </script>
+<?php } ?>
