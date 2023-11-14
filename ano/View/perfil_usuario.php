@@ -92,7 +92,7 @@ if (!isset($_SESSION["usuarioSenha"])) {
     }
     .navigation ul li a .icon {
       position: relative;
-      display: block;
+      display: list-item;
       min-width: 60px;
       height: 60px;
       line-height: 75px;
@@ -188,57 +188,6 @@ if (!isset($_SESSION["usuarioSenha"])) {
       font-size: 2.5rem;
       cursor: pointer;
       color: var(--blue);
-    }
-
-    /* barra de pesquisa */
-    .search {
-      position: relative;
-      width: 400px;
-      margin: 0 10px;
-      box-shadow: 0 7px 25px rgba(0, 0, 0, 0.158);
-      border-radius: 25px;
-      border: none;
-    }
-    .search label {
-      position: relative;
-      width: 100%;
-    }
-    .search label input {
-      width: 100%;
-      height: 40px;
-      border-radius: 40px;
-      padding: 5px 20px;
-      padding-left: 35px;
-      outline: none;
-      border: none;
-    }
-    .search label ion-icon {
-      position: absolute;
-      top: 0;
-      left: 10px;
-      font-size: 1.2em;
-      padding: 3px;
-      padding-right: 5px;
-      color:#383b43;
-    }
-
-    /* botão de ação multipla */
-    .btn-novo-voluntario {
-      background-color: var(--blue);
-      color: #fff;
-      border-radius: 25px;
-      padding: 0.5rem 1rem;
-      text-decoration: none;
-      font-size: 1rem;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      justify-content: justify;
-      margin-right: 15px;
-      box-shadow: 0 7px 25px rgba(0, 0, 0, 0.158);
-    }
-    .btn-novo-voluntario:hover {
-      background-color: #2f3237;
     }
 
 	@media (max-width: 991px) {
@@ -363,14 +312,14 @@ if (!isset($_SESSION["usuarioSenha"])) {
 			<!-- lista das páginas -->
 			<ul>
 			<li>
-				<a href="#">
+				<a href="perfil_usuario.php">
 				<span class="icon"><ion-icon name="paw"></ion-icon></span>
 				<span class="title">Principal</span>
 				</a>
 			</li>
 
 			<li>
-				<a href="adotantes_cadastrados.php">
+				<a href="usuarios_cadastrados.php">
 				<span class="icon"><ion-icon name="contacts"></ion-icon></ion-icon></span>
 				<span class="title">Voluntários</span>
 				</a>
@@ -384,7 +333,7 @@ if (!isset($_SESSION["usuarioSenha"])) {
 			</li>
 
 			<li>
-				<a href="#">
+				<a href="adotantes_cadastrados.php">
 				<span class="icon"
 					><ion-icon name="close-circle"></ion-icon
 				></span>
@@ -393,7 +342,7 @@ if (!isset($_SESSION["usuarioSenha"])) {
 			</li>
 
 			<li>
-				<a href="#">
+				<a href="termos_aceitos.php">
 				<span class="icon"
 					><ion-icon name="hand"></ion-icon></span>
 				<span class="title">Adesões</span>
@@ -409,18 +358,6 @@ if (!isset($_SESSION["usuarioSenha"])) {
 				<div class="toggle">
 					<ion-icon name="reorder"></ion-icon>
 				</div>
-				<!--pesquisa - futuramente provavel que seja removida-->
-				<div class="search">
-					<label>
-					<input type="text" placeholder="Pesquisar Voluntários" />
-					<ion-icon name="search"></ion-icon>
-					</label>
-				</div>
-				<!-- botão de adc voluntario, pode ser alterado sendo excluido em paginas que não é necessario -->
-				<a href="#" class="btn-novo-voluntario">
-					<ion-icon name="add-circle"></ion-icon>
-					Adicionar novo voluntário
-				</a>
 			</div>
 			<!-- cards  -->
 			<div class="cardBox">
