@@ -363,7 +363,6 @@
       color: var(--white);
     }
   </style>
-
   <body>
     <!-- toda a página -->
     <div class="container">
@@ -414,7 +413,7 @@
           </li>
         </ul>
       </div>
-      <!--main-principal-->
+      <!--main contendo a topbar e os cards-->
       <div class="main">
         <!-- parte de cima - toggle e botões de mudanças e etc -->
         <div class="topbar">
@@ -475,25 +474,24 @@
         </div>
       </div>
       <!-- conteudo principal como tabelas e etc -->
-        <div class="main-content">
-          <div class="table">
-            <h2>Voluntários</h2>
-            <!-- Adicione suas tabelas ou outros conteúdos aqui -->
-            <table>
-              <tr>
-                <td>Tavio</td>
-              </tr>
-              <tr>
-                <td>Jau</td>
-              </tr>
-              <tr>
-                <td>Pedro</td>
-              </tr>
-              <tr>
-                <td>Los Pollos Hermanos</td>
-              </tr>
-            </table>
-          </div>
+      <div class="main-content">
+        <div class="table">
+          <h2>Voluntários</h2>
+          <!-- Adicione suas tabelas ou outros conteúdos aqui -->
+          <table>
+            <tr>
+              <td>Tavio</td>
+            </tr>
+            <tr>
+              <td>Jau</td>
+            </tr>
+            <tr>
+              <td>Pedro</td>
+            </tr>
+            <tr>
+              <td>Los Pollos Hermanos</td>
+            </tr>
+          </table>
         </div>
       </div>
     </div>
@@ -506,14 +504,14 @@
     let navigation = document.querySelector(".navigation");
     let main = document.querySelector(".main");
     let logo = document.querySelector(".imglogo");
-
-    toggle.onclick = function () {
+    //função do click no toggle
+    toggle.onclick = function() {
       navigation.classList.toggle("active");
       main.classList.toggle("active");
       logo.classList.toggle("hidden");
     };
 
-    //add hovered class in selected list item
+    //marca como selecionado o item da sidebar
     let list = document.querySelectorAll(".navigation li");
     function activeLink() {
       list.forEach((item) => item.classList.remove("hovered"));
