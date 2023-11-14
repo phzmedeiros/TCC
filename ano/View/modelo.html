@@ -48,10 +48,6 @@
       width: 80px;
     }
 
-
-
-
-
     .navigation ul {
       padding-top: 80%;
       position: absolute;
@@ -178,6 +174,9 @@
       position: relative;
       width: 400px;
       margin: 0 10px;
+      box-shadow: 0 7px 25px rgba(0, 0, 0, 0.158);
+      border-radius: 25px;
+      border: none;
     }
 
     .search label {
@@ -192,7 +191,7 @@
       padding: 5px 20px;
       padding-left: 35px;
       outline: none;
-      border: 1px solid var(--black2);
+      border: none;
     }
 
     .search label ion-icon {
@@ -201,6 +200,8 @@
       left: 10px;
       font-size: 1.2em;
       padding: 3px;
+      padding-right: 5px;
+      color:#383b43;
     }
 
     .imglogo {
@@ -212,6 +213,7 @@
       top: 0;
       padding-top: 10%;
       padding-right: 10%;
+      min-width: 200px;
     }
 
     .imglogo.hidden {
@@ -233,9 +235,12 @@
       .main.active {
         left: 300px;
       }
+      .cardBox {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
-    @media (max-widdth: 480px) {
+    @media (max-width: 480px) {
       .navigation {
         width: 100%;
         left: -100%;
@@ -253,6 +258,9 @@
         right: 0;
         left: initial;
         color: var(--white);
+      }
+      .cardBox{
+        grid-template-columns: repeat(1,1fr);
       }
     }
 
@@ -274,6 +282,8 @@
       border-radius: 25px;
       padding: 20px;
       color: var(--blue);
+      box-shadow: 0 7px 25px rgba(0, 0, 0, 0.158);
+
     }
 
     /* Adicionando uma tabela de exemplo */
@@ -300,8 +310,10 @@
       font-weight: bold;
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: justify;
       margin-right: 15px;
+      box-shadow: 0 7px 25px rgba(0, 0, 0, 0.158);
+
     }
     .table h2 {
       color: var(--white);
@@ -309,6 +321,51 @@
     }
     .btn-novo-voluntario:hover {
       background-color: #2f3237;
+    }
+
+    .cardBox {
+      position: relative;
+      width: 100%;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      grid-gap: 30px;
+    }
+
+    .cardBox .card{
+      position: relative;
+      background: var(--white);
+      padding: 30px;
+      border-radius: 20px;
+      display: flex;
+      justify-content: space-between;
+      cursor: pointer;
+      box-shadow: 0 7px 25px rgba(0, 0, 0, 0.158);
+    }
+    .cardBox .card .numbers
+    {
+      position: relative;
+      font-weight: 500;
+      font-size: 2.5em;
+      color: var(--blue);
+    }
+    .cardBox .card .cardName{
+      color: var(--black2);
+      font-size: 1.1em;
+      margin-top: 5px;
+    }
+    .cardBox .card .iconBx
+    {
+      font-size: 3.5em;
+      color: var(--black2);
+    }
+    .cardBox .card:hover{
+      background: var(--blue);
+    }
+    .cardBox .card:hover .numbers,
+    .cardBox .card:hover .cardName,
+    .cardBox .card:hover .iconBx{
+      color: var(--white);
     }
   </style>
 
@@ -330,14 +387,14 @@
           </li>
 
           <li>
-            <a href="#">
+            <a href="adotantes_cadastrados.php">
               <span class="icon"><ion-icon name="contacts"></ion-icon></ion-icon></span>
               <span class="title">Voluntários</span>
             </a>
           </li>
 
           <li>
-            <a href="#">
+            <a href="equipes_cadastradas.php">
               <span class="icon"><ion-icon name="people"></ion-icon></span>
               <span class="title">Equipes</span>
             </a>
@@ -372,7 +429,7 @@
           <!--pesquisa - futuramente provavel que seja removida-->
           <div class="search">
             <label>
-              <input type="text" placeholder="Pesquisa" />
+              <input type="text" placeholder="Pesquisar Voluntários" />
               <ion-icon name="search"></ion-icon>
             </label>
           </div>
@@ -381,6 +438,45 @@
             Adicionar novo voluntário
           </a>
         </div>
+        <!-- cards  -->
+      <div class="cardBox">
+        <div class="card">
+          <div>
+            <div class="numbers">29</div>
+            <div class="cardName">Voluntários</div>
+          </div>
+          <div class="iconBx">
+            <ion-icon name="contacts"></ion-icon>
+          </div>
+        </div>
+        <div class="card">
+          <div>
+            <div class="numbers">43</div>
+            <div class="cardName">Bloqueados</div>
+          </div>
+          <div class="iconBx">
+            <ion-icon name="close-circle"></ion-icon>
+          </div>
+        </div>
+        <div class="card">
+          <div>
+            <div class="numbers">5</div>
+            <div class="cardName">Equipes</div>
+          </div>
+          <div class="iconBx">
+            <ion-icon name="people"></ion-icon>
+          </div>
+        </div>
+        <div class="card">
+          <div>
+            <div class="numbers">29</div>
+            <div class="cardName">Termos</div>
+          </div>
+          <div class="iconBx">
+            <ion-icon name="hand"></ion-icon>
+          </div>
+        </div>
+      </div>
         <div class="main-content">
           <div class="table">
             <h2>Voluntários</h2>
