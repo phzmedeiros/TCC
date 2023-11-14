@@ -2,6 +2,25 @@
 <html>
   <head>
     <title>Cadastrar Equipes</title>
+    <script>
+      function adicionarVoluntarios() {
+        var quantidade = document.getElementById("quantidade").value;
+        var container = document.getElementById("voluntarios-container");
+        container.innerHTML = "";
+
+        for (var i = 1; i <= quantidade; i++) {
+          var label = document.createElement("label");
+          label.innerHTML = "Nome do " + i + "º Voluntário:";
+          var input = document.createElement("input");
+          input.type = "text";
+          input.name = "nome_do_voluntario_" + i;
+          input.required = true;
+          container.appendChild(label);
+          container.appendChild(input);
+          container.appendChild(document.createElement("br"));
+        }
+      }
+    </script>
   </head>
   <body>
     <h1>Cadastrar de Equipes</h1>
@@ -9,26 +28,19 @@
       <label for="nome_da_equipe">Nome da Equipe:</label>
       <input type="text" name="nome_da_equipe" required /><br />
 
-      <label for="nome_do_voluntario">Nome do Voluntário Lider :</label>
+      <label for="nome_do_voluntario_lider">Nome do Voluntário Líder:</label>
       <input type="text" name="nome_do_voluntario_lider" required /><br />
 
       <label for="quantidade">Quantidade de Voluntários:</label>
-      <input type="number" name="quantidade" required min="1" /><br />
+      <input
+        type="number"
+        id="quantidade"
+        name="quantidade"
+        required
+        onchange="adicionarVoluntarios()"
+      /><br />
 
-      <label for="nome_do_voluntario">Nome do 1º Voluntário:</label>
-      <input type="text" name="nome_do_voluntario_1" required /><br />
-
-      <label for="nome_do_voluntario">Nome do 2º Voluntário:</label>
-      <input type="text" name="nome_do_voluntario_2" required /><br />
-
-      <label for="nome_do_voluntario">Nome do 3º Voluntário:</label>
-      <input type="text" name="nome_do_voluntario_3" required /><br />
-
-      <label for="nome_do_voluntario">Nome do 4º Voluntário:</label>
-      <input type="text" name="nome_do_voluntario_4" required /><br />
-
-      <label for="nome_do_voluntario">Nome do 5º Voluntário:</label>
-      <input type="text" name="nome_do_voluntario_5" required /><br />
+      <div id="voluntarios-container"></div>
 
       <input type="submit" value="Cadastrar" name="acao" />
     </form>

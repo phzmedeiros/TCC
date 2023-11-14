@@ -34,7 +34,6 @@ class crud
         }
     }
 
-    
     function selecionar_Todos_Termos_Aceitos()
     {
         $conn = conectar();
@@ -69,7 +68,6 @@ class crud
     }
 
     
-
     //FUNÇÃO PARA CADASTRAR UM NOVO USUÁRIO NA TABELA DE USUÁRio
     function cadastrar_Usuario($nome_do_voluntario, $email, $endereco, $profissao, $cell, $tell_emergencia, $rg, $cpf, $equipe_pertencente, $obs)
     {
