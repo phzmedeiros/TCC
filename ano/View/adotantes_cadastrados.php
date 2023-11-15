@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Voluntários Cadastrados</title>
 </head>
 <style>
@@ -392,9 +394,9 @@
             </label>
           </div>
           <!-- botão de adc voluntario, pode ser alterado sendo excluido em paginas que não é necessario -->
-          <a href="frm_cadastro_usuarios.html" class="btn-novo-voluntario">
+          <a href="frm_cadastro_ado.html" class="btn-novo-voluntario">
             <ion-icon name="add-circle"></ion-icon>
-            Adicionar Bloqueio
+            Adicionar adotantes bloqueados
           </a>
         </div>
         <div class="main-content">

@@ -16,6 +16,7 @@ if (!isset($_SESSION["usuarioSenha"])) {
 <head>
 	<title>Perfil Usuário </title>
 	<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel="stylesheet" type="text/css" href="css/estilo_index.css">
 </head>
 <style>
@@ -359,47 +360,87 @@ if (!isset($_SESSION["usuarioSenha"])) {
 					<ion-icon name="reorder"></ion-icon>
 				</div>
 			</div>
-			<!-- cards  -->
-			<div class="cardBox">
-				<div class="card">
-					<div>
-					<div class="numbers">29</div>
-					<div class="cardName">Voluntários</div>
-					</div>
-					<div class="iconBx">
-					<ion-icon name="contacts"></ion-icon>
-					</div>
-				</div>
-				<div class="card">
-					<div>
-					<div class="numbers">43</div>
-					<div class="cardName">Bloqueados</div>
-					</div>
-					<div class="iconBx">
-					<ion-icon name="close-circle"></ion-icon>
-					</div>
-				</div>
-				<div class="card">
-					<div>
-					<div class="numbers">5</div>
-					<div class="cardName">Equipes</div>
-					</div>
-					<div class="iconBx">
-					<ion-icon name="people"></ion-icon>
-					</div>
-				</div>
-				<div class="card">
-					<div>
-					<div class="numbers">29</div>
-					<div class="cardName">Termos</div>
-					</div>
-					<div class="iconBx">
-					<ion-icon name="hand"></ion-icon>
-					</div>
-				</div>
-			</div>
-		</div>
-    </div>
+      <?php
+// Conectar ao banco de dados (substitua com suas próprias configurações)
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "aaano";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Verificar a conexão
+if ($conn->connect_error) {
+    die("Conexão falhou: " . $conn->connect_error);
+}
+
+// Consultas SQL
+$query_voluntarios = "SELECT COUNT(*) as total_voluntarios FROM usuarios";
+$query_bloqueados = "SELECT COUNT(*) as total_bloqueados FROM ado_block";
+$query_equipes = "SELECT COUNT(*) as total_equipes FROM equipes";
+$query_termos = "SELECT COUNT(*) as total_termos FROM adesao";
+
+// Executar as consultas
+$result_voluntarios = $conn->query($query_voluntarios);
+$result_bloqueados = $conn->query($query_bloqueados);
+$result_equipes = $conn->query($query_equipes);
+$result_termos = $conn->query($query_termos);
+
+// Verificar se as consultas foram bem-sucedidas
+if ($result_voluntarios && $result_bloqueados && $result_equipes && $result_termos) {
+    // Obter os resultados como arrays associativos
+    $row_voluntarios = $result_voluntarios->fetch_assoc();
+    $row_bloqueados = $result_bloqueados->fetch_assoc();
+    $row_equipes = $result_equipes->fetch_assoc();
+    $row_termos = $result_termos->fetch_assoc();
+    
+    // Imprimir os resultados nos cards
+    echo '<div class="cardBox">
+            <div class="card">
+                <div>
+                    <div class="numbers">' . $row_voluntarios['total_voluntarios'] . '</div>
+                    <div class="cardName">Voluntários</div>
+                </div>
+                <div class="iconBx">
+                    <ion-icon name="contacts"></ion-icon>
+                </div>
+            </div>
+            <div class="card">
+                <div>
+                    <div class="numbers">' . $row_bloqueados['total_bloqueados'] . '</div>
+                    <div class="cardName">Bloqueados</div>
+                </div>
+                <div class="iconBx">
+                    <ion-icon name="close-circle"></ion-icon>
+                </div>
+            </div>
+            <div class="card">
+                <div>
+                    <div class="numbers">' . $row_equipes['total_equipes'] . '</div>
+                    <div class="cardName">Equipes</div>
+                </div>
+                <div class="iconBx">
+                    <ion-icon name="people"></ion-icon>
+                </div>
+            </div>
+            <div class="card">
+                <div>
+                    <div class="numbers">' . $row_termos['total_termos'] . '</div>
+                    <div class="cardName">Termos</div>
+                </div>
+                <div class="iconBx">
+                    <ion-icon name="hand"></ion-icon>
+                </div>
+            </div>
+        </div>';
+} else {
+    echo "Erro na consulta: " . $conn->error;
+}
+
+// Fechar a conexão
+$conn->close();
+?>
+
 <!-- framework dos icones - ionicons.com -->
 <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 </body>
