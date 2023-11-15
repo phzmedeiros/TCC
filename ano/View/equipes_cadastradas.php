@@ -1,3 +1,16 @@
+<?php
+session_start();
+
+$_SESSION['usuarioSenha'];
+
+if (!isset($_SESSION["usuarioSenha"])) {
+
+	header("Location: frm_logar.html");
+
+	exit;
+} else {
+
+?>
 <!-- equipes_cadastradas.php -->
 <!DOCTYPE html>
 <html>
@@ -25,12 +38,10 @@
     --black1: #222;
     --black2: #999;
   }
-
   body {
     min-height: 100vh;
     overflow-x: hidden;
   }
-
   .container {
     position: relative;
     width: 100%;
@@ -46,11 +57,9 @@
     transition: 0.5s;
     overflow: hidden;
   }
-
   .navigation.active {
     width: 80px;
   }
-
   .navigation ul {
     padding-top: 80%;
     position: absolute;
@@ -58,7 +67,6 @@
     left: 0;
     width: 100%;
   }
-
   .navigation ul li {
     position: relative;
     width: 100%;
@@ -66,12 +74,10 @@
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
   }
-
   .navigation ul li:hover,
   .navigation ul li.hovered {
     background: var(--white);
   }
-
   .navigation ul li a {
     position: relative;
     display: block;
@@ -80,12 +86,10 @@
     text-decoration: none;
     color: var(--white);
   }
-
   .navigation ul li:hover a,
   .navigation ul li.hovered a {
     color: var(--blue);
   }
-
   .navigation ul li a .icon {
     position: relative;
     display: list-item;
@@ -94,11 +98,9 @@
     line-height: 75px;
     text-align: center;
   }
-
   .navigation ul li a .icon ion-icon {
     font-size: 1.75rem;
   }
-
   .navigation ul li a .title {
     position: relative;
     display: block;
@@ -108,7 +110,6 @@
     text-align: center;
     white-space: nowrap;
   }
-
   .navigation ul li:hover a::before,
   .navigation ul li.hovered a::before {
     content: "";
@@ -122,7 +123,6 @@
     box-shadow: 35px 35px 0 10px var(--white);
     pointer-events: none;
   }
-
   .navigation ul li:hover a::after,
   .navigation ul li.hovered a::after {
     content: "";
@@ -149,7 +149,6 @@
     padding-right: 10%;
     min-width: 200px;
   }
-
   .imglogo.hidden {
     display: none;
   }
@@ -163,7 +162,6 @@
     background: var(--white);
     transition: 0.5s;
   }
-
   .main.active {
     width: calc(100% - 80px);
     left: 80px;
@@ -202,12 +200,10 @@
     border-radius: 25px;
     border: none;
   }
-
   .search label {
     position: relative;
     width: 100%;
   }
-
   .search label input {
     width: 100%;
     height: 40px;
@@ -216,17 +212,13 @@
     outline: none;
     border: none;
   }
-
   .search form {
     display: flex;
     align-items: center;
   }
-
   .search input[type="text"] {
     flex: 1;
-    /* Ocupa o espaço restante */
   }
-
   .search button {
     background-color: transparent;
     /* Cor de fundo do botão */
@@ -239,7 +231,6 @@
     /* Ajuste o preenchimento conforme necessário */
     cursor: pointer;
   }
-
   .search button ion-icon {
     position: relative;
     padding-top: 6px;
@@ -262,7 +253,6 @@
     margin-right: 15px;
     box-shadow: 0 7px 25px rgba(0, 0, 0, 0.158);
   }
-
   .btn-novo-voluntario:hover {
     background-color: #2f3237;
   }
@@ -273,7 +263,6 @@
     .navigation {
       left: -300px;
     }
-
     .navigation.active {
       width: 300px;
       left: 0;
@@ -284,12 +273,10 @@
       width: 100%;
       left: 0;
     }
-
     .main.active {
       left: 300px;
     }
   }
-
   @media (max-width: 480px) {
 
     /* barra lateral - sidebar */
@@ -298,7 +285,6 @@
       left: -100%;
       z-index: 1000;
     }
-
     .navigation.active {
       width: 100%;
       left: 0;
@@ -308,7 +294,6 @@
     .toggle {
       z-index: 1001;
     }
-
     .main.active .toggle {
       position: fixed;
       right: 0;
@@ -324,14 +309,12 @@
     height: 100%;
     width: 100%;
   }
-
   .main-content {
     flex: 1;
     width: 100%;
     height: 100%;
     overflow: visible;
     padding: 20px;
-    /* Ajuste o espaçamento conforme necessário */
   }
 
   /* design tabela */
@@ -341,21 +324,21 @@
     padding: 20px;
     color: var(--blue);
     box-shadow: 0 7px 25px rgba(0, 0, 0, 0.158);
+    overflow: auto;
+    width: 100%;
+    height: 100%;
   }
-
   table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-    /* Adicione espaçamento conforme necessário */
     box-shadow: 0 7px 25px rgba(0, 0, 0, 0.192);
+    white-space: nowrap;
   }
-
   .table h2 {
     color: var(--white);
     padding-left: 10px;
   }
-
   table,
   th,
   tr,
@@ -439,21 +422,17 @@
               <th>Nome do Líder</th>
               <th>Voluntários</th>
             </tr>
-
             <?php
             require_once '../Model/crud.php';
             $crud = new crud();
             $equipes = $crud->selecionar_Todas_Equipes();
-
             foreach ($equipes as $equipe) {
               echo "<tr>";
               echo "<td>{$equipe['id']}</td>";
               echo "<td>{$equipe['nome_da_equipe']}</td>";
               echo "<td>{$equipe['nome_do_voluntario_lider']}</td>";
-
               echo "<td>";
               echo "Nome do Líder: {$equipe['nome_do_voluntario_lider']}<br>";
-
               for ($i = 1; $i <= 5; $i++) {
                 $voluntarioNome = $equipe["nome_do_voluntario_" . $i];
                 if (!empty($voluntarioNome)) {
@@ -463,7 +442,6 @@
               echo "";
               echo "<td><a href='excluir_equipes.php?id={$equipe['id']}'>Excluir</a></td>";
               echo "</td>";
-
               echo "</tr>";
             }
             ?>
@@ -472,11 +450,29 @@
       </div>
     </div>
   </div>
-  </div>
-  <!-- framework dos icones - ionicons.com -->
-  <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+<!-- framework dos icones - ionicons.com -->
+<script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 </body>
-
+<script>
+  //menu toggle
+  let toggle = document.querySelector(".toggle");
+  let navigation = document.querySelector(".navigation");
+  let main = document.querySelector(".main");
+  let logo = document.querySelector(".imglogo");
+  //função do click no toggle
+  toggle.onclick = function() {
+    navigation.classList.toggle("active");
+    main.classList.toggle("active");
+    logo.classList.toggle("hidden");
+  };
+  //marca como selecionado o item da sidebar
+  let list = document.querySelectorAll(".navigation li");
+  function activeLink() {
+    list.forEach((item) => item.classList.remove("hovered"));
+    this.classList.add("hovered");
+  }
+  list.forEach((item) => item.addEventListener("mouseover", activatelink));
+</script>
 </html>
 <!-- <script>
     <table border="1">
@@ -519,3 +515,4 @@
         <input type="submit" value="Voltar"><br>
     </form>
 </script> -->
+<?php } ?>

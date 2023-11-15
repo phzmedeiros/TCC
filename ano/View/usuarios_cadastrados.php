@@ -11,7 +11,6 @@ if (!isset($_SESSION["usuarioSenha"])) {
 } else {
 
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -318,11 +317,14 @@ if (!isset($_SESSION["usuarioSenha"])) {
       padding: 20px;
       color: var(--blue);
       box-shadow: 0 7px 25px rgba(0, 0, 0, 0.158);
+      overflow: auto;
+      width:100%;
     }
     table {
-      width: 100%;
+      width: 120%;
       border-collapse: collapse;
       box-shadow: 0 7px 25px rgba(0, 0, 0, 0.192);
+      white-space: nowrap;
     }
     .table h2 {
       color: var(--white);
