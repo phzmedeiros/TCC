@@ -401,7 +401,7 @@ if (!isset($_SESSION["usuarioSenha"])) {
           <div class="search">
             <label>
               <form action="adotantes_cadastrados.php" method="post">
-                <input type="text" name="searchCpf" id="searchCpf" placeholder="Digite o CPF">
+                <input type="text" name="searchCPF" id="searchCPF" placeholder="Digite o CPF">
                 <button type="submit"><ion-icon name="search"></ion-icon></button>
               </form>
             </label>
