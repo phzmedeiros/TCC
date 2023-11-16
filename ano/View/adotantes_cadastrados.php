@@ -414,7 +414,6 @@ if (!isset($_SESSION["usuarioSenha"])) {
         </div>
         <div class="main-content">
           <div class="table">
-            <br>
             <h2>Adotantes Bloqueados</h2><br>
             <!-- Adicione suas tabelas ou outros conteúdos aqui -->
             <table>
