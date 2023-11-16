@@ -1,8 +1,9 @@
 <?php
-
 require "conexao.php";
-
-session_start();
+// session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 class crud
 {
@@ -98,10 +99,14 @@ class crud
         }
     }
 
+    //TESTE 1 de ocultar Noticias
     function selecionar_Todos_Usuarios()
     {
         $conn = conectar();
         $sql = "SELECT * FROM usuarios";
+
+        error_reporting(E_ALL & ~E_NOTICE);
+        ini_set('display_errors', 0);
 
         try {
             $stmt = $conn->prepare($sql);
@@ -113,6 +118,55 @@ class crud
             return array();
         }
     }
+
+
+    //TESTE 2 de ocultar Noticias
+    // function selecionar_Todos_Usuarios()
+    // {
+    //     // Verificar se uma sessão está ativa
+    //     if (session_status() === PHP_SESSION_NONE) {
+    //         session_start();
+    //     }
+
+    //     $conn = conectar();
+    //     $sql = "SELECT * FROM usuarios";
+
+    //     error_reporting(E_ALL & ~E_NOTICE);
+    //     ini_set('display_errors', 0);
+
+    //     $status = session_status();
+    //     echo "O status da sessão é: $status";
+
+    //     try {
+    //         $stmt = $conn->prepare($sql);
+    //         $stmt->execute();
+
+    //         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    //     } catch (PDOException $e) {
+    //         echo "Erro: " . $e->getMessage();
+    //         return array();
+    //     }
+    // }
+
+
+    //TESTE 3 de ocultar Noticias
+    // function selecionar_Todos_Usuarios()
+    // {
+    //     $conn = conectar();
+    //     $sql = "SELECT * FROM usuarios";
+    //     $status = session_status();
+    //     echo "O status da sessão é: $status";
+
+    //     try {
+    //         $stmt = $conn->prepare($sql);
+    //         $stmt->execute();
+
+    //         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    //     } catch (PDOException $e) {
+    //         echo "Erro: " . $e->getMessage();
+    //         return array();
+    //     }
+    // }
 
     function selecionar_Um_Usuario_Por_Cpf($cpf)
     {
