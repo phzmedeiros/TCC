@@ -1,3 +1,16 @@
+<?php
+session_start();
+
+$_SESSION['usuarioSenha'];
+
+if (!isset($_SESSION["usuarioSenha"])) {
+
+	header("Location: frm_logar.html");
+
+	exit;
+} else {
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -402,7 +415,7 @@
         <div class="main-content">
           <div class="table">
             <br>
-            <h2>Adotantes Bloqueados</h2>
+            <h2>Adotantes Bloqueados</h2><br>
             <!-- Adicione suas tabelas ou outros conteúdos aqui -->
             <table>
                 <tr>
@@ -507,3 +520,4 @@
     ?>
 </table>
 </script> -->
+<?php } ?>

@@ -414,7 +414,7 @@ if (!isset($_SESSION["usuarioSenha"])) {
         </div>
         <div class="main-content">
           <div class="table">
-          <h2>Busca por CPF</h2>
+          <h2>Busca de voluntário por CPF</h2>
             <br>
             <!-- Tabela de resultados da busca por CPF -->
             <table>
