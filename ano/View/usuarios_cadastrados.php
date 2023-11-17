@@ -439,6 +439,7 @@ if (!isset($_SESSION["usuarioSenha"])) {
                   $crud = new crud();
                   $usuariosEncontrados = $crud->selecionar_Um_Usuario_Por_Cpf($searchCpf);
 
+                  
                   // Exibe os resultados da busca
                   foreach ($usuariosEncontrados as $usuario) {
                     echo "<tr>";
