@@ -10,75 +10,68 @@ class crud
 
     function selecionar_Usuario($nome_do_voluntario, $senha)
     {
-        $conn = conectar();
-        $sql = "SELECT * FROM usuariosa WHERE nome_do_voluntario = :nome_do_voluntario AND senha = :senha LIMIT 1";
-
+        $conn = conectar(); // Conecta ao banco de dados
+        $sql = "SELECT * FROM usuariosa WHERE nome_do_voluntario = :nome_do_voluntario AND senha = :senha LIMIT 1"; // Consulta SQL para selecionar usuário por nome e senha
         try {
-            $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':nome_do_voluntario', $nome_do_voluntario, PDO::PARAM_STR);
+            $stmt = $conn->prepare($sql); // Prepara a consulta
+            $stmt->bindParam(':nome_do_voluntario', $nome_do_voluntario, PDO::PARAM_STR); // Atribui parâmetros
             $stmt->bindParam(':senha', $senha, PDO::PARAM_STR);
-            $stmt->execute();
+            $stmt->execute(); // Executa a consulta
 
-            $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+            $resultado = $stmt->fetch(PDO::FETCH_ASSOC); // Obtém o resultado
 
             if ($resultado) {
-                $_SESSION['usuarioNome'] = $resultado['nome_do_voluntario'];
+                $_SESSION['usuarioNome'] = $resultado['nome_do_voluntario']; // Inicia ou resuma a sessão e define variáveis de sessão
                 $_SESSION['usuarioSenha'] = $resultado['senha'];
-                echo "<script language='javascript' type='text/javascript'>alert('Logado com sucesso!');window.location.href='../View/perfil_usuario.php';</script>";
+                echo "<script language='javascript' type='text/javascript'>alert('Logado com sucesso!');window.location.href='../View/perfil_usuario.php';</script>"; // Exibe alerta em JavaScript e redireciona o usuário
                 //header("Location: ../View/perfil_usuario.php");
                 exit(); // Importante para interromper a execução após redirecionar
             } else {
-                echo "<script language='javascript' type='text/javascript'>alert('Nome e/ou senha errados!');window.location.href='../View/frm_logar.html';</script>";
+                echo "<script language='javascript' type='text/javascript'>alert('Nome e/ou senha errados!');window.location.href='../View/frm_logar.html';</script>"; // Exibe alerta em JavaScript e redireciona o usuário
             }
         } catch (PDOException $e) {
-            echo "Erro: " . $e->getMessage();
+            echo "Erro: " . $e->getMessage(); // Trata exceções PDO
         }
     }
 
     function selecionar_Todos_Termos_Aceitos()
     {
-        $conn = conectar();
-        $sql = "SELECT * FROM adesao";
-
+        $conn = conectar(); // Conecta ao banco de dados
+        $sql = "SELECT * FROM adesao"; // Consulta SQL para selecionar todos os termos aceitos
         try {
-            $stmt = $conn->prepare($sql);
-            $stmt->execute();
-
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $stmt = $conn->prepare($sql); // Prepara a consulta
+            $stmt->execute(); // Executa a consulta
+            return $stmt->fetchAll(PDO::FETCH_ASSOC); // Retorna o resultado como array associativo
         } catch (PDOException $e) {
-            echo "Erro: " . $e->getMessage();
-            return array();
+            echo "Erro: " . $e->getMessage(); // Trata exceções PDO e exibe mensagem de erro
+            return array(); // Retorna array vazio em caso de erro
         }
     }
 
     function selecionar_Um_Termo_Por_Cpf($cpf)
     {
-        $conn = conectar();
-        $sql = "SELECT * FROM adesao WHERE cpf = :cpf";
-
+        $conn = conectar(); // Conecta ao banco de dados
+        $sql = "SELECT * FROM adesao WHERE cpf = :cpf"; // Consulta SQL para selecionar termo por CPF
         try {
-            $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':cpf', $cpf);
-            $stmt->execute();
-
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $stmt = $conn->prepare($sql); // Prepara a consulta
+            $stmt->bindParam(':cpf', $cpf); // Atribui parâmetro
+            $stmt->execute(); // Executa a consulta
+            return $stmt->fetchAll(PDO::FETCH_ASSOC); // Retorna o resultado como array associativo
         } catch (PDOException $e) {
-            echo "Erro: " . $e->getMessage();
-            return array();
+            echo "Erro: " . $e->getMessage(); // Trata exceções PDO e exibe mensagem de erro
+            return array(); // Retorna array vazio em caso de erro
         }
     }
 
-    
     //FUNÇÃO PARA CADASTRAR UM NOVO USUÁRIO NA TABELA DE USUÁRio
     function cadastrar_Usuario($nome_do_voluntario, $email, $endereco, $profissao, $cell, $tell_emergencia, $rg, $cpf, $equipe_pertencente, $obs)
     {
-        $conn = conectar();
+        $conn = conectar(); // Conecta ao banco de dados
 
         $sql = "INSERT INTO usuarios (nome_do_voluntario, email, endereco, profissao, cell, tell_emergencia, rg, cpf, equipe_pertencente, obs) 
-                VALUES (:nome_do_voluntario, :email, :endereco, :profissao, :cell, :tell_emergencia, :rg, :cpf, :equipe_pertencente, :obs)";
-
-        $stmt = $conn->prepare($sql);
-        $stmt->bindParam(':nome_do_voluntario', $nome_do_voluntario, PDO::PARAM_STR);
+                VALUES (:nome_do_voluntario, :email, :endereco, :profissao, :cell, :tell_emergencia, :rg, :cpf, :equipe_pertencente, :obs)"; // Consulta SQL para inserir novo usuário
+        $stmt = $conn->prepare($sql); // Prepara a consulta
+        $stmt->bindParam(':nome_do_voluntario', $nome_do_voluntario, PDO::PARAM_STR); // Atribui parâmetros
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->bindParam(':endereco', $endereco, PDO::PARAM_STR);
         $stmt->bindParam(':profissao', $profissao, PDO::PARAM_STR);
@@ -93,32 +86,31 @@ class crud
             echo "<script language='javascript' type='text/javascript'>
                   alert('Usuário cadastrado com sucesso');
                   window.location.href='../View/perfil_usuario.php';
-                  </script>";
+                  </script>"; // Exibe alerta em JavaScript e redireciona o usuário
         } else {
-            echo "Erro ao cadastrar o usuário: " . $stmt->errorInfo()[2];
+            echo "Erro ao cadastrar o usuário: " . $stmt->errorInfo()[2]; // Exibe mensagem de erro em caso de falha
         }
     }
 
     //TESTE 1 de ocultar Noticias
     function selecionar_Todos_Usuarios()
     {
-        $conn = conectar();
-        $sql = "SELECT * FROM usuarios";
+        $conn = conectar(); // Estabelece uma conexão com o banco de dados.
+        $sql = "SELECT * FROM usuarios"; // Consulta SQL para selecionar todos os usuários da tabela 'usuarios'.
 
-        error_reporting(E_ALL & ~E_NOTICE);
-        ini_set('display_errors', 0);
+        error_reporting(E_ALL & ~E_NOTICE); // Configura o relatório de erros para ocultar notificações.
+        ini_set('display_errors', 0); // Desabilita a exibição de erros na saída.
 
         try {
-            $stmt = $conn->prepare($sql);
-            $stmt->execute();
+            $stmt = $conn->prepare($sql); // Prepara a consulta SQL.
+            $stmt->execute(); // Executa a consulta.
 
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC); // Retorna todos os resultados como um array associativo.
         } catch (PDOException $e) {
-            echo "Erro: " . $e->getMessage();
-            return array();
+            echo "Erro: " . $e->getMessage(); // Exibe uma mensagem de erro se a execução da consulta falhar.
+            return array(); // Retorna um array vazio em caso de erro.
         }
     }
-
 
     //TESTE 2 de ocultar Noticias
     // function selecionar_Todos_Usuarios()
@@ -148,7 +140,6 @@ class crud
     //     }
     // }
 
-
     //TESTE 3 de ocultar Noticias
     // function selecionar_Todos_Usuarios()
     // {
@@ -170,30 +161,29 @@ class crud
 
     function selecionar_Um_Usuario_Por_Cpf($cpf)
     {
-        $conn = conectar();
-        $sql = "SELECT * FROM usuarios WHERE cpf = :cpf";
+        $conn = conectar(); // Estabelece uma conexão com o banco de dados.
+        $sql = "SELECT * FROM usuarios WHERE cpf = :cpf"; // Consulta SQL para selecionar um usuário com base no CPF.
 
         try {
-            $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':cpf', $cpf, PDO::PARAM_STR); // Certifique-se de que o CPF seja tratado como uma string
-            $stmt->execute();
+            $stmt = $conn->prepare($sql); // Prepara a consulta SQL.
+            $stmt->bindParam(':cpf', $cpf, PDO::PARAM_STR); // Vincula o parâmetro :cpf à variável $cpf assegurando que seja tratado como string.
+            $stmt->execute(); // Executa a consulta.
 
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC); // Retorna todos os resultados como um array associativo.
         } catch (PDOException $e) {
-            echo "Erro: " . $e->getMessage();
-            return array();
+            echo "Erro: " . $e->getMessage(); // Exibe uma mensagem de erro se a execução da consulta falhar.
+            return array(); // Retorna um array vazio em caso de erro.
         }
     }
 
-
     function excluir_Usuario($cpf)
     {
-        $conn = conectar();
+        $conn = conectar(); // Estabelece uma conexão com o banco de dados.
 
-        $sql = "DELETE FROM usuarios WHERE cpf = :cpf";
+        $sql = "DELETE FROM usuarios WHERE cpf = :cpf"; // Consulta SQL para excluir um usuário com base no CPF.
 
-        $stmt = $conn->prepare($sql);
-        $stmt->bindParam(':cpf', $cpf, PDO::PARAM_INT);
+        $stmt = $conn->prepare($sql); // Prepara a consulta SQL.
+        $stmt->bindParam(':cpf', $cpf, PDO::PARAM_INT); // Vincula o parâmetro :cpf à variável $cpf assegurando que seja tratado como inteiro.
 
         try {
             if ($stmt->execute()) {
@@ -202,13 +192,12 @@ class crud
                   window.location.href='../View/usuarios_cadastrados.php';
                   </script>";
             } else {
-                echo "Erro ao excluir o usuário: " . $stmt->errorInfo()[2];
+                echo "Erro ao excluir o usuário: " . $stmt->errorInfo()[2]; // Exibe uma mensagem de erro se a execução da consulta falhar.
             }
         } catch (PDOException $e) {
-            echo "Erro: " . $e->getMessage();
+            echo "Erro: " . $e->getMessage(); // Exibe uma mensagem de erro se ocorrer uma exceção do tipo PDOException.
         }
     }
-
 
     // function atualizar_Usuario($cpf, $nome, $email, $endereco, $profissao, $cell, $tell_emergencia, $rg, $equipe_pertencente, $obs)
     // {
@@ -241,94 +230,94 @@ class crud
     //     }
     // }
 
-
-
-    //funcoes adotante
+    // Função para cadastrar um adotante no banco de dados
     function cadastrar_Adotante($nome_adotante, $descricao_bloqueio, $cpf, $data_bloqueio, $voluntario_que_registrou)
     {
-        $conn = conectar();
+        $conn = conectar(); // Estabelece uma conexão com o banco de dados.
 
         $sql = "INSERT INTO ado_block (nome_adotante, descricao_bloqueio, cpf, data_bloqueio, voluntario_que_registrou) 
-                VALUES (:nome_adotante, :descricao_bloqueio, :cpf, :data_bloqueio, :voluntario_que_registrou)";
+            VALUES (:nome_adotante, :descricao_bloqueio, :cpf, :data_bloqueio, :voluntario_que_registrou)"; // Consulta SQL para inserir um adotante.
 
-        $stmt = $conn->prepare($sql);
-        $stmt->bindParam(':nome_adotante', $nome_adotante, PDO::PARAM_STR);
-        $stmt->bindParam(':descricao_bloqueio', $descricao_bloqueio, PDO::PARAM_STR);
-        $stmt->bindParam(':cpf', $cpf, PDO::PARAM_STR);
-        $stmt->bindParam(':data_bloqueio', $data_bloqueio, PDO::PARAM_STR);
-        $stmt->bindParam(':voluntario_que_registrou', $voluntario_que_registrou, PDO::PARAM_STR);
+        $stmt = $conn->prepare($sql); // Prepara a consulta SQL.
+        $stmt->bindParam(':nome_adotante', $nome_adotante, PDO::PARAM_STR); // Vincula o parâmetro :nome_adotante à variável $nome_adotante assegurando que seja tratado como string.
+        $stmt->bindParam(':descricao_bloqueio', $descricao_bloqueio, PDO::PARAM_STR); // Vincula o parâmetro :descricao_bloqueio à variável $descricao_bloqueio assegurando que seja tratado como string.
+        $stmt->bindParam(':cpf', $cpf, PDO::PARAM_STR); // Vincula o parâmetro :cpf à variável $cpf assegurando que seja tratado como string.
+        $stmt->bindParam(':data_bloqueio', $data_bloqueio, PDO::PARAM_STR); // Vincula o parâmetro :data_bloqueio à variável $data_bloqueio assegurando que seja tratado como string.
+        $stmt->bindParam(':voluntario_que_registrou', $voluntario_que_registrou, PDO::PARAM_STR); // Vincula o parâmetro :voluntario_que_registrou à variável $voluntario_que_registrou assegurando que seja tratado como string.
 
         if ($stmt->execute()) {
             echo "<script language='javascript' type='text/javascript'>
-                  alert('Adotante cadastrado com sucesso');
-                  window.location.href='../View/adotantes_cadastrados.php';
-                  </script>";
+              alert('Adotante cadastrado com sucesso');
+              window.location.href='../View/adotantes_cadastrados.php';
+              </script>"; // Exibe uma mensagem de sucesso e redireciona para a página de adotantes cadastrados em caso de sucesso na execução da consulta.
         } else {
-            echo "Erro ao cadastrar o adotante: " . $stmt->errorInfo()[2];
+            echo "Erro ao cadastrar o adotante: " . $stmt->errorInfo()[2]; // Exibe uma mensagem de erro se a execução da consulta falhar.
         }
     }
 
-
+    // Função para selecionar todos os adotantes no banco de dados
     function selecionar_Todos_Adotantes()
     {
-        $conn = conectar();
-        $sql = "SELECT * FROM ado_block";
+        $conn = conectar(); // Estabelece uma conexão com o banco de dados.
+        $sql = "SELECT * FROM ado_block"; // Consulta SQL para selecionar todos os adotantes.
 
         try {
-            $stmt = $conn->prepare($sql);
-            $stmt->execute();
+            $stmt = $conn->prepare($sql); // Prepara a consulta SQL.
+            $stmt->execute(); // Executa a consulta.
 
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC); // Retorna todos os resultados como um array associativo.
         } catch (PDOException $e) {
-            echo "Erro: " . $e->getMessage();
-            return array();
+            echo "Erro: " . $e->getMessage(); // Exibe uma mensagem de erro se a execução da consulta falhar.
+            return array(); // Retorna um array vazio em caso de erro.
         }
     }
 
+    // Função para selecionar um adotante com base no CPF
     function selecionar_Adotante_Por_CPF($cpf)
     {
-        $conn = conectar();
-        $sql = "SELECT * FROM ado_block WHERE cpf = :cpf";
+        $conn = conectar(); // Estabelece uma conexão com o banco de dados.
+        $sql = "SELECT * FROM ado_block WHERE cpf = :cpf"; // Consulta SQL para selecionar um adotante com base no CPF.
 
         try {
-            $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':cpf', $cpf);
-            $stmt->execute();
+            $stmt = $conn->prepare($sql); // Prepara a consulta SQL.
+            $stmt->bindParam(':cpf', $cpf); // Vincula o parâmetro :cpf à variável $cpf.
+            $stmt->execute(); // Executa a consulta.
 
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC); // Retorna todos os resultados como um array associativo.
         } catch (PDOException $e) {
-            echo "Erro: " . $e->getMessage();
-            return array();
+            echo "Erro: " . $e->getMessage(); // Exibe uma mensagem de erro se a execução da consulta falhar.
+            return array(); // Retorna um array vazio em caso de erro.
         }
     }
 
-
+    // Função para excluir um adotante bloqueado do banco de dados
     function excluir_Adotante($cpf)
     {
-        $conn = conectar();
+        $conn = conectar(); // Estabelece uma conexão com o banco de dados.
 
-        $sql = "DELETE FROM ado_block WHERE cpf = :cpf";
+        $sql = "DELETE FROM ado_block WHERE cpf = :cpf"; // Consulta SQL para excluir um adotante bloqueado.
 
-        $stmt = $conn->prepare($sql);
-        $stmt->bindParam(':cpf', $cpf, PDO::PARAM_INT);
+        $stmt = $conn->prepare($sql); // Prepara a consulta SQL.
+        $stmt->bindParam(':cpf', $cpf, PDO::PARAM_INT); // Vincula o parâmetro :cpf à variável $cpf assegurando que seja tratado como inteiro.
 
         try {
             if ($stmt->execute()) {
                 echo "<script language='javascript' type='text/javascript'>
-                  alert('Adotante bloqueado excluído com sucesso');
-                  window.location.href='../View/adotantes_cadastrados.php';
-                  </script>";
+              alert('Adotante bloqueado excluído com sucesso');
+              window.location.href='../View/adotantes_cadastrados.php';
+              </script>"; // Exibe uma mensagem de sucesso e redireciona para a página de adotantes cadastrados em caso de sucesso na execução da consulta.
             } else {
-                echo "Erro ao excluir o usuário: " . $stmt->errorInfo()[2];
+                echo "Erro ao excluir o adotante bloqueado: " . $stmt->errorInfo()[2]; // Exibe uma mensagem de erro se a execução da consulta falhar.
             }
         } catch (PDOException $e) {
-            echo "Erro: " . $e->getMessage();
+            echo "Erro: " . $e->getMessage(); // Exibe uma mensagem de erro se ocorrer uma exceção do tipo PDOException.
         }
     }
 
+    // Função para criar equipes no banco de dados
     function criar_Equipes($nome_da_equipe, $nome_do_voluntario_lider, $voluntarios)
     {
-        $conn = conectar();
+        $conn = conectar(); // Estabelece uma conexão com o banco de dados.
 
         // Primeiro, insira o líder da equipe na tabela de voluntários
         $sqlLider = "INSERT INTO voluntarios (nome) VALUES (:nome_do_voluntario_lider)";
@@ -367,49 +356,53 @@ class crud
             echo "<script language='javascript' type='text/javascript'>
               alert('Equipe cadastrada com sucesso');
               window.location.href='../View/equipes_cadastradas.php';
-              </script>";
+              </script>"; // Exibe uma mensagem de sucesso e redireciona para a página de equipes cadastradas em caso de sucesso na execução da consulta.
         } else {
-            echo "Erro ao cadastrar a equipe: " . $stmtEquipe->errorInfo()[2];
+            echo "Erro ao cadastrar a equipe: " . $stmtEquipe->errorInfo()[2]; // Exibe uma mensagem de erro se a execução da consulta falhar.
         }
     }
 
-
+    // Função para excluir uma equipe do banco de dados
     function excluir_Equipe($cod_equipe)
     {
-        $conn = conectar();
+        $conn = conectar(); // Estabelece uma conexão com o banco de dados.
 
-        $sql = "DELETE FROM equipes WHERE id = :id";
+        $sql = "DELETE FROM equipes WHERE id = :id"; // Consulta SQL para excluir uma equipe.
 
-        $stmt = $conn->prepare($sql);
-        $stmt->bindParam(':id', $cod_equipe, PDO::PARAM_INT);
+        $stmt = $conn->prepare($sql); // Prepara a consulta SQL.
+        $stmt->bindParam(':id', $cod_equipe, PDO::PARAM_INT); // Vincula o parâmetro :id à variável $cod_equipe assegurando que seja tratado como inteiro.
 
         try {
             if ($stmt->execute()) {
                 echo "<script language='javascript' type='text/javascript'>
                   alert('Equipe excluída com sucesso');
                   window.location.href='../View/equipes_cadastradas.php';
-                  </script>";
+                  </script>"; // Exibe uma mensagem de sucesso e redireciona para a página de equipes cadastradas em caso de sucesso na execução da consulta.
             } else {
-                echo "Erro ao excluir o usuário: " . $stmt->errorInfo()[2];
+                echo "Erro ao excluir a equipe: " . $stmt->errorInfo()[2]; // Exibe uma mensagem de erro se a execução da consulta falhar.
             }
         } catch (PDOException $e) {
-            echo "Erro: " . $e->getMessage();
+            echo "Erro: " . $e->getMessage(); // Exibe uma mensagem de erro se ocorrer uma exceção do tipo PDOException.
         }
     }
 
+    // Função para selecionar todas as equipes do banco de dados
     function selecionar_Todas_Equipes()
     {
-        $conn = conectar();
+        $conn = conectar(); // Estabelece uma conexão com o banco de dados.
+
         $sql = "SELECT e.id, e.nome_da_equipe, v1.nome AS nome_do_voluntario_lider, v2.nome AS nome_do_voluntario_1, v3.nome AS nome_do_voluntario_2, v4.nome AS nome_do_voluntario_3, v5.nome AS nome_do_voluntario_4, v6.nome AS nome_do_voluntario_5
-        FROM equipes e
-        LEFT JOIN voluntarios v1 ON e.nome_do_voluntario_lider = v1.id
-        LEFT JOIN voluntarios v2 ON e.nome_do_voluntario_1 = v2.id
-        LEFT JOIN voluntarios v3 ON e.nome_do_voluntario_2 = v3.id
-        LEFT JOIN voluntarios v4 ON e.nome_do_voluntario_3 = v4.id
-        LEFT JOIN voluntarios v5 ON e.nome_do_voluntario_4 = v5.id
-        LEFT JOIN voluntarios v6 ON e.nome_do_voluntario_5 = v6.id";
-        $stmt = $conn->prepare($sql);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    FROM equipes e
+    LEFT JOIN voluntarios v1 ON e.nome_do_voluntario_lider = v1.id
+    LEFT JOIN voluntarios v2 ON e.nome_do_voluntario_1 = v2.id
+    LEFT JOIN voluntarios v3 ON e.nome_do_voluntario_2 = v3.id
+    LEFT JOIN voluntarios v4 ON e.nome_do_voluntario_3 = v4.id
+    LEFT JOIN voluntarios v5 ON e.nome_do_voluntario_4 = v5.id
+    LEFT JOIN voluntarios v6 ON e.nome_do_voluntario_5 = v6.id"; // Consulta SQL para selecionar todas as equipes com os nomes dos voluntários.
+
+        $stmt = $conn->prepare($sql); // Prepara a consulta SQL.
+        $stmt->execute(); // Executa a consulta SQL.
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC); // Retorna todas as linhas resultantes da consulta como uma matriz associativa.
     }
 }
