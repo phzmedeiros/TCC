@@ -1,59 +1,129 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Usuário</title>
-  </head>
-  <body>
-    <h1>Cadastrar Usuário</h1>
-    <form action="../Controller/controller_usuarios.php" method="POST">
-      <label for="nome_do_voluntario">Nome do Voluntário:</label>
-      <input type="text" name="nome_do_voluntario" required /><br />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap");
+        body {
+            background-color: #383b43;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: "Poppins", sans-serif;
+            color: #333;
+        }
 
-      <label for="email">Email:</label>
-      <input type="email" name="email" required /><br />
+        .form-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 600px;
+            margin: auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
-      <label for="endereco">Endereço:</label>
-      <input type="text" name="endereco" required /><br />
+        form {
+            display: flex;
+            flex-direction: column;
+        }
 
-      <label for="profissao">Profissão:</label>
-      <input type="text" name="profissao" required /><br />
+        h1 {
+            text-align: center;
+            color: #383b43;
+            margin-bottom: 20px;
+        }
 
-      <label for="cell">Celular:</label>
-      <input
-        type="text"
-        name="cell"
-        placeholder="(00) 00000-0000"
-        id="fone"
-      /><br />
+        label {
+            margin-top: 10px;
+            font-weight: bold;
+        }
 
-      <label for="tell_emergencia">Telefone de Emergência:</label>
-      <input
-        type="text"
-        name="tell_emergencia"
-        placeholder="(00) 00000-0000"
-        id="fone"
-      /><br />
+        input,
+        textarea {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            flex: 1; /* Take up available space */
+            margin-right: 10px; /* Add spacing between inputs */
+        }
 
-      <label for="rg">RG:</label>
-      <input type="text" name="rg" required /><br />
+        input[type="submit"] {
+            background-color: #383b43;
+            color: white;
+            cursor: pointer;
+        }
 
-      <label for="cpf">CPF:</label>
-      <input type="text" name="cpf" placeholder="000.000.000-00" id="cpf" />
+        input[type="submit"]:hover {
+            background-color: #66696e;
+        }
 
-      <label for="equipe_pertencente">Equipe Pertencente:</label>
-      <input type="text" name="equipe_pertencente" required /><br />
+        input[type="submit"],
+        input[type="reset"] {
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+        }
 
-      <label for="obs">Observações:</label><br />
-      <textarea name="obs" rows="4" cols="50"></textarea><br />
+        @media screen and (max-width: 600px) {
+            .form-container {
+                width: 90%;
+            }
 
-      <input type="submit" value="Cadastrar" name="acao" />
-    </form>
-    <br />
+            input,
+            textarea {
+                margin-right: 0; /* Remove spacing between inputs on smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Cadastrar Voluntário</h1>
+        <form action="../Controller/controller_usuarios.php" method="POST">
+            <label for="nome_do_voluntario">Nome do Voluntário:</label>
+            <input type="text" name="nome_do_voluntario" required />
 
-    <form action="usuarios_cadastrados.php">
-      <input type="submit" value="Voltar" /><br />
-    </form>
-  </body>
+            <label for="email">Email:</label>
+            <input type="email" name="email" required />
+
+            <label for="endereco">Endereço:</label>
+            <input type="text" name="endereco" required />
+
+            <label for="profissao">Profissão:</label>
+            <input type="text" name="profissao" required />
+
+            <label for="cell">Celular:</label>
+            <input type="text" name="cell" placeholder="(00) 00000-0000" id="fone" />
+
+            <label for="tell_emergencia">Telefone de Emergência:</label>
+            <input type="text" name="tell_emergencia" placeholder="(00) 00000-0000" id="fone" />
+
+            <label for="rg">RG:</label>
+            <input type="text" name="rg" required />
+
+            <label for="cpf">CPF:</label>
+            <input type="text" name="cpf" placeholder="000.000.000-00" id="cpf" />
+
+            <label for="equipe_pertencente">Equipe Pertencente:</label>
+            <input type="text" name="equipe_pertencente" required />
+
+            <label for="obs">Observações:</label>
+            <textarea name="obs" rows="4" cols="50"></textarea>
+
+            <input type="submit" value="Cadastrar" name="acao" />
+        </form>
+        <br />
+        <form action="usuarios_cadastrados.php">
+            <input type="submit" value="Voltar" />
+        </form>
+    </div>
+</body>
 </html>
