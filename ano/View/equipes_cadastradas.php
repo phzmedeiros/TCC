@@ -435,11 +435,13 @@ if (!isset($_SESSION["usuarioSenha"])) {
               echo "<td>{$equipe['nome_do_voluntario_lider']}</td>";
               echo "<td>";
               echo "Nome do Líder: {$equipe['nome_do_voluntario_lider']}<br>";
-              for ($i = 1; $i <= 5; $i++) {
-                $voluntarioNome = $equipe["nome_do_voluntario_" . $i];
-                if (!empty($voluntarioNome)) {
-                  echo "Nome do " . ($i + 1) . "&ordm; Voluntário: $voluntarioNome<br>";
-                }
+              for ($i = 1; $i <= 20; $i++) {
+                // Check if the key exists in the array
+                if (isset($equipe["nome_do_voluntario_" . $i])) {
+                    $voluntarioNome = $equipe["nome_do_voluntario_" . $i];
+                    if (!empty($voluntarioNome)) {
+                        echo "Nome do " . ($i + 1) . "&ordm; Voluntário: $voluntarioNome<br>";
+                    }}
               }
               echo "";
               echo "<td><a href='excluir_equipes.php?id={$equipe['id']}'>Excluir</a></td>";

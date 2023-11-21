@@ -388,21 +388,61 @@ class crud
 
     // Função para selecionar todas as equipes do banco de dados
     function selecionar_Todas_Equipes()
-    {
-        $conn = conectar(); // Estabelece uma conexão com o banco de dados.
+{
+    $conn = conectar(); // Estabelece uma conexão com o banco de dados.
 
-        $sql = "SELECT e.id, e.nome_da_equipe, v1.nome AS nome_do_voluntario_lider, v2.nome AS nome_do_voluntario_1, v3.nome AS nome_do_voluntario_2, v4.nome AS nome_do_voluntario_3, v5.nome AS nome_do_voluntario_4, v6.nome AS nome_do_voluntario_5
-    FROM equipes e
-    LEFT JOIN voluntarios v1 ON e.nome_do_voluntario_lider = v1.id
-    LEFT JOIN voluntarios v2 ON e.nome_do_voluntario_1 = v2.id
-    LEFT JOIN voluntarios v3 ON e.nome_do_voluntario_2 = v3.id
-    LEFT JOIN voluntarios v4 ON e.nome_do_voluntario_3 = v4.id
-    LEFT JOIN voluntarios v5 ON e.nome_do_voluntario_4 = v5.id
-    LEFT JOIN voluntarios v6 ON e.nome_do_voluntario_5 = v6.id"; // Consulta SQL para selecionar todas as equipes com os nomes dos voluntários.
+    $sql = "
+        SELECT 
+            e.id, 
+            e.nome_da_equipe, 
+            v1.nome AS nome_do_voluntario_lider, 
+            v2.nome AS nome_do_voluntario_1, 
+            v3.nome AS nome_do_voluntario_2, 
+            v4.nome AS nome_do_voluntario_3, 
+            v5.nome AS nome_do_voluntario_4, 
+            v6.nome AS nome_do_voluntario_5,
+            v7.nome AS nome_do_voluntario_6,
+            v8.nome AS nome_do_voluntario_7,
+            v9.nome AS nome_do_voluntario_8,
+            v10.nome AS nome_do_voluntario_9,
+            v11.nome AS nome_do_voluntario_10,
+            v12.nome AS nome_do_voluntario_11,
+            v13.nome AS nome_do_voluntario_12,
+            v14.nome AS nome_do_voluntario_13,
+            v15.nome AS nome_do_voluntario_14,
+            v16.nome AS nome_do_voluntario_15,
+            v17.nome AS nome_do_voluntario_16,
+            v18.nome AS nome_do_voluntario_17,
+            v19.nome AS nome_do_voluntario_18,
+            v20.nome AS nome_do_voluntario_19
+        FROM 
+            equipes e
+        LEFT JOIN voluntarios v1 ON e.nome_do_voluntario_lider = v1.id
+        LEFT JOIN voluntarios v2 ON e.nome_do_voluntario_1 = v2.id
+        LEFT JOIN voluntarios v3 ON e.nome_do_voluntario_2 = v3.id
+        LEFT JOIN voluntarios v4 ON e.nome_do_voluntario_3 = v4.id
+        LEFT JOIN voluntarios v5 ON e.nome_do_voluntario_4 = v5.id
+        LEFT JOIN voluntarios v6 ON e.nome_do_voluntario_5 = v6.id
+        LEFT JOIN voluntarios v7 ON e.nome_do_voluntario_6 = v7.id
+        LEFT JOIN voluntarios v8 ON e.nome_do_voluntario_7 = v8.id
+        LEFT JOIN voluntarios v9 ON e.nome_do_voluntario_8 = v9.id
+        LEFT JOIN voluntarios v10 ON e.nome_do_voluntario_9 = v10.id
+        LEFT JOIN voluntarios v11 ON e.nome_do_voluntario_10 = v11.id
+        LEFT JOIN voluntarios v12 ON e.nome_do_voluntario_11 = v12.id
+        LEFT JOIN voluntarios v13 ON e.nome_do_voluntario_12 = v13.id
+        LEFT JOIN voluntarios v14 ON e.nome_do_voluntario_13 = v14.id
+        LEFT JOIN voluntarios v15 ON e.nome_do_voluntario_14 = v15.id
+        LEFT JOIN voluntarios v16 ON e.nome_do_voluntario_15 = v16.id
+        LEFT JOIN voluntarios v17 ON e.nome_do_voluntario_16 = v17.id
+        LEFT JOIN voluntarios v18 ON e.nome_do_voluntario_17 = v18.id
+        LEFT JOIN voluntarios v19 ON e.nome_do_voluntario_18 = v19.id
+        LEFT JOIN voluntarios v20 ON e.nome_do_voluntario_19 = v20.id
+    "; // Consulta SQL para selecionar todas as equipes com os nomes dos voluntários.
 
-        $stmt = $conn->prepare($sql); // Prepara a consulta SQL.
-        $stmt->execute(); // Executa a consulta SQL.
+    $stmt = $conn->prepare($sql); // Prepara a consulta SQL.
+    $stmt->execute(); // Executa a consulta SQL.
 
-        return $stmt->fetchAll(PDO::FETCH_ASSOC); // Retorna todas as linhas resultantes da consulta como uma matriz associativa.
-    }
+    return $stmt->fetchAll(PDO::FETCH_ASSOC); // Retorna todas as linhas resultantes da consulta como uma matriz associativa.
+}
+
 }
