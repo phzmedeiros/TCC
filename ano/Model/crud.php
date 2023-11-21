@@ -339,18 +339,69 @@ class crud
         }
 
         // Agora, insira a equipe na tabela de equipes, relacionando-a com os líder e voluntários
-        $sqlEquipe = "INSERT INTO equipes (nome_da_equipe, nome_do_voluntario_lider, nome_do_voluntario_1, nome_do_voluntario_2, nome_do_voluntario_3, nome_do_voluntario_4, nome_do_voluntario_5) VALUES (:nome_da_equipe, :nome_do_voluntario_lider, :nome_do_voluntario_1, :nome_do_voluntario_2, :nome_do_voluntario_3, :nome_do_voluntario_4, :nome_do_voluntario_5)";
+        $sqlEquipe = "
+        INSERT INTO equipes (
+            nome_da_equipe, 
+            nome_do_voluntario_lider, 
+            nome_do_voluntario_1, 
+            nome_do_voluntario_2, 
+            nome_do_voluntario_3, 
+            nome_do_voluntario_4, 
+            nome_do_voluntario_5,
+            nome_do_voluntario_6,
+            nome_do_voluntario_7,
+            nome_do_voluntario_8,
+            nome_do_voluntario_9,
+            nome_do_voluntario_10,
+            nome_do_voluntario_11,
+            nome_do_voluntario_12,
+            nome_do_voluntario_13,
+            nome_do_voluntario_14,
+            nome_do_voluntario_15,
+            nome_do_voluntario_16,
+            nome_do_voluntario_17,
+            nome_do_voluntario_18,
+            nome_do_voluntario_19,
+            nome_do_voluntario_20
+        ) 
+        VALUES (
+            :nome_da_equipe, 
+            :nome_do_voluntario_lider, 
+            :nome_do_voluntario_1, 
+            :nome_do_voluntario_2, 
+            :nome_do_voluntario_3, 
+            :nome_do_voluntario_4, 
+            :nome_do_voluntario_5,
+            :nome_do_voluntario_6,
+            :nome_do_voluntario_7,
+            :nome_do_voluntario_8,
+            :nome_do_voluntario_9,
+            :nome_do_voluntario_10,
+            :nome_do_voluntario_11,
+            :nome_do_voluntario_12,
+            :nome_do_voluntario_13,
+            :nome_do_voluntario_14,
+            :nome_do_voluntario_15,
+            :nome_do_voluntario_16,
+            :nome_do_voluntario_17,
+            :nome_do_voluntario_18,
+            :nome_do_voluntario_19,
+            :nome_do_voluntario_20
+        )
+    ";
 
-        $stmtEquipe = $conn->prepare($sqlEquipe);
-        $stmtEquipe->bindParam(':nome_da_equipe', $nome_da_equipe, PDO::PARAM_STR);
-        $stmtEquipe->bindParam(':nome_do_voluntario_lider', $voluntario_ids[0], PDO::PARAM_INT); // Usar o ID do líder
-        for ($i = 0; $i < 5; $i++) {
-            if ($i < count($voluntario_ids)) {
-                $stmtEquipe->bindParam(":nome_do_voluntario_" . ($i + 1), $voluntario_ids[$i], PDO::PARAM_INT);
-            } else {
-                $stmtEquipe->bindValue(":nome_do_voluntario_" . ($i + 1), null, PDO::PARAM_NULL); // Se não houver voluntário, defina como NULL
-            }
+    $stmtEquipe = $conn->prepare($sqlEquipe);
+    $stmtEquipe->bindParam(':nome_da_equipe', $nome_da_equipe, PDO::PARAM_STR);
+    $stmtEquipe->bindParam(':nome_do_voluntario_lider', $voluntario_ids[0], PDO::PARAM_INT);
+
+    // Bind parameters for volunteers dynamically
+    for ($i = 0; $i < 20; $i++) {
+        if ($i < count($voluntario_ids)) {
+            $stmtEquipe->bindParam(":nome_do_voluntario_" . ($i + 1), $voluntario_ids[$i], PDO::PARAM_INT);
+        } else {
+            $stmtEquipe->bindValue(":nome_do_voluntario_" . ($i + 1), null, PDO::PARAM_NULL);
         }
+    }
 
         if ($stmtEquipe->execute()) {
             echo "<script language='javascript' type='text/javascript'>

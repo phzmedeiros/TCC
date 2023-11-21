@@ -3,7 +3,10 @@ if (isset($_POST['acao'])) {
     include_once '../Model/crud.php';
 
     $nome_da_equipe = $_POST["nome_da_equipe"];
-    $nome_do_voluntario_lider = $_POST["nome_do_voluntario_lider"];
+    
+    // Check if the key exists before accessing its value
+    $nome_do_voluntario_lider = isset($_POST["nome_do_voluntario_lider"]) ? $_POST["nome_do_voluntario_lider"] : null;
+
     $quantidade = $_POST["quantidade"];
 
     $voluntarios = [];
