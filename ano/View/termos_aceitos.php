@@ -327,6 +327,7 @@ if (!isset($_SESSION["usuarioSenha"])) {
       border-collapse: collapse;
       box-shadow: 0 7px 25px rgba(0, 0, 0, 0.192);
       white-space: nowrap;
+      border-style: hidden;
     }
     .table h3, h2,h1 {
       color: var(--white);
@@ -339,6 +340,17 @@ if (!isset($_SESSION["usuarioSenha"])) {
       background-color: var(--white);
       border-radius: 25px;
       padding: 20px;
+    }
+    table {
+      border-style: hidden;
+    }
+    table td {
+      padding: auto;
+      border: 2px solid var(--black2);
+    }
+    table th {
+      padding: auto;
+      border: 2px solid var(--blue);
     }
 </style>
 
@@ -436,9 +448,7 @@ if (!isset($_SESSION["usuarioSenha"])) {
             echo "</tr>";
         }
         ?>
-    </table><br><br><br>
-
-
+    </table><br>
 
     <h3>Busca por Cpf</h3>
     <br>
@@ -471,10 +481,6 @@ if (!isset($_SESSION["usuarioSenha"])) {
         }
         ?>
     </table>
-
-    <br>
-    <br>
-    <br>
     <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 </body>
 <script>

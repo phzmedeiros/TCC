@@ -340,6 +340,17 @@ if (!isset($_SESSION["usuarioSenha"])) {
       border-radius: 25px;
       padding: 20px;
     }
+    table {
+      border-style: hidden;
+    }
+    table td {
+      padding: auto;
+      border: 2px solid var(--black2);
+    }
+    table th {
+      padding: auto;
+      border: 2px solid var(--blue);
+    }
 </style>
 <body>
   <!-- toda a página -->
@@ -423,6 +434,7 @@ if (!isset($_SESSION["usuarioSenha"])) {
                     <th>CPF</th>
                     <th>Data e hora do bloqueio</th>
                     <th>Voluntário que bloqueou</th>
+                    <th>Ações</th>
                 </tr>
 
                 <?php
