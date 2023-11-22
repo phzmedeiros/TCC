@@ -4,48 +4,142 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cadastrar Equipes</title>
-    <script>
-      function adicionarVoluntarios() {
-        var quantidade = document.getElementById("quantidade").value;
-        var container = document.getElementById("voluntarios-container");
-        container.innerHTML = "";
-
-        for (var i = 1; i <= quantidade; i++) {
-          var label = document.createElement("label");
-          label.innerHTML = "Nome do " + i + "º Voluntário:";
-          var input = document.createElement("input");
-          input.type = "text";
-          input.name = "nome_do_voluntario_" + i;
-          input.required = true;
-          container.appendChild(label);
-          container.appendChild(input);
-          container.appendChild(document.createElement("br"));
-        }
-      }
-    </script>
   </head>
+  <script>
+    function adicionarVoluntarios() {
+      var quantidade = document.getElementById("quantidade").value;
+      var container = document.getElementById("voluntarios-container");
+      container.innerHTML = "";
+
+      for (var i = 1; i <= quantidade; i++) {
+        var label = document.createElement("label");
+        label.innerHTML = "Nome do " + i + "º Voluntário:";
+
+        var input = document.createElement("input");
+        input.type = "text";
+        input.name = "nome_do_voluntario_" + i;
+        input.required = true;
+
+        var quebraDeLinha = document.createElement("br");
+
+        container.appendChild(label);
+        container.appendChild(quebraDeLinha); // Adiciona a quebra de linha
+        container.appendChild(input);
+        container.appendChild(document.createElement("br")); // Adiciona outra quebra de linha após o input
+      }
+    }
+  </script>
+  <style>
+    /* Fonte */
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap");
+
+    body {
+      background-color: #383b43;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      color: #333;
+      margin-top: 20px; /* Espaçamento em cima */
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    .form-container {
+      background-color: white;
+      padding: 20px;
+      border-radius: 20px;
+      width: 80%;
+      max-width: 700px;
+      margin: auto;
+      box-shadow: 0 7px 25px rgba(0, 0, 0, 0.815);
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    h1 {
+      text-align: center;
+      color: #383b43;
+      margin-bottom: 20px;
+    }
+    label {
+      margin-top: 10px;
+      font-weight: bold;
+      padding-left: 10px;
+      padding-bottom: 2px;
+    }
+
+    input,
+    textarea {
+      margin-bottom: 15px;
+      background-color: #ffffff;
+      padding: 15px;
+      border: none;
+      border-radius: 15px;
+      font-size: 16px;
+      flex: 1; /* Take up available space */
+      margin-right: 10px; /* Add spacing between inputs */
+      box-shadow: 0 7px 25px rgba(0, 0, 0, 0.185);
+    }
+    input[type="submit"] {
+      background-color: #383b43;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 7px 25px rgba(0, 0, 0, 0.5);
+    }
+    input[type="submit"]:hover {
+      background-color: rgba(49, 49, 49, 0.658);
+      box-shadow: none;
+    }
+    input[type="submit"],
+    input[type="reset"] {
+      padding: 20px;
+      border: none;
+      border-radius: 15px;
+      font-size: 20px;
+    }
+
+    @media screen and (max-width: 600px) {
+      .form-container {
+        width: 90%;
+      }
+
+      input,
+      textarea {
+        margin-right: 0; /* Remove spacing between inputs on smaller screens */
+      }
+    }
+  </style>
   <body>
-    <h1>Cadastrar de Equipes</h1>
-    <form action="../Controller/controller_equipes.php" method="POST">
-      <label for="nome_da_equipe">Nome da Equipe:</label>
-      <input type="text" name="nome_da_equipe" required /><br />
+    <div class="form-container">
+      <h1>Cadastrar Equipes</h1>
+      <form action="../Controller/controller_equipes.php" method="POST">
+        <label for="nome_da_equipe">Nome da Equipe:</label>
+        <input type="text" name="nome_da_equipe" required />
 
-      <label for="quantidade">Quantidade de Voluntários:</label>
-      <input
-        type="number"
-        id="quantidade"
-        name="quantidade"
-        required
-        onchange="adicionarVoluntarios()"
-      /><br />
+        <label for="quantidade">Quantidade de Voluntários:</label>
+        <input
+          type="number"
+          id="quantidade"
+          name="quantidade"
+          required
+          onchange="adicionarVoluntarios()"
+        /><br />
 
-      <div id="voluntarios-container"></div>
-
-      <input type="submit" value="Cadastrar" name="acao" />
-    </form>
-    <br />
-    <form action="equipes_cadastradas.php">
-      <input type="submit" value="Voltar" /><br />
-    </form>
+        <div id="voluntarios-container"></div>
+        <br />
+        <input type="submit" value="Cadastrar" name="acao" />
+      </form>
+      <form action="equipes_cadastradas.php">
+        <input type="submit" value="Voltar" />
+      </form>
+    </div>
   </body>
 </html>

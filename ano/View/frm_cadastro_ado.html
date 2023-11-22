@@ -5,29 +5,118 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cadastrar Adotante</title>
   </head>
+  <style>
+    /* Fonte */
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap");
+
+    body {
+      background-color: #383b43;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      color: #333;
+      margin-top: 20px; /* Espaçamento em cima */
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    .form-container {
+      background-color: white;
+      padding: 20px;
+      border-radius: 20px;
+      width: 80%;
+      max-width: 700px;
+      margin: auto;
+      box-shadow: 0 7px 25px rgba(0, 0, 0, 0.815);
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    h1 {
+      text-align: center;
+      color: #383b43;
+      margin-bottom: 20px;
+    }
+    label {
+      margin-top: 10px;
+      font-weight: bold;
+      padding-left: 10px;
+      padding-bottom: 2px;
+    }
+
+    input,
+    textarea {
+      margin-bottom: 15px;
+      background-color: #ffffff;
+      padding: 15px;
+      border: none;
+      border-radius: 15px;
+      font-size: 16px;
+      flex: 1; /* Take up available space */
+      margin-right: 10px; /* Add spacing between inputs */
+      box-shadow: 0 7px 25px rgba(0, 0, 0, 0.185);
+    }
+    input[type="submit"] {
+      background-color: #383b43;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 7px 25px rgba(0, 0, 0, 0.5);
+    }
+    input[type="submit"]:hover {
+      background-color: rgba(49, 49, 49, 0.658);
+      box-shadow: none;
+    }
+    input[type="submit"],
+    input[type="reset"] {
+      padding: 20px;
+      border: none;
+      border-radius: 15px;
+      font-size: 20px;
+    }
+
+    @media screen and (max-width: 600px) {
+      .form-container {
+        width: 90%;
+      }
+
+      input,
+      textarea {
+        margin-right: 0; /* Remove spacing between inputs on smaller screens */
+      }
+    }
+  </style>
   <body>
-    <h1>Cadastrar Adotante</h1>
-    <form action="../Controller/controller_ado.php" method="POST">
-      <label for="nome_adotante">Nome do Adotante:</label>
-      <input type="text" name="nome_adotante" required /><br />
+    <div class="form-container">
+      <h1>Cadastrar Adotante</h1>
+      <form action="../Controller/controller_ado.php" method="POST">
+        <label for="nome_adotante">Nome do Adotante:</label>
+        <input type="text" name="nome_adotante" required />
 
-      <label for="descricao_bloqueio">Descrição do Bloqueio:</label>
-      <input type="text" name="descricao_bloqueio" required /><br />
+        <label for="descricao_bloqueio">Descrição do Bloqueio:</label>
+        <input type="text" name="descricao_bloqueio" required />
 
-      <label for="cpf">CPF:</label>
-      <input type="text" name="cpf" required /><br />
+        <label for="cpf">CPF:</label>
+        <input type="text" name="cpf" required />
 
-      <label for="data_bloqueio">Data de Bloqueio:</label>
-      <input type="datetime-local" name="data_bloqueio" required /><br />
+        <label for="data_bloqueio">Data de Bloqueio:</label>
+        <input type="datetime-local" name="data_bloqueio" required />
 
-      <label for="voluntario_que_registrou">Voluntário que Registrou:</label>
-      <input type="text" name="voluntario_que_registrou" required /><br />
-
-      <input type="submit" value="Cadastrar" name="acao" />
-    </form>
-    <br />
-    <form action="perfil_usuario.php">
-      <input type="submit" value="Voltar" /><br />
-    </form>
+        <label for="voluntario_que_registrou">Voluntário que Registrou:</label>
+        <input type="text" name="voluntario_que_registrou" required />
+        <br />
+        <input type="submit" value="Cadastrar" name="acao"/>
+      </form>
+      <form action="perfil_usuario.php">
+        <input type="submit" value="Voltar"/>
+      </form>
+    </div>
   </body>
 </html>
