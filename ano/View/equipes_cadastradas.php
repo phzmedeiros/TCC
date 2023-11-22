@@ -434,6 +434,7 @@ if (!isset($_SESSION["usuarioSenha"])) {
               <th>Nome da Equipe</th>
               <th>Nome do Líder</th>
               <th>Voluntários</th>
+              <th>Ações</th>
             </tr>
             <?php
             require_once '../Model/crud.php';

@@ -351,6 +351,18 @@ if (!isset($_SESSION["usuarioSenha"])) {
       padding: auto;
       border: 2px solid var(--blue);
     }
+
+    .delete-icon-cell {
+    text-align: center; /* Centraliza o conteúdo na célula */
+}
+
+.delete-icon-cell a {
+    color: red; /* Define a cor vermelha para o ícone */
+    display: inline-block; /* Permite definir largura/altura e centralizar verticalmente */
+    width: 100%; /* Faz com que o link ocupe toda a largura da célula */
+    height: 100%; /* Faz com que o link ocupe toda a altura da célula */
+    text-decoration: none; /* Remove sublinhado padrão do link */
+}
 </style>
 <body>
   <!-- toda a página -->
@@ -451,15 +463,15 @@ if (!isset($_SESSION["usuarioSenha"])) {
                 }
 
                 foreach ($adotantes as $adotante) {
-                    echo "<tr>";
-                    echo "<td>{$adotante['nome_adotante']}</td>";
-                    echo "<td>{$adotante['descricao_bloqueio']}</td>";
-                    echo "<td>{$adotante['cpf']}</td>";
-                    echo "<td>{$adotante['data_bloqueio']}</td>";
-                    echo "<td>{$adotante['voluntario_que_registrou']}</td>";
-                    echo "<td><a href='excluir_adotante.php?cpf={$adotante['cpf']}'>Excluir</a></td>";
-                    echo "</tr>";
-                }
+                  echo "<tr>";
+                  echo "<td>{$adotante['nome_adotante']}</td>";
+                  echo "<td>{$adotante['descricao_bloqueio']}</td>";
+                  echo "<td>{$adotante['cpf']}</td>";
+                  echo "<td>{$adotante['data_bloqueio']}</td>";
+                  echo "<td>{$adotante['voluntario_que_registrou']}</td>";
+                  echo "<td class='delete-icon-cell'><a href='excluir_adotante.php?cpf={$adotante['cpf']}'><ion-icon name='trash'></ion-icon></a></td>";
+                  echo "</tr>";
+                }      
                 ?>
             </table>           
           </div>
