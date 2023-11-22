@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 10/11/2023 às 01:51
+-- Tempo de geração: 22/11/2023 às 19:40
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -38,6 +38,7 @@ CREATE TABLE `adesao` (
 --
 
 INSERT INTO `adesao` (`cpf`, `nome`, `email`) VALUES
+('12312312315', 'juca', 'prod.tawio@gmail.com'),
 ('12312312343', 'Teste', 'teste@gmail.com');
 
 -- --------------------------------------------------------
@@ -60,7 +61,8 @@ CREATE TABLE `ado_block` (
 --
 
 INSERT INTO `ado_block` (`id`, `nome_adotante`, `descricao_bloqueio`, `cpf`, `data_bloqueio`, `voluntario_que_registrou`) VALUES
-(3, 'Fulano', 'Abandono', '32132132100', '2023-10-31', 'Cadu');
+(5, 'Oct?vio Augusto Siqueira da Silva', 'babaca', '234', '2023-11-15', 'cadu'),
+(6, 'Hlenna', 'babaca', '321', '2023-11-15', 'casd');
 
 -- --------------------------------------------------------
 
@@ -77,15 +79,29 @@ CREATE TABLE `equipes` (
   `nome_do_voluntario_3` varchar(255) DEFAULT NULL,
   `nome_do_voluntario_4` varchar(255) DEFAULT NULL,
   `nome_do_voluntario_5` varchar(255) DEFAULT NULL,
-  `id_voluntario_lider` int(11) DEFAULT NULL
+  `nome_do_voluntario_6` varchar(255) DEFAULT NULL,
+  `nome_do_voluntario_7` varchar(255) DEFAULT NULL,
+  `nome_do_voluntario_8` varchar(255) DEFAULT NULL,
+  `nome_do_voluntario_9` varchar(255) DEFAULT NULL,
+  `nome_do_voluntario_10` varchar(255) DEFAULT NULL,
+  `nome_do_voluntario_11` varchar(255) DEFAULT NULL,
+  `nome_do_voluntario_12` varchar(255) DEFAULT NULL,
+  `nome_do_voluntario_13` varchar(255) DEFAULT NULL,
+  `nome_do_voluntario_14` varchar(255) DEFAULT NULL,
+  `nome_do_voluntario_15` varchar(255) DEFAULT NULL,
+  `nome_do_voluntario_16` varchar(255) DEFAULT NULL,
+  `nome_do_voluntario_17` varchar(255) DEFAULT NULL,
+  `nome_do_voluntario_18` varchar(255) DEFAULT NULL,
+  `nome_do_voluntario_19` varchar(255) DEFAULT NULL,
+  `nome_do_voluntario_20` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `equipes`
 --
 
-INSERT INTO `equipes` (`id`, `nome_da_equipe`, `nome_do_voluntario_lider`, `nome_do_voluntario_1`, `nome_do_voluntario_2`, `nome_do_voluntario_3`, `nome_do_voluntario_4`, `nome_do_voluntario_5`, `id_voluntario_lider`) VALUES
-(14, 'Casa', '49', '49', '50', '51', '52', NULL, NULL);
+INSERT INTO `equipes` (`id`, `nome_da_equipe`, `nome_do_voluntario_lider`, `nome_do_voluntario_1`, `nome_do_voluntario_2`, `nome_do_voluntario_3`, `nome_do_voluntario_4`, `nome_do_voluntario_5`, `nome_do_voluntario_6`, `nome_do_voluntario_7`, `nome_do_voluntario_8`, `nome_do_voluntario_9`, `nome_do_voluntario_10`, `nome_do_voluntario_11`, `nome_do_voluntario_12`, `nome_do_voluntario_13`, `nome_do_voluntario_14`, `nome_do_voluntario_15`, `nome_do_voluntario_16`, `nome_do_voluntario_17`, `nome_do_voluntario_18`, `nome_do_voluntario_19`, `nome_do_voluntario_20`) VALUES
+(5, 'juca', '181', '181', '182', '183', '184', '185', '186', '187', '188', '189', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -112,7 +128,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nome_do_voluntario`, `email`, `endereco`, `profissao`, `cell`, `tell_emergencia`, `rg`, `cpf`, `equipe_pertencente`, `obs`) VALUES
-(8, 'Teste', 'teste@gmail.com', 'Teste', 'Teste', '12123464321', '12123464321', '123098765411', '12312312343', 'Canil', NULL);
+(13, 'Octávio Augusto Siqueira da Silva', 'tavioaugus@gmail.com', 'Rua dos Ipês - de 156/157 ao fim, 614', 'gay', '1999885544', '+5519994111292', '89', '123', 'ka', 'popo pipi papa pepe');
 
 -- --------------------------------------------------------
 
@@ -158,20 +174,77 @@ CREATE TABLE `voluntarios` (
 --
 
 INSERT INTO `voluntarios` (`id`, `nome`) VALUES
-(39, 'jao'),
-(40, 'atqo'),
-(41, 'pedo'),
-(42, 'jao'),
-(43, 'atqo'),
-(44, 'pedo'),
-(45, 'atur'),
-(46, 'sil'),
-(47, 'davi'),
-(48, 'jao'),
-(49, 'jao'),
-(50, 'atqo'),
-(51, 'pedo'),
-(52, 'atur');
+(119, 'lcuas'),
+(120, 'artu'),
+(121, 'kaka'),
+(122, 'pedro'),
+(123, 'joao'),
+(124, 'samu'),
+(125, 'carlo'),
+(126, 'wilton'),
+(127, 'lcuas'),
+(128, 'artu'),
+(129, 'kaka'),
+(130, 'pedro'),
+(131, 'joao'),
+(132, 'samu'),
+(133, 'carlo'),
+(134, 'wilton'),
+(135, 'lcuas'),
+(136, 'artu'),
+(137, 'kaka'),
+(138, 'pedro'),
+(139, 'joao'),
+(140, 'samu'),
+(141, 'carlo'),
+(142, 'wilton'),
+(143, 'lcuas'),
+(144, 'artu'),
+(145, 'kaka'),
+(146, 'pedro'),
+(147, 'joao'),
+(148, 'samu'),
+(149, 'carlo'),
+(150, 'wilton'),
+(151, 'lcuas'),
+(152, 'artu'),
+(153, 'kaka'),
+(154, 'jao'),
+(155, 'dada'),
+(156, 'vivi'),
+(157, 'tata'),
+(158, 'caca'),
+(159, 'aa'),
+(160, 'pepe'),
+(161, 'bebe'),
+(162, 'dede'),
+(163, 'jao'),
+(164, 'dada'),
+(165, 'vivi'),
+(166, 'tata'),
+(167, 'caca'),
+(168, 'aa'),
+(169, 'pepe'),
+(170, 'bebe'),
+(171, 'dede'),
+(172, 'jao'),
+(173, 'dada'),
+(174, 'vivi'),
+(175, 'tata'),
+(176, 'caca'),
+(177, 'aa'),
+(178, 'pepe'),
+(179, 'bebe'),
+(180, 'dede'),
+(181, 'jao'),
+(182, 'dada'),
+(183, 'vivi'),
+(184, 'tata'),
+(185, 'caca'),
+(186, 'aa'),
+(187, 'pepe'),
+(188, 'bebe'),
+(189, 'dede');
 
 --
 -- Índices para tabelas despejadas
@@ -193,8 +266,7 @@ ALTER TABLE `ado_block`
 -- Índices de tabela `equipes`
 --
 ALTER TABLE `equipes`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_voluntario_lider` (`id_voluntario_lider`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Índices de tabela `usuarios`
@@ -222,19 +294,19 @@ ALTER TABLE `voluntarios`
 -- AUTO_INCREMENT de tabela `ado_block`
 --
 ALTER TABLE `ado_block`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `equipes`
 --
 ALTER TABLE `equipes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de tabela `usuariosa`
@@ -246,17 +318,7 @@ ALTER TABLE `usuariosa`
 -- AUTO_INCREMENT de tabela `voluntarios`
 --
 ALTER TABLE `voluntarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
-
---
--- Restrições para tabelas despejadas
---
-
---
--- Restrições para tabelas `equipes`
---
-ALTER TABLE `equipes`
-  ADD CONSTRAINT `equipes_ibfk_1` FOREIGN KEY (`id_voluntario_lider`) REFERENCES `voluntarios` (`id`);
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=190;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
