@@ -534,7 +534,7 @@ if (!isset($_SESSION["usuarioSenha"])) {
                     echo "<td>{$usuario['cpf']}</td>";
                     echo "<td>{$usuario['equipe_pertencente']}</td>";
                     echo "<td>{$usuario['obs']}</td>";
-                    echo "<td class='delete-icon-cell'><a href='excluir_adotante.php?cpf={$usuario['cpf']}'><ion-icon name='trash'></ion-icon></a></td>";
+                    echo "<td class='delete-icon-cell'><a href='excluir_usuario.php?cpf={$usuario['cpf']}'><ion-icon name='trash'></ion-icon></a></td>";
                     echo "</tr>";
                 }
               ?>
