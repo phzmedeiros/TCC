@@ -315,12 +315,12 @@ if (!isset($_SESSION["usuarioSenha"])) {
     /* design tabela */
     .table {
       background-color: var(--blue);
-      border-radius: 25px;
       padding: 20px;
       color: var(--blue);
       box-shadow: 0 7px 25px rgba(0, 0, 0, 0.158);
       overflow: auto;
       width:100%;
+      border-radius: 25px 25px 12px 12px;
     }
     table {
       width: 120%;
@@ -354,15 +354,34 @@ if (!isset($_SESSION["usuarioSenha"])) {
 
     .delete-icon-cell {
     text-align: center; /* Centraliza o conteúdo na célula */
-}
+    }
 
-.delete-icon-cell a {
-    color: red; /* Define a cor vermelha para o ícone */
-    display: inline-block; /* Permite definir largura/altura e centralizar verticalmente */
-    width: 100%; /* Faz com que o link ocupe toda a largura da célula */
-    height: 100%; /* Faz com que o link ocupe toda a altura da célula */
-    text-decoration: none; /* Remove sublinhado padrão do link */
-}
+    .delete-icon-cell a {
+        color: red; /* Define a cor vermelha para o ícone */
+        display: inline-block; /* Permite definir largura/altura e centralizar verticalmente */
+        width: 100%; /* Faz com que o link ocupe toda a largura da célula */
+        height: 100%; /* Faz com que o link ocupe toda a altura da célula */
+        text-decoration: none; /* Remove sublinhado padrão do link */
+        font-size: 1.5rem;
+    }
+
+    ::-webkit-scrollbar {
+      width: 20px;
+      -webkit-transition: all 300ms;
+      transition: all 300ms;
+      height: 15px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background-color: var(--blue);
+      border-radius: 25px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      border-radius: 7px;
+      background: white;
+      box-shadow: 5px 0 0 0 transparent, -5px 0 0 0 transparent; /* Ajuste o valor do 5px conforme necessário para o espaçamento desejado */
+    }
 </style>
 <body>
   <!-- toda a página -->
@@ -501,46 +520,7 @@ if (!isset($_SESSION["usuarioSenha"])) {
     list.forEach((item) => item.classList.remove("hovered"));
     this.classList.add("hovered");
   }
-  list.forEach((item) => item.addEventListener("mouseover", activatelink));
+  list.forEach((item) => item.addEventListener("mouseover", activeLink));
 </script>
 </html>
-
-<!-- <script>
-<h1>Adotantes Cadastrados</h1>
-
-<table border="1">
-    <tr>
-        <th>Nome</th>
-        <th>Descrição do bloqueio</th>
-        <th>CPF</th>
-        <th>Data e hora do bloqueio</th>
-        <th>Voluntário que bloqueou</th>
-    </tr>
-
-    ?php
-    require_once '../Model/crud.php';
-    $crud = new crud();
-
-    // Verifica se um CPF de pesquisa foi submetido
-    if (isset($_POST['searchCPF'])) {
-        $searchCpf = $_POST['searchCPF'];
-        $adotantes = $crud->selecionar_Adotante_Por_CPF($searchCpf);
-    } else {
-        // Se nenhum CPF de pesquisa foi submetido, exiba todos os adotantes.
-        $adotantes = $crud->selecionar_Todos_Adotantes();
-    }
-
-    foreach ($adotantes as $adotante) {
-        echo "<tr>";
-        echo "<td>{$adotante['nome_adotante']}</td>";
-        echo "<td>{$adotante['descricao_bloqueio']}</td>";
-        echo "<td>{$adotante['cpf']}</td>";
-        echo "<td>{$adotante['data_bloqueio']}</td>";
-        echo "<td>{$adotante['voluntario_que_registrou']}</td>";
-        echo "<td><a href='excluir_adotante.php?cpf={$adotante['cpf']}'>Excluir</a></td>";
-        echo "</tr>";
-    }
-    ?>
-</table>
-</script> -->
 <?php } ?>

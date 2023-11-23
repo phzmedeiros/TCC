@@ -458,29 +458,14 @@ $conn->close();
       logo.classList.toggle("hidden");
     };
 
-    //marca como selecionado o item da sidebar
-    let list = document.querySelectorAll(".navigation li");
-    function activeLink() {
-      list.forEach((item) => item.classList.remove("hovered"));
-      this.classList.add("hovered");
-    }
-    list.forEach((item) => item.addEventListener("mouseover", activatelink));
+  //marca como selecionado o item da sidebar
+  let list = document.querySelectorAll(".navigation li");
+  function activeLink() {
+    list.forEach((item) => item.classList.remove("hovered"));
+    this.classList.add("hovered");
+  }
+  list.forEach((item) => item.addEventListener("mouseover", activeLink));
   </script>
 
 </html>
 <?php } ?>
-<!-- botão para se adicionar -->
-<!-- <form action="sair.php">
-	<input type="submit" value="Deslogar" name="deslogar">
-</form> -->
-
-<!-- paginas -->
-<!-- <a href="frm_cadastro_ado.html">Cadastrar adotantes</a><br><br>
-				<a href="adotantes_cadastrados.php">Vizualizar adotantes</a><br><br><br>
-				<a href="frm_cadastro_usuarios.html">Cadastrar novos usuarios</a><br><br>
-				<a href="usuarios_cadastrados.php">Vizualizar usuarios</a><br><br><br>
-				<a href="frm_cadastro_equipes.html">Cadastrar Equipes</a><br><br>
-				<a href="equipes_cadastradas.php">Vizualizar Equipes</a><br><br><br>
-				<a href="frm_adesao.html">FORM ADESAO</a><br><br>
-				<a href="frm_desligamento.html">FORM Desligamento</a><br><br>
-				<a href="termos_aceitos.php">Vizualizar quem aceitou o termo</a><br><br> -->

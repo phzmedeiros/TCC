@@ -360,6 +360,37 @@ if (!isset($_SESSION["usuarioSenha"])) {
     padding: auto;
     border: 2px solid var(--blue);
   }
+
+  .delete-icon-cell {
+    text-align: center; /* Centraliza o conteúdo na célula */
+  }
+
+    .delete-icon-cell a {
+        color: red; /* Define a cor vermelha para o ícone */
+        display: inline-block; /* Permite definir largura/altura e centralizar verticalmente */
+        width: 100%; /* Faz com que o link ocupe toda a largura da célula */
+        height: 100%; /* Faz com que o link ocupe toda a altura da célula */
+        text-decoration: none; /* Remove sublinhado padrão do link */
+        font-size: 1.5rem;
+    }
+
+    ::-webkit-scrollbar {
+      width: 20px;
+      -webkit-transition: all 300ms;
+      transition: all 300ms;
+      height: 15px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background-color: var(--blue);
+      border-radius: 25px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      border-radius: 7px;
+      background: white;
+      box-shadow: 5px 0 0 0 transparent, -5px 0 0 0 transparent; /* Ajuste o valor do 5px conforme necessário para o espaçamento desejado */
+    }
 </style>
 
 <body>
@@ -456,7 +487,7 @@ if (!isset($_SESSION["usuarioSenha"])) {
                     }}
               }
               echo "";
-              echo "<td><a href='excluir_equipes.php?id={$equipe['id']}'>Excluir</a></td>";
+              echo "<td class='delete-icon-cell'><a href='excluir_equipes.php?id={$equipe['id']}'><ion-icon name='trash'></ion-icon></a></td>";
               echo "</td>";
               echo "</tr>";
             }
@@ -487,48 +518,7 @@ if (!isset($_SESSION["usuarioSenha"])) {
     list.forEach((item) => item.classList.remove("hovered"));
     this.classList.add("hovered");
   }
-  list.forEach((item) => item.addEventListener("mouseover", activatelink));
+  list.forEach((item) => item.addEventListener("mouseover", activeLink));
 </script>
 </html>
-<!-- <script>
-    <table border="1">
-        <tr>
-            <th>Codigo da equipe</th>
-            <th>Nome da Equipe</th>
-            <th>Nome do Líder</th>
-            <th>Voluntários</th>
-        </tr>
-
-        ?php
-        require_once '../Model/crud.php';
-        $crud = new crud();
-        $equipes = $crud->selecionar_Todas_Equipes();
-
-        foreach ($equipes as $equipe) {
-            echo "<tr>";
-            echo "<td>{$equipe['id']}</td>";
-            echo "<td>{$equipe['nome_da_equipe']}</td>";
-            echo "<td>{$equipe['nome_do_voluntario_lider']}</td>";
-
-            echo "<td>";
-            echo "Nome do Líder: {$equipe['nome_do_voluntario_lider']}<br>";
-
-            for ($i = 1; $i <= 5; $i++) {
-                $voluntarioNome = $equipe["nome_do_voluntario_" . $i];
-                if (!empty($voluntarioNome)) {
-                    echo "Nome do " . ($i + 1) . "&ordm; Voluntário: $voluntarioNome<br>";
-                }
-            }
-            echo "";
-            echo "<td><a href='excluir_equipes.php?id={$equipe['id']}'>Excluir</a></td>";
-            echo "</td>";
-
-            echo "</tr>";
-        }
-        ?
-    </table>
-    <form action="perfil_usuario.php">
-        <input type="submit" value="Voltar"><br>
-    </form>
-</script> -->
 <?php } ?>
