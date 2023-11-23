@@ -315,7 +315,7 @@ if (!isset($_SESSION["usuarioSenha"])) {
     /* design tabela */
     .table {
       background-color: var(--blue);
-      border-radius: 25px;
+      border-radius: 25px 25px 12px 12px;
       padding: 20px;
       color: var(--blue);
       box-shadow: 0 7px 25px rgba(0, 0, 0, 0.158);

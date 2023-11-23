@@ -315,7 +315,7 @@ if (!isset($_SESSION["usuarioSenha"])) {
     /* design tabela */
     .table {
       background-color: var(--blue);
-      border-radius: 25px;
+      border-radius: 25px 25px 12px 12px;
       padding: 20px;
       color: var(--blue);
       box-shadow: 0 7px 25px rgba(0, 0, 0, 0.158);
@@ -351,6 +351,23 @@ if (!isset($_SESSION["usuarioSenha"])) {
     table th {
       padding: auto;
       border: 2px solid var(--blue);
+    }
+    ::-webkit-scrollbar {
+      width: 20px;
+      -webkit-transition: all 300ms;
+      transition: all 300ms;
+      height: 15px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background-color: var(--blue);
+      border-radius: 25px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      border-radius: 7px;
+      background: white;
+      box-shadow: 5px 0 0 0 transparent, -5px 0 0 0 transparent; /* Ajuste o valor do 5px conforme necessário para o espaçamento desejado */
     }
 </style>
 
