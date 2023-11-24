@@ -437,7 +437,7 @@ if (!isset($_SESSION["usuarioSenha"])) {
             </label>
           </div>
           <!-- botão de adc voluntario, pode ser alterado sendo excluido em paginas que não é necessario -->
-          <a href="#" class="btn-novo-voluntario">
+          <a href="../../termos/View/index.html" class="btn-novo-voluntario">
             <ion-icon name="add-circle"></ion-icon>
             Formulários
           </a>

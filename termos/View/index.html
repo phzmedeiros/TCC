@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Links dos formulários</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+            color: #333;
+        }
+        a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <a id="link1" href="frm_adesao.html">Adesão</a><br>
+    <a id="link2" href="frm_desligamento.html">Desligamento</a><br>
+    <button onclick="copyToClipboard('link1')">Copiar Link 1</button>
+    <button onclick="copyToClipboard('link2')">Copiar Link 2</button>
+
+    <script>
+        function copyToClipboard(id) {
+            var range = document.createRange();
+            range.selectNode(document.getElementById(id));
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+            document.execCommand("copy");
+            window.getSelection().removeAllRanges();
+            alert("Link copiado!");
+        }
+    </script>
+</body>
+</html>
