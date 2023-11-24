@@ -448,33 +448,10 @@ if (!isset($_SESSION["usuarioSenha"])) {
       </div>
       <div class="main-content">
      <div class="table">
-    <h1>Voluntários que aceitaram</h1>
-    <br>
+    <h1>Termos aceitos</h1><br>
+    <h3 style="margin-bottom: 10px;">Busca por Cpf</h3>
     <table>
-        <tr>
-            <th>Nome</th>
-            <th>CPF</th>
-            <th>Email</th>
-        </tr>
-        <?php
-        require_once '../Model/crud.php';
-        $crud = new crud();
-        $termos = $crud->selecionar_Todos_Termos_Aceitos();
-
-        foreach ($termos as $termo) {
-            echo "<tr>";
-            echo "<td>{$termo['nome']}</td>";
-            echo "<td>{$termo['cpf']}</td>";
-            echo "<td>{$termo['email']}</td>";
-            echo "</tr>";
-        }
-        ?>
-    </table><br>
-
-    <h3>Busca por Cpf</h3>
-    <br>
-    <table>
-        <tr>
+      <tr>
             <th>Nome</th>
             <th>CPF</th>
             <th>Email</th>
@@ -488,10 +465,32 @@ if (!isset($_SESSION["usuarioSenha"])) {
         if (isset($_POST['searchCpf'])) {
             $searchCpf = $_POST['searchCpf'];
             $termos = $crud->selecionar_Um_Termo_Por_Cpf($searchCpf);
-        } else {
+
+            foreach ($termos as $termo) {
+              echo "<tr>";
+              echo "<td>{$termo['nome']}</td>";
+              echo "<td>{$termo['cpf']}</td>";
+              echo "<td>{$termo['email']}</td>";
+              echo "</tr>";
+            }
+          } else {
             // $termos = $crud->selecionar_Todos_Termos_Aceitos();
             // echo "Deu ruim man";
-        }
+          }
+          ?>
+    </table>
+    <br>
+    <h3 style="margin-bottom: 10px;">Todos os voluntários</h3>
+    <table>
+        <tr>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Email</th>
+        </tr>
+        <?php
+        require_once '../Model/crud.php';
+        $crud = new crud();
+        $termos = $crud->selecionar_Todos_Termos_Aceitos();
 
         foreach ($termos as $termo) {
             echo "<tr>";
