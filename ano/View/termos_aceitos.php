@@ -448,7 +448,7 @@ if (!isset($_SESSION["usuarioSenha"])) {
       </div>
       <div class="main-content">
      <div class="table">
-    <h1>Termos aceitos</h1><br>
+    <h1 style="margin-bottom: 20px;">Termos aceitos</h1>
     <h3 style="margin-bottom: 10px;">Busca por Cpf</h3>
     <table>
       <tr>
