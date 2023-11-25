@@ -15,6 +15,7 @@ if (!isset($_SESSION["usuarioSenha"])) {
 <html>
 <head>
 	<title>Perfil Usuário </title>
+  <link rel="icon" href="../../public/img/mainicon.png" type="image/x-icon" />
 	<meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel="stylesheet" type="text/css" href="css/estilo_index.css">
