@@ -347,7 +347,7 @@ if (!isset($_SESSION["usuarioSenha"])) {
 <body>
 	<div class="container">
       <!-- side-bar -->
-     	<div class="navigation">
+    <div class="navigation">
 			<!-- logo aaano -->
 			<div class="imglogo centralize">
 			<img src="../../public/img/imglogo.png" />

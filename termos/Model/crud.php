@@ -27,7 +27,7 @@ class crud
 
                 if ($stmt->execute()) {
                     $message = 'Termo aceito com sucesso';
-                    echo "<script>alert('Termo aceito com sucesso'); window.location.href='../View/enviado.html';</script>";
+                    echo "<script>alert('Termo aceito com sucesso'); window.location.href='../../ano/View/termos_aceitos.php';</script>";
                 } else {
                     echo "<script>alert('Erro! É preciso aceitar o termo de adesão');</script>";
                 }
@@ -86,7 +86,7 @@ class crud
             if ($stmt1->execute() && $stmt2->execute()) {
                 echo "<script language='javascript' type='text/javascript'>
               alert('Termo de desligamento assinado com sucesso');
-              window.location.href='../View/enviado.html';
+              window.location.href='../../ano/View/termos_aceitos.php';
               </script>";
             } else {
                 echo "Erro ao excluir o usuário: " . $stmt1->errorInfo()[2];

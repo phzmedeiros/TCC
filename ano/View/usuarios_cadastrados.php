@@ -476,6 +476,7 @@ if (!isset($_SESSION["usuarioSenha"])) {
         </a>
       </div>
     </div>
+  </div>
     <!--main contendo a topbar e os cards-->
     <div class="main">
       <!-- parte de cima - toggle e botões de mudanças e etc -->
