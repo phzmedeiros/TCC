@@ -381,8 +381,7 @@ if (!isset($_SESSION["usuarioSenha"])) {
 			</li>
 			</ul>
       <div class="logout">
-        <div class="line-decoration"></div>
-        <a href="logout.php">
+        <a href="sair.php">
           <span class="icon"><ion-icon name="log-out"></ion-icon></span>
           <span class="title">Logout</span>
         </a>
