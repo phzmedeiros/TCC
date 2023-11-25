@@ -302,6 +302,35 @@ if (!isset($_SESSION["usuarioSenha"])) {
     .cardBox .card:hover .iconBx{
       color: var(--white);
     }
+    .navigation .logout {
+   position: absolute;
+   bottom: 50px; /* ou qualquer outra distância que você preferir do fundo */
+   left: 45%;
+   transform: translateX(-50%);
+   text-align: center;
+   
+}
+.navigation .logout a {
+    color: #fff; /* Cor do texto (branco) */
+    transition: color 0.3s ease; /* Transição suave para a cor do texto */
+    display: flex;
+    align-items: center; /* Centralizar verticalmente */
+    margin-top: 40px;
+}
+
+.navigation .logout a .icon {
+    margin-right: 5px; /* Espaçamento entre o ícone e o texto */
+}
+
+.navigation .logout a:hover {
+    color: #ccc; /* Cor do texto no hover (cinza claro) */
+}
+.navigation .line-decoration {
+    height: 1px; /* Altura da linha */
+    width: 30px;
+    background-color: #ccc; /* Cor da linha */
+    margin: 10px 0; /* Espaçamento acima e abaixo da linha */
+}
 </style>
 <body>
 	<div class="container">
@@ -351,6 +380,13 @@ if (!isset($_SESSION["usuarioSenha"])) {
 				</a>
 			</li>
 			</ul>
+      <div class="logout">
+        <div class="line-decoration"></div>
+        <a href="logout.php">
+          <span class="icon"><ion-icon name="log-out"></ion-icon></span>
+          <span class="title">Logout</span>
+        </a>
+      </div>
 		</div>
 		<!--main contendo a topbar e os cards-->
 		<div class="main">
