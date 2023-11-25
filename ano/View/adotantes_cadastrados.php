@@ -383,6 +383,46 @@ if (!isset($_SESSION["usuarioSenha"])) {
       background: white;
       box-shadow: 5px 0 0 0 transparent, -5px 0 0 0 transparent; /* Ajuste o valor do 5px conforme necessário para o espaçamento desejado */
     }
+
+    .navigation .logout {
+  position: absolute;
+  bottom: 50px;
+  left: 10%;
+  width: calc(100% - 70px); /* Ajuste conforme necessário */
+  text-align: center;
+  transition: width 0.5s; /* Adicione a transição aqui */
+}
+
+.navigation.active .logout {
+  width: calc(100% - 300px);
+  display: none; /* Ajuste conforme necessário */
+}
+
+.navigation .logout .line-decoration {
+  height: 1px;
+  width: 100%; /* Tamanho igual à largura da barra lateral */
+  background-color: #ccc;
+  margin: 10px 0;
+}
+
+.navigation .logout a {
+  color: #fff;
+  transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
+  margin-top: 40px;
+  justify-content: center;
+}
+
+.navigation .logout a .icon {
+  margin-right: 5px;
+  margin-top: 6px;
+}
+
+.navigation .logout a:hover {
+  color: #ccc;
+}
+
 </style>
 <body>
   <!-- toda a página -->
@@ -431,6 +471,13 @@ if (!isset($_SESSION["usuarioSenha"])) {
           </a>
         </li>
       </ul>
+      <div class="logout">
+        <div class="line-decoration"></div>
+        <a href="sair.php">
+          <span class="icon"><ion-icon name="log-out"></ion-icon></span>
+          <span class="title">Sair</span>
+        </a>
+      </div>
     </div>
     <!--main contendo a topbar e os cards-->
     <div class="main">

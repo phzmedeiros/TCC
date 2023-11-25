@@ -250,10 +250,13 @@ if (!isset($_SESSION["usuarioSenha"])) {
     .content {
       display: flex;
       flex-direction: column;
-      height: 100vh;
+      height: 100%;
+    width: 100%;
     }
     .main-content {
       flex: 1;
+      width: 100%;
+    height: 100%;
       overflow: visible;
       padding: 20px; /* Ajuste o espaçamento conforme necessário */
     }
@@ -303,34 +306,43 @@ if (!isset($_SESSION["usuarioSenha"])) {
       color: var(--white);
     }
     .navigation .logout {
-   position: absolute;
-   bottom: 50px; /* ou qualquer outra distância que você preferir do fundo */
-   left: 45%;
-   transform: translateX(-50%);
-   text-align: center;
-   
+  position: absolute;
+  bottom: 50px;
+  left: 10%;
+  width: calc(100% - 70px); /* Ajuste conforme necessário */
+  text-align: center;
+  transition: width 0.5s; /* Adicione a transição aqui */
 }
+
+.navigation.active .logout {
+  width: calc(100% - 300px);
+  display: none; /* Ajuste conforme necessário */
+}
+
+.navigation .logout .line-decoration {
+  height: 1px;
+  width: 100%; /* Tamanho igual à largura da barra lateral */
+  background-color: #ccc;
+  margin: 10px 0;
+}
+
 .navigation .logout a {
-    color: #fff; /* Cor do texto (branco) */
-    transition: color 0.3s ease; /* Transição suave para a cor do texto */
-    display: flex;
-    align-items: center; /* Centralizar verticalmente */
-    margin-top: 40px;
+  color: #fff;
+  transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
+  margin-top: 40px;
+  justify-content: center;
 }
 
 .navigation .logout a .icon {
-    margin-right: 5px; /* Espaçamento entre o ícone e o texto */
+  margin-right: 5px;
 }
 
 .navigation .logout a:hover {
-    color: #ccc; /* Cor do texto no hover (cinza claro) */
+  color: #ccc;
 }
-.navigation .line-decoration {
-    height: 1px; /* Altura da linha */
-    width: 30px;
-    background-color: #ccc; /* Cor da linha */
-    margin: 10px 0; /* Espaçamento acima e abaixo da linha */
-}
+
 </style>
 <body>
 	<div class="container">
@@ -382,9 +394,9 @@ if (!isset($_SESSION["usuarioSenha"])) {
 			</ul>
       <div class="logout">
         <div class="line-decoration"></div>
-        <a href="logout.php">
+        <a href="sair.php">
           <span class="icon"><ion-icon name="log-out"></ion-icon></span>
-          <span class="title">Logout</span>
+          <span class="title">Sair</span>
         </a>
       </div>
 		</div>
