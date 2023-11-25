@@ -106,16 +106,14 @@
       form input[type="checkbox"] + span {
         margin: 15px; /* Adicione uma pequena margem à esquerda para separar o texto do checkbox */
       }
-      form input[type="submit"] {
-        margin-bottom: 0; /* Adicione uma pequena margem à esquerda para separar o texto do checkbox */
-      }
+
       form a {
         color: #007bff;
         text-decoration: none;
       }
     </style>
   </head>
-  <body>
+  <body style="margin-top: 0;">
     <div class="form-container">
       <h1>Formulário de Desligamento</h1>
       <form action="../Controller/excluir_termo.php" method="get">
@@ -141,6 +139,9 @@
           >
         </div>
         <input type="submit" name="acao" value="Enviar!" />
+      </form>
+      <form action="../../ano/View/termos_aceitos.php">
+        <input type="submit" value="Voltar" style="margin: 0;"/>
       </form>
     </div>
   </body>
