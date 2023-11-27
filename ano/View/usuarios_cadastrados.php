@@ -465,7 +465,7 @@ if (!isset($_SESSION["usuarioSenha"])) {
           <a href="termos_aceitos.php">
             <span class="icon"><ion-icon name="hand"></ion-icon></span>
             <span class="title">Adesões</span>
-          </a>
+          </a>   
         </li>
       </ul>
       <div class="logout">
