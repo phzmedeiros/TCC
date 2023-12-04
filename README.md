@@ -1,2 +1,2 @@
 # TCC
- TCC WebApp AAANO
+TCC feito para a conclusão do curso de Desenvolvimento de Sistemas na ETEC FHG. O projeto tem o intuito de com o sistema, facilitar os métodos utilizados pela ONG para o cadastro de novos voluntários, cadastro de adotantes bloqueados, cadastro de equipes para os eventos e o gerenciamento total dos itens citados. Antes, todo o trabalho da ONG era feito em papel, e com o WebApp, a facilidade engajada nos métodos da ONG os ajuda de forma significativa, tendo em vista que o sistema pode ser acessado de qualquer lugar por se tratar de um WebApp
